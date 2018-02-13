@@ -27,12 +27,12 @@ class view extends \content\main\view
 
 		$this->data->running = $running;
 
-		if($this->access('election:admin:admin'))
+		if(\lib\permission::access('election:admin:admin'))
 		{
 			$this->data->perm_admin = true;
 		}
 
-		if($this->access('election:data:admin'))
+		if(\lib\permission::access('election:data:admin'))
 		{
 			$this->data->perm_data = true;
 		}
