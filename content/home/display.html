@@ -1,7 +1,7 @@
 {%extends display.mvc%}
 
 
-{% set dlUrl %}{{url.protocol}}://dl.{{url.raw}}{% endset %}
+{% set dlUrl %}{{url.protocol}}://{{url.raw}}{% endset %}
 {%if site.currentlang == 'en'%}
  {%set election_title%}{{result.election.en_title}}{%endset%}
 {%else%}
