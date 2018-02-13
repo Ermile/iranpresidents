@@ -19,6 +19,7 @@ class controller extends \content\main\controller
 				case 'election':
 				case 'انتخابات':
 				case 'انتخاب':
+				case 'e':
 				case '':
 					$this->redirector($this->url('base'). '/iran')->redirect();
 					return;
