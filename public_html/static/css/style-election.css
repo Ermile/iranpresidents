@@ -1,0 +1,204 @@
+@charset "utf-8";
+
+body{color:#333;background-color:#f4f4f4}
+.unselectable{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default}
+.text-center{text-align:center}
+
+header{position:fixed;z-index:1;top:0;right:0;left:0;width:100%;background-color:#00667a;padding:1em 3em;-webkit-box-shadow:0px 1px 5px 0px rgba(177, 177, 177, 0.45);-moz-box-shadow:0px 1px 5px 0px rgba(177, 177, 177, 0.45);box-shadow:0px 1px 5px 0px rgba(177, 177, 177, 0.45)}
+header .logo{display:inline-block;width:15em;vertical-align:middle}
+.rtl header .logo{width:10em}
+header .logo img{vertical-align:middle;max-width:100%}
+
+header nav a{font-size:1.2em;display:inline-block;padding:1rem;transition:.3s;vertical-align:middle;color:#fff}
+.rtl header nav a{font-weight:700}
+header nav a:hover,header nav a:focus,header nav a:active{border-radius:3px;background-color:rgba(0,0,0,.25)}
+
+.image{position:relative;display:inline-block;overflow:hidden;vertical-align:middle}
+.image::before{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;content:''}
+.image.round{border:1em solid #fff;border-radius:50%;background-color:#fff;box-shadow:0 0 10px 2px #ddd}
+.image.round.medium{border:.5em solid #fff}
+.image.round.low{border:.25em solid #fff}
+.image>img{display:block}
+
+.box-top{margin-bottom:5em;padding:10em 0 5em;border-top:3px solid #eeeff0;border-bottom:3px solid #eeeff0;background-image:url(../images/election/asanoha.png)}
+
+.election-title,.page-title{font-weight:700;margin:0;text-align:center}
+.election-title+.container{margin-top:1rem}
+
+.top-one{text-align:center}
+.top-one .image{max-width:20em}
+.winner-name{font-size:4em;text-shadow:0 0 2px #666;margin:0}
+.winner-title{margin:0;margin-bottom:3rem}
+
+.top-two .top-two-container{margin-bottom:2em}
+.top-two .top-two-container .image{max-width:15em}
+.ltr .top-two .top-two-container .first.candidate img,.rtl .top-two .top-two-container .second.candidate img{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1);-webkit-filter:FlipH;filter:FlipH;-ms-filter:FlipH}
+
+.top-two .status-bar-box{position:relative}
+.top-two .status-bar{height:5em;border:3px solid #eeeff0;background-color:#fff}
+
+.top-two .status-bar-box .indicator,.top-two .status-bar::before{width:1px;position:absolute;right:0;left:0;margin:auto;border-left:2px dashed #f4f4f4}
+.top-two .status-bar-box .indicator{height:100%;bottom:0;}
+
+.top-two .top-two-container .candidate .data{padding:0 2rem 2rem}
+.top-two .top-two-container .candidate .data h3{font-size:3em;margin:0}
+.top-two .top-two-container .candidate .data .vote-count{font-size:1.2em;font-weight:700}
+
+.top-two .status-bar .first,.top-two .status-bar .second{position:relative}
+.top-two .status-bar .first{background-color:#239f40}
+.top-two .status-bar .gap{background-color:#fff}
+.top-two .status-bar .second{background-color:#da0000}
+
+.top-two .status-bar .first .percentage,.top-two .status-bar .second .percentage{position:absolute;top:50%;margin-top:-1.25rem;font-size:3em;font-weight:700;color:#fff;text-shadow:0 0 1px #000;display:block}
+.top-two .status-bar .first .percentage{left:1rem;}
+.rtl .top-two .status-bar .first .percentage{right:1rem;left:auto;}
+.top-two .status-bar .second .percentage{right:1rem;}
+.rtl .top-two .status-bar .second .percentage{right:auto;left:1rem;}
+
+
+
+.election-update{position:fixed;z-index:10;top:2rem;left:2rem}
+.rtl .election-update{right:2rem;left:auto}
+.election-update .live i{position:relative;display:inline-block;width:20px;height:20px;vertical-align:middle;border:3px solid #bb1919;border-radius:50%}
+.election-update .live i::before{position:absolute;top:2px;left:2px;width:10px;height:10px;content:'';-webkit-animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;-moz-animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;-o-animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;border-radius:50%;background-color:#bb1919}
+.election-update .live .title{font-size:1.6em;font-weight:700;display:inline-block;vertical-align:middle;color:#bb1919;padding:0 .5rem}
+.election-update .live+.election-update-time{margin-top:1rem}
+.election-update .election-update-time{font-size:1.2em;font-weight:700}
+
+@-webkit-keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:.3;}
+  100%{opacity:1;}
+}
+@-moz-keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:.3;}
+  100%{opacity:1;}
+}
+@-o-keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:.3;}
+  100%{opacity:1;}
+}
+@keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:.3;}
+  100%{opacity:1;}
+}
+
+.d-title{font-size:2em;font-weight:700;margin-bottom:2rem}
+.d-title::before{display:inline-block;width:5px;height:40px;margin-right:1rem;content:'';vertical-align:middle;background-color:#ddd}
+.rtl .d-title::before{margin-right:0;margin-left:1rem}
+
+.candidates{margin:0 auto 5em;border:2px solid #ddd}
+.candidates .candidate{padding:1em 2em;background-color:#fff}
+.candidates .candidate:not(:last-of-type){border-bottom:1px solid #ddd}
+.candidates .candidate .name{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
+.candidates .candidate .name span{display:block;margin:.5rem 1rem}
+.candidates .candidate .name .bold{font-size:2em;font-weight:700;text-align:center}
+.candidates .candidate .name span:not(.bold){font-size:1.2em}
+
+.candidates .candidate .bar-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
+.candidates .candidate .bar{width:90%;margin:0 auto;height:1.5em;background:#e5e5e5 url(../images/election/striped.png);border:1px solid #e0e0e0}
+.candidates .candidate .bar-percent{margin-bottom:2rem;font-weight:700;font-size:1.2em}
+.candidates .candidate .bar .bar-progress{width:50%;height:100%;background-color:#007dd6;position:relative}
+.candidates .candidate .bar .bar-progress::before{content:attr(data-percent);position:absolute;top:-2em;left:0;font-weight:500;color:#666}
+
+.candidates .candidate .votes-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
+.candidates .candidate .votes-container span{font-weight:700;font-size:1.2em;color:#666}
+
+#chartdiv{height:300px;width:100%;direction:ltr}
+
+/* election timeline */
+.timeline-box{position:relative;margin-bottom:5rem;padding:0 7em}
+.timeline-box::before{position:absolute;top:25%;right:0;bottom:0; left:0;width:100%;height:3px;margin:auto;margin-top:0rem;content:'';background-color:#00667a}
+.timeline-box a{text-align:center;color:#333;font-weight:700}
+.timeline-box a .info{margin-top:1rem}
+.timeline-box a .info h3{display:none}
+.timeline-box a .info h4{font-size:1em;font-weight:700;line-height:1.1;margin:0;padding:.25rem}
+.timeline-box .timeline .image{width:5em;height:5em;z-index:2}
+
+
+/**/
+.election-tbl{margin:0 auto 5em;transition:all .3s cubic-bezier(.25,.8,.25,1);border-radius:.5rem;background-color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);}
+.election-tbl .f:not(:last-of-type){border-bottom:1px solid #f4f4f4}
+.election-tbl .f>[class*='c']{padding:1rem}
+
+.election-tbl .tr{position:relative}
+.election-tbl .tp{position:absolute;top:2%;bottom:0;left:0;width:0;height:96%;opacity:.75;background-color:#f7f7f7}
+.election-tbl span{font-weight:700;color:#333}
+
+.rtl .election-tbl .tp{left:auto;right:0}
+
+.election-tbl .first-name,.election-tbl .last-name{margin-bottom:0;text-align:center}
+.election-tbl .first-name{font-size:1.2em;font-weight:500;text-align:center;color:#666}
+.election-tbl .last-name{font-size:1.8em;font-weight:700;text-align:center}
+.rtl .election-tbl .last-name{font-size:2em}
+
+.election-tbl .image{max-width:10em}
+.ltr .election-tbl .image img{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1);-webkit-filter:FlipH;filter:FlipH;-ms-filter:FlipH}
+.election-tbl .image.round.low{border:1px solid #f4f4f4;box-shadow:none}
+
+.election-tbl#place-results>.th{font-weight:700}
+.election-tbl#place-results>.f{}
+.election-tbl#place-results>.f>[class*='c']{cursor:default;font-size:1.2em}
+.election-tbl#place-results>.f:not(.header):not(:last-of-type){}
+.election-tbl#place-results>.f:not(.header):hover{background-color:#4db6ac;color:#fff}
+
+.percentage-container{width:96%;min-width:2em;margin:0 auto}
+.percentage-container .percentage-value{font-size:1.4em;font-weight:700;margin-bottom:1rem;text-align:center}
+.percentage-container .percentage-bar{height:1.5em;margin:0 auto;border:1px solid #e0e0e0;background:#e5e5e5 url(../images/election/striped.png)}
+.percentage-container .percentage-bar .percentage-progress{position:relative;max-width:100%;height:100%;background-color:#007dd6;width:0}
+
+.election-tbl .vote-count{font-size:1.2em;font-weight:700;text-align:center;color:#666}
+
+.all-center,.vertical-center{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
+.all-center{text-align:center}
+.vertical-center{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column}
+
+.election-tbl > .f{transition:0.3s}
+.election-tbl > .f:not(.th):hover{background-color:#eee}
+.turnout{font-weight:bold;font-size:1.5em}
+.year{font-size:1.2em}
+
+.chart{direction:ltr}
+.chart *, .map *{font-family:IRANSans,Tahoma,sans-serif!important}
+.rtl .chart{text-align:right}
+.rtl .chart .highcharts-tooltip{direction:rtl}
+.highcharts-title{fill:#434348;font-weight:700}
+a[href*="amcharts.com"]{display:none!important}
+.chartbox{margin-bottom:50px;}
+.chartbox .chart{height:300px;}
+.chartbox h2{padding: 1em 2em;font-weight:bold}
+
+.taglist{width:90%;margin:0 auto;}
+.taglist span{padding:1em;background-color:#efefef;display:inline-block;transition:0.3s;cursor:default;margin:2px}
+.taglist span:hover{background-color:#ddd;}
+
+
+@media all and (min-width: 1200px) {
+  .timeline-box .timeline .image{width:7em;height:7em}
+}
+
+@media all and (max-width: 767px) {
+ .container{min-width:initial}
+ .election-title{font-size:2em; padding:0 0.5em}
+ .box-top{padding:10em 1em 2em}
+ .winner-name{font-size:2.5em}
+ .wwinner-title{font-size:1.4em}
+ .top-two .top-two-container .candidate .data{padding:0 1rem}
+ .top-two .top-two-container .candidate .data h3{font-size:1.4em}
+ .top-two .status-bar .first .percentage, .top-two .status-bar .second .percentage{font-size:2em;margin-top:-1rem}
+ .image.round.medium{border:.25em solid #fff}
+ .timeline-box{padding:0 2em}
+ .timeline-box a:not(:last-of-type){margin-bottom:4rem}
+ .timeline-box::before{top:0;width:3px;height:100%}
+ .timeline-box a .info{background-color:#fff;width:90%;margin:0 auto;z-index:7;position:relative;border-radius:3px;box-shadow:0 0 10px 2px #ddd;padding:1rem}
+ .timeline-box a .info span{font-size:1.2em}
+ .timeline-box .timeline .image{width:10em;height:10em;margin-bottom:1em}
+ .taglist{display:none;}
+ .election-tbl .f.th>[class*='c']{text-align:center}
+ header .logo{margin-bottom:.5em}
+}
+
+
