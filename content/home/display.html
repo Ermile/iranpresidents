@@ -1,0 +1,533 @@
+{%extends display.mvc%}
+
+
+{% set dlUrl %}{{url.protocol}}://dl.{{url.raw}}{% endset %}
+{%if site.currentlang == 'en'%}
+ {%set election_title%}{{result.election.en_title}}{%endset%}
+{%else%}
+ {%set election_title%}{{result.election.title}}{%endset%}
+{%endif%}
+
+
+{% block head_css %}
+ {%set codeUrl%}{%if url.tld == 'dev'%}http://code.ermile.dev/css/{%else%}https://code.ermile.com/css/{%endif%}{%endset%}
+ <link rel="stylesheet"       href="{{codeUrl}}ermile-10.1.0.css">
+ <link rel="stylesheet"       href="{{url.static}}{{'css/style-election.css' | filemtime(true)}}">
+{% endblock %}
+
+
+{%block content%}
+
+{%if url.tld == 'dev' %}
+  {{block('comment')}}
+{%endif%}
+
+{{block('header')}}
+
+
+ <div class="box-top unselectable">
+  {%if site.currentlang == 'en' and result.election.en_title%}
+   <h1 class="election-title">{%trans "Results of"%} {{result.election.en_title}}</h1>
+  {%elseif site.currentlang == 'fa' and result.election.title%}
+   <h1 class="election-title">{%trans "Results of"%} {{result.election.title}}</h1>
+  {%endif%}
+
+  {{block('live')}}
+  {{block('winner')}}
+  {{block('rivals')}}
+ </div>
+
+ <div class="container unselectable">
+  {{block('candidates')}}
+  {{block('result')}}
+  {{block('comparison')}}
+  {{block('province_result')}}
+  {{block('city_result')}}
+ </div>
+
+ {{block('time_line')}}
+ {{block('taglist')}}
+{%endblock%}
+
+{%block header%}
+<header class="flex justify-between s-column s-align-center">
+ {%if site.currentlang == 'en'%}
+  <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo-en.svg"></a>
+ {%else%}
+  <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo-fa.svg"></a>
+ {%endif%}
+
+ <nav class="flex align-center">
+  <a href="{{url.base}}/e">{%trans "All Elections"%}</a>
+  <a href="{{url.base}}/election/iran/president/candida">{%trans "All Candidates"%}</a>
+ </nav>
+</header>
+{%endblock%}
+
+
+
+{%block winner%}
+ {%if result.election.status == 'done' and result.election.win%}
+  {%for key, value in result.candida%}
+   {%if value.id == result.election.win%}
+
+    {%if site.currentlang == 'en'%}
+     {%set winner%}{{value.en_name}} {{value.en_fame}}{%endset%}
+    {%else%}
+     {%set winner%}{{value.name}} {{value.fame}}{%endset%}
+    {%endif%}
+
+    <div class="container unselectable">
+     <div class="top-one">
+      <div class="image round medium">
+       {%if value.win_url%}
+        <img src="{{dlUrl}}{{value.win_url}}" alt="{{winner}}">
+       {%elseif result.candida[result.election.win - 1]['file_url_2']%}
+        <img src="{{dlUrl}}{{value.file_url_2}}" alt="{{winner}}">
+       {%else%}
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{winner}}">
+       {%endif%}
+      </div>
+      <h2 class="winner-name">{{winner}}</h2>
+      <h2 class="winner-title">{%trans "President-elect of"%} {{election_title}}</h2>
+     </div>
+    </div>
+
+   {%endif%}
+  {%endfor%}
+ {%endif%}
+{%endblock%}
+
+
+
+{%block rivals%}
+{%if result.election.status == 'awaiting'%}
+{%else%}
+
+
+ <div class="container unselectable">
+  <div class="top-two">
+
+   {%if result.rival%}
+   <div class="flex justify-between top-two-container">
+    <div class="flex align-end first candidate">
+     {% if result.rival[0]['file_url'] %}
+
+
+     <div class="image round medium"><img src="{%if result.rival[0]['file_url_2']%}{{dlUrl}}{{result.rival[0]['file_url_2']}}{%else%}{{dlUrl}}{{result.rival[0]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[0]['en_name']}} {{result.rival[0]['en_fame']}}{%else%}{{result.rival[0]['name']}} {{result.rival[0]['fame']}}{%endif%}"></div>
+     {% endif %}
+     <div class="data flex f-column align-center justify-end">
+
+      {% if site.currentlang == 'en' %}
+       {% if result.rival[0]['en_fame'] %}
+        <h3>{{result.rival[0]['en_fame']}}</h3>
+       {% elseif result.rival[0]['en_family'] %}
+        <h3>{{result.rival[0]['en_family']}}</h3>
+       {% else %}
+        <h3>-</h3>
+       {% endif %}
+      {% else %}
+       {% if result.rival[0]['fame'] %}
+        <h3>{{result.rival[0]['fame']}}</h3>
+       {% else %}
+        <h3>{{result.rival[0]['family']}}</h3>
+       {% endif %}
+      {% endif %}
+
+      {% if result.rival[0]['percent'] %}
+       <div class="vote-count">{{result.rival[0]['percent']|fitNumber}}%</div>
+      {% endif %}
+     </div>
+    </div>
+
+    <div class="flex align-end second candidate">
+     <div class="data flex f-column align-center justify-end">
+      {% if site.currentlang == 'en' %}
+       {% if result.rival[1]['en_fame'] %}
+        <h3>{{result.rival[1]['en_fame']}}</h3>
+       {% elseif result.rival[1]['en_family'] %}
+        <h3>{{result.rival[1]['en_family']}}</h3>
+       {% else %}
+        <h3>-</h3>
+       {% endif %}
+      {% else %}
+       {% if result.rival[1]['fame'] %}
+        <h3>{{result.rival[1]['fame']}}</h3>
+       {% else %}
+        <h3>{{result.rival[1]['family']}}</h3>
+       {% endif %}
+      {% endif %}
+
+      {% if result.rival[1]['percent'] %}
+       <div class="vote-count">{{result.rival[1]['percent']|fitNumber}}%</div>
+      {%else%}
+       <div class="vote-count">-</div>
+      {% endif %}
+     </div>
+
+
+     {% if result.rival[1]['file_url'] %}
+      <div class="image round medium"><img src="{%if result.rival[1]['file_url_2']%}{{dlUrl}}{{result.rival[1]['file_url_2']}}{%else%}{{dlUrl}}{{result.rival[1]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[1]['en_name']}} {{result.rival[1]['en_fame']}}{%else%}{{result.rival[1]['name']}} {{result.rival[1]['fame']}}{%endif%}"></div>
+     {% endif %}
+    </div>
+   </div>
+
+   {% if result.rival[0]['total'] and result.rival[1]['total'] %}
+   <div class="status-bar-box">
+    <div class="flex justify-between status-bar">
+     {% if result.rival[0]['total'] %}
+     <div class="first" style="width:{{result.rival[0]['percent']}}%">
+      <div class="percentage">
+       <span>{{result.rival[0]['total']|number_format|fitNumber}}</span>
+      </div>
+     </div>
+     {% endif %}
+     {% if result.rival[1]['total'] %}
+     <div class="second" style="width:{{result.rival[1]['percent']}}%">
+      <div class="percentage">
+       <span>{{result.rival[1]['total']|number_format|fitNumber}}</span>
+      </div>
+     </div>
+     {% endif %}
+    </div>
+    <div class="indicator"></div>
+   </div>
+   {% endif %}
+{%endif%}
+  </div>
+ </div>
+
+
+{%endif%}
+{%endblock%}
+
+
+
+{%block live%}
+{%if result.election.status == 'running'%}
+ <div class="election-update unselectable">
+  <div class="live"><i></i><span class="title">{%trans "Live"%}</span></div>
+{%if false%}
+  <div class="election-update-time">
+   <span title='{%trans "Last Update"%} {{result.result[0]["report_date"]|tdate()}}'>{{result.result[0]['report_date']|tdate()}}</span>
+  </div>
+{%endif%}
+
+ </div>
+{%endif%}
+{%endblock%}
+
+
+
+{%block candidates%}
+{%if  result.election.status == 'awaiting'%}
+ {%if result.candida%}
+  <div class="election-tbl unselectable" id="candidates">
+   {%for key, value in result.candida%}
+    {%if site.currentlang == 'en'%}
+     <div class="f">
+      <div class="c2 s6 all-center">
+       <div class="image round low">
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
+       </div>
+      </div>
+      <div class="c2 s6 vertical-center">
+       {%if value.en_name == ' '%}
+       {%else%}
+        <h4 class="first-name">
+         {%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}
+        </h4>
+       {%endif%}
+       <h4 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</h4>
+      </div>
+      <div class="c6 all-center">
+       <div class="percentage-container">
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-bar">
+         <div class="percentage-progress" style="width:0%"></div>
+        </div>
+       </div>
+      </div>
+      <div class="c2 s6 all-center">
+       <div class="vote-count">{{0|fitNumber}} {%trans "Votes"%}</div>
+      </div>
+     </div>
+    {%else%}
+     <div class="f">
+      <div class="c2 s6 all-center">
+       <div class="image round low">
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
+       </div>
+      </div>
+      <div class="c2 s6 vertical-center">
+       {%if value.name == ' '%}
+       {%else%}
+        <h4 class="first-name">
+         {%if value.family == value.fame%}{{value.name}}{%else%}{{value.name}} {{value.family}}{%endif%}
+        </h4>
+       {%endif%}
+       <h4 class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</h4>
+      </div>
+      <div class="c6 all-center">
+       <div class="percentage-container">
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-bar">
+         <div class="percentage-progress" style="width:0%"></div>
+        </div>
+       </div>
+      </div>
+      <div class="c2 s6 all-center">
+       <div class="vote-count">{{0|fitNumber}} {%trans "Votes"%}</div>
+      </div>
+     </div>
+    {%endif%}
+   {%endfor%}
+  </div>
+ {%endif%}
+{%endif%}
+{%endblock%}
+
+
+
+{%block result%}
+{%if result.election.status == 'awaiting'%}
+{%else%}
+  <div class="election-tbl unselectable" id="total-result">
+   {%for key, value in result.result%}
+    {%if site.currentlang == 'en'%}
+     <div class="f">
+      <div class="c2 s6 all-center">
+       <div class="image round low">
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
+       </div>
+      </div>
+      <div class="c2 s6 vertical-center">
+       {%if value.en_name == ' '%}
+       {%else%}
+        <h4 class="first-name">
+         {%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}
+        </h4>
+       {%endif%}
+       <h4 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</h4>
+      </div>
+      <div class="c6 all-center">
+       <div class="percentage-container">
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-bar">
+         <div class="percentage-progress" style="width:{{value.percent}}%"></div>
+        </div>
+       </div>
+      </div>
+      <div class="c2 s6 all-center">
+       <div class="vote-count">{{value.total|number_format|fitNumber}} {%trans "Votes"%}</div>
+      </div>
+     </div>
+    {%else%}
+     <div class="f">
+      <div class="c2 s6 all-center">
+       <div class="image round low">
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
+       </div>
+      </div>
+      <div class="c2 s6 vertical-center">
+       {%if value.name == ' '%}
+       {%else%}
+        <h4 class="first-name">
+        {%if value.family == value.fame%}{{value.name}}{%else%}{{value.name}} {{value.family}}{%endif%}
+        </h4>
+       {%endif%}
+       <h4 class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</h4>
+      </div>
+      <div class="c6 all-center">
+       <div class="percentage-container">
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-bar">
+         <div class="percentage-progress" style="width:{{value.percent}}%"></div>
+        </div>
+       </div>
+      </div>
+      <div class="c2 s6 all-center">
+       <div class="vote-count">{{value.total|number_format|fitNumber}} {%trans "Votes"%}</div>
+      </div>
+     </div>
+    {%endif%}
+   {%endfor%}
+  </div>
+{%endif%}
+{%endblock%}
+
+
+
+{%block comparison%}
+{%if result.senario%}
+<div class="chartbox election-tbl">
+
+  {%if site.currentlang == 'en' and result.election.en_title%}
+   <h2>{%trans "Comparison result of"%} {{result.election.en_title}}</h2>
+  {%elseif site.currentlang == 'fa' and result.election.title%}
+   <h2>نتایج مقایسه‌ای روند اعلام نتایج {{result.election.title}}</h2>
+  {%endif%}
+
+
+  <div class="chart" data-vals='{{result.senario | raw}}' data-format='elComparison' data-trans='vote'>
+
+  </div>
+</div>
+{%endif%}
+{%endblock%}
+
+
+
+{%block province_result%}
+{% if result.result_by_city.province %}
+<p class="d-title unselectable">{% trans "Candidates Votes on Provinces" %}</p>
+<div class="election-tbl unselectable" id="place-results">
+ <div class="f th">
+  <div class="c">{%trans "Province"%}</div>
+  {%for k, v in result.candida_id%}
+  <div class="c">{{v}}</div>
+  {%endfor%}
+ </div>
+  {%for key, value in result.result_by_city.province%}
+   <div class="f">
+    <div class="c">{{value.location.local_name}}</div>
+    {%for k, v in value.data%}
+     <div class="c">{{v|fitNumber}}</div>
+    {%endfor%}
+   </div>
+  {%endfor%}
+</div>
+{% endif %}
+{%endblock%}
+
+
+
+{%block city_result%}
+{% if result.result_by_city.city %}
+<p class="d-title unselectable">{% trans "Candidates Votes on Cities" %}</p>
+<div class="election-tbl unselectable" id="place-results">
+ <div class="f th">
+  <div class="c">{%trans "City"%}</div>
+  {%for k, v in result.candida_id%}
+  <div class="c">{{v}}</div>
+  {%endfor%}
+  </div>
+  {%for key, value in result.result_by_city.city%}
+  <div class="f">
+  <div class="c">{{value.location.local_name}}</div>
+  {%for k, v in value.data%}
+  <div class="c">{{v|fitNumber}}</div>
+  {%endfor%}
+  </div>
+  {%endfor%}
+ </div>
+{% endif %}
+{%endblock%}
+
+
+
+{%block senario%}
+{%if result.senario%}
+ <div class="chart" id="" data-vals='[{"key"":۱۳۹۶-۰۲-۰۶","value":2},{"key":"۱۳۹۶-۰۲-۰۳","value":3}]' style="width:100%;direction:ltr;height: 300px;margin-bottom: 5em"></div>
+{%endif%}
+{%endblock%}
+
+
+
+{%block time_line%}
+{%if result.time_line%}
+
+ <div class="timeline-box unselectable">
+  <div class="timeline flex justify-around s-column">
+{%for key, value in result.time_line%}
+   <a href="{%if site.currentlang == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
+    <div class="image round low">
+
+    {%if value.win_url%}
+     <img src="{{dlUrl}}{{value.win_url}}" alt="">
+    {%else%}
+     <img src="{{dlUrl}}/files/election/unknown.png" alt='{%trans "Unknown"%}'>
+    {%endif%}
+
+    </div>
+    <div class="info flex f-column s-row justify-center">
+     {%if site.currentlang == 'en'%}
+     <h3>{{value.en_title}}</h3>
+     <h4>{{value.en_name}}</h4>
+     <h4>{{value.en_fame}}</h4>
+     <h4>{{value.year}}</h4>
+     {%else%}
+     <h3>{{value.title}}</h3>
+     <h4>{{value.name}}</h4>
+     <h4>{{value.fame}}</h4>
+     <h4>{{value.jalali_year|fitNumber}}</h4>
+     {%endif%}
+    </div>
+   </a>
+{%endfor%}
+  </div>
+ </div>
+
+{%endif%}
+{%endblock%}
+
+
+{% block taglist %}
+{%if site.currentlang == 'fa'%}
+
+<div class="taglist">
+  <span>انتخابات</span>
+  <span>نتایج مقایسه ای انتخابات ریاست جمهوری ایران</span>
+  <span>انتخابات۹۶</span>
+  <span>ریاست جمهوری ایران</span>
+  <span>نتیجه انتخابات</span>
+  <span>نتیجه انتخابات ایران</span>
+  <span>آخرین نتایج انتخابات</span>
+  <span>انتخابات ریاست جمهوری</span>
+  <span>جمهوری اسلامی ایران</span>
+  <span>انتخابات ۹۶</span>
+  <span>نتیجه ریاست جمهوری</span>
+  <span>ریاست جمهوری ۱۲</span>
+  <span>ریاست جمهوری دوازدهم</span>
+  <span>آمار رسمی وزارت کشور</span>
+  <span>شمارش آرای انتخابات ۹۶</span>
+  <span>انتخابات</span>
+  <span>نتایج انتخابات ۹۶</span>
+  <span>رئیس جمهور دوازدهم</span>
+  <span>آخرین نتایج انتخابات۹۶</span>
+  <span>نتیجه شمارش آرای انتخابات ریاست جمهوری</span>
+  <span>نتایج رسمی انتخابات ریاست جمهوری ایران ۹۶</span>
+  <span>رئیس جمهور ۹۶</span>
+  <span>دوازهمین رئیس جمهور ایران</span>
+  <span>نتایج الکشن ۱۲</span>
+  <span>آخرین نتایج انتخابات ۱۲</span>
+  <span>نتایج لحظه ای انتخابات ۱۲</span>
+</div>
+{%endif%}
+{%endblock%}
+
+
+
+{% block comment %}
+<form method="post" class="df">
+  <div class="f">
+    <label for="name" class="c1">{%trans "Your Name"%}</label>
+    <input type="text" name="name" placeholder='{%trans "Your name"%}' class="c2">
+  </div>
+  <div class="f">
+    <label for="mobile" class="c1">{%trans "Your mobile number"%}</label>
+    <input type="text" name="mobile" placeholder='{%trans "Your mobile number"%}' class="c2">
+  </div>
+  <div class="f">
+    <label for="mobile" class="c1">{%trans "Your comment"%}</label>
+    <textarea name="comment" placeholder='{%trans "Your Comment"%}' required class="c2" ></textarea>
+  </div>
+  <div class="f">
+    <div class="c1"></div>
+    <input type="submit" value='{%trans "Send"%}' class="c2">
+  </div>
+</form>
+
+{{result.comment|dump}}
+
+{%endblock%}

@@ -1,0 +1,134 @@
+{%extends display.dash%}
+
+
+{%block content%}
+<div class="tbox">
+	<h2>عملیات انتقال اطلاعات</h2>
+</div>
+
+<div class="cbox">
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'sql' %} danger {%endif%}" value="بسم الله الرحمن الرحیم">
+		<label>آماده سازی های اولیه دیتا بیسی</label>
+		<input type="hidden" name="level" value="sql">
+	</form>
+
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'planfile' %} danger {%endif%}" value="آپلود سرفصل ها">
+		<label>فایل سرفصل ها آماده بارگزاری است</label>
+		<input type="file" name="plan">
+		<input type="hidden" name="level" value="planfile">
+	</form>
+
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'removefakemobile' %} danger {%endif%}" value="حذف موبایل های اشتباه">
+		<label>موبایل هایی که تعداد ارقام اونها از حد مجاز کم یا بیشتر است</label>
+		<input type="hidden" name="level" value="removefakemobile">
+	</form>
+
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'fixmobile' %} danger {%endif%}" value="یکپارچه سازی ساختار موبایل ها">
+		<label>تمام موبایل ها از فیلتر موبایل عبور خواهند کرد</label>
+		<input type="hidden" name="level" value="fixmobile">
+	</form>
+
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'nationalcodeduplicate' %} danger {%endif%}" value="تلفیق کد ملی های تکراری">
+		<label>برخی از کد ملی ها تکراری هستند</label>
+		<input type="hidden" name="level" value="nationalcodeduplicate">
+	</form>
+
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'removeduplicatemobile' %} danger {%endif%}" value="حذف موبایل های تکرای">
+		<label>برخی از موبایل ها برای چندین نفر ثبت شده است</label>
+		<input type="hidden" name="level" value="removeduplicatemobile">
+	</form>
+
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'personfix' %} danger {%endif%}" value="آماده سازی جهت انتقال اطلاعات فراگیران">
+		<label>اقدامات اولیه جهت آماده سازی انتقال فراگیران</label>
+		<input type="hidden" name="level" value="personfix">
+	</form>
+
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'student' %} danger {%endif%}" value="عملیات انتقال فراگیران">
+		<label>شروع عملیات انتقال فراگیران. این عملیات ممکن است تا چند ساعت به طول بیانجامد</label>
+		<input type="hidden" name="level" value="student">
+	</form>
+
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'teacher' %} danger {%endif%}" value="عملیات انتقال اساتید">
+		<label>شروع عملیات انتقال اساتید</label>
+		<input type="hidden" name="level" value="teacher">
+	</form>
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'classroom' %} danger {%endif%}" value="انتقال کلاس های درس">
+		<label>انتقال کلاس های درس</label>
+		<input type="hidden" name="level" value="classroom">
+	</form>
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'lesson' %} danger {%endif%}" value="انتقال کلاس ها">
+		<label>انتقال کلاس ها و ترم ها</label>
+		<input type="hidden" name="level" value="lesson">
+	</form>
+
+	<form method="post"  class="mT1">
+		<input type="submit" class="btn primary w300 mRa20 {%if utilityGET.level == 'takenunit' %} danger {%endif%}" value="انتقال انتخاب واحد ها">
+		<label>انتقال انتخاب واحد های فراگیران</label>
+		<input type="hidden" name="level" value="takenunit">
+	</form>
+
+
+</div>
+
+
+<div class="cbox hidden">
+
+	<p>انتقال اطلاعات دانش آموزان</p>
+	<p>انتقال اطلاعات اساتید</p>
+	<p>انتقال اطلاعات کارشناسان</p>
+
+
+	<p>
+		باید به ازای هر سه ماه یه ترم ثبت بشه و کلاس ها با توجه به تاریخشون توی اون ترم قرار بگیرند
+		اگه این کارو نکنیم آمارمون کلا به هم ور میشه
+
+	</p>
+	<p>
+		ساعات کلاس باید تفکیک بشه و اکه یه کلاس مثلا توی سه روز برگزار میشه باید توی سه تا رکورد ذخیره بشه
+	</p>
+
+	<p>
+		طبق سرفصل های جدید و کلاس ها و طبق شعبه که تفکیک جنسیتش مشخص میشه باید دروس ارائه شده پر بشه
+		و سپس فراگیران واردش بشن
+	</p>
+
+	<p>
+		اوایی که پول دارند باید مبلغ پولشون منتقل بشه
+		در مورد کسانی که پولشون منفیه باید با مدیر صحبت کنم
+
+	</p>
+
+	<p>
+		به علی باید بگیم یه لیستی از گواهی نامه هایی که ثبت میشه و ثبت بوده تهیه کنه
+		همون طرح ها رو بشینه بگه هر طرحی کدوم گواهی نامه رو داره
+	</p>
+
+	<p>
+		غیبت ها باید منتقل بشه
+
+	</p>
+</div>
+{%endblock%}
+

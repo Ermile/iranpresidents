@@ -1,0 +1,6 @@
+<?php
+private function transtext()
+{
+
+}
+?>
