@@ -10,40 +10,18 @@ class controller extends \content\main\controller
 		if($id = $this->model()->check_url($url))
 		{
 			$this->get("load", "load")->ALL("/.*/");
-			$this->post('comment')->ALL("/^iran\/president\/\d+$/");
+			$this->post('comment')->ALL();
 		}
 		else
 		{
-			switch ($url)
-			{
-				case 'election':
-				case 'انتخابات':
-				case 'انتخاب':
-				case 'e':
-				case '':
-					$this->redirector($this->url('base'). '/iran')->redirect();
-					return;
-					# code...
-					break;
-				case 'iran':
-					$this->redirector($this->url('base'). '/iran/president')->redirect();
-					return;
-					break;
-				default:
-					# code...
-					break;
-			}
-			
-			$this->get('home', 'home')->ALL("/^iran\/president$/");
-			$this->get('candida', 'candida')->ALL("/^iran\/president\/candida$/");
+			$this->get('home', 'home')->ALL();
+			$this->get('candida', 'candida')->ALL("/^candida$/");
 
-			// $this->get('comment', 'comment')->ALL("/^iran\/president\/\d+\/comment$/");
-
-			if(preg_match("/^iran\/president\/candida$/", $url))
+			if(preg_match("/^candida$/", $url))
 			{
 				$this->display_name = 'content\home\candida.html';
 			}
-			elseif(preg_match("/^iran\/president\/\d+\/comment$/", $url))
+			elseif(preg_match("/^\/\d+\/comment$/", $url))
 			{
 				$this->display_name = 'content\home\comment.html';
 			}
