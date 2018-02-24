@@ -16,11 +16,11 @@ self::$language =
  * system default lanuage
  */
 self::$config['default_language']             = 'fa';
-self::$config['redirect_url']                 = 'http://dashsample.dev';
+self::$config['redirect_url']                 = 'https://iranpresidents.com';
 self::$config['multi_domain']                 = true;
 self::$config['redirect_to_main']             = true;
-self::$config['https']                        = false;
-self::$config['default_tld']                  = 'dev';
+self::$config['https']                        = true;
+self::$config['default_tld']                  = 'com';
 self::$config['default_permission']           = null;
 self::$config['debug']                        = true;
 self::$config['coming']                       = false;
@@ -45,8 +45,8 @@ self::$config['account_status']               = true;
 self::$config['use_main_account']             = false;
 
 self::$config['domain_same']                  = true;
-self::$config['domain_name']                  = 'dashsample';
-self::$config['main_site']                    = 'http://dashsample.dev';
+self::$config['domain_name']                  = 'iranpresidents';
+self::$config['main_site']                    = 'https://iranpresidents.com';
 
 
 
