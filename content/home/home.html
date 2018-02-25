@@ -1,24 +1,13 @@
-{%extends display.mvc%}
+{%extends display.main%}
 
 
 {%block content%}
- {{block('header')}}
  <div class="box-top unselectable">
   <h1 class="page-title">{%trans "Presidents of Islamic Republic of Iran"%}</h1>
  </div>
  {{block('all')}}
 {%endblock%}
 
-{%block header%}
-<header class="flex justify-between s-column s-align-center">
- <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo.png"></a>
-
- <nav class="flex align-center">
-  <a href="{{url.base}}">{%trans "All Elections"%}</a>
-  <a href="{{url.base}}/candida">{%trans "All Candidates"%}</a>
- </nav>
-</header>
-{%endblock%}
 
 {%block top%}
 <div class="box-top unselectable"></div>
