@@ -11,7 +11,7 @@ class view extends \mvc\view
 	{
 		$this->data->bodyclass = '';
 		$running  = [];
-		$election = \content\lib\elections::search();
+		$election = \lib\elections::search();
 
 		$this->data->page['title']   = T_('Presidents of Islamic Republic of Iran');
 		$this->data->page['desc']    = T_('Live and complete result of iran elections after revolution until now.');

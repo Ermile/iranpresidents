@@ -1,7 +1,7 @@
 <?php
-namespace content\lib;
+namespace lib;
 
-class candidas
+class elections
 {
 
 	/**
@@ -16,7 +16,7 @@ class candidas
 		$set = \lib\db\config::make_set($_args);
 		if($set)
 		{
-			\lib\db::query("INSERT INTO candidas SET $set", 'election');
+			\lib\db::query("INSERT INTO elections SET $set", 'election');
 			return \lib\db::insert_id(\lib\db::$link_open['election']);
 		}
 	}
@@ -33,9 +33,33 @@ class candidas
 	{
 		if($_id && is_numeric($_id))
 		{
-			$query = "SELECT * FROM candidas WHERE id = $_id LIMIT 1";
+			$query = "SELECT * FROM elections WHERE id = $_id LIMIT 1";
 			$result = \lib\db::get($query, null, true, 'election');
 			return $result;
+		}
+		return false;
+	}
+
+
+
+	/**
+	 * check url
+	 *
+	 * @param      <type>  $_url   The url
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function check_url($_url)
+	{
+		if($_url && is_string($_url))
+		{
+			$_url   = \lib\utility\safe::safe($_url);
+			$query  = "SELECT * FROM elections WHERE en_url = '$_url' OR fa_url = '$_url' LIMIT 1";
+			$result = \lib\db::get($query, null, true, 'election');
+			if(isset($result['id']))
+			{
+				return $result['id'];
+			}
 		}
 		return false;
 	}
@@ -55,7 +79,7 @@ class candidas
 			return false;
 		}
 
-		$query = "UPDATE candidas SET $set WHERE id = $_id LIMIT 1";
+		$query = "UPDATE elections SET $set WHERE id = $_id LIMIT 1";
 		return \lib\db::query($query, 'election');
 	}
 
@@ -85,7 +109,7 @@ class candidas
 			// for example in get_count mode we needless to limit and pagenation
 			// default limit of record is 15
 			// set the limit = null and pagenation = false to get all record whitout limit
-			"limit"          => 300,
+			"limit"          => 150,
 			// for manual pagenation set the statrt_limit and end limit
 			"start_limit"    => 0,
 			// for manual pagenation set the statrt_limit and end limit
@@ -114,14 +138,14 @@ class candidas
 		if($_options['get_count'] === true)
 		{
 			$get_count      = true;
-			$public_fields  = " COUNT(candidas.id) AS 'electioncount' FROM	candidas";
+			$public_fields  = " COUNT(elections.id) AS 'electioncount' FROM	elections";
 			$limit          = null;
 			$only_one_value = true;
 		}
 		else
 		{
 			$limit         = null;
-			$public_fields = " candidas.*, elections.title FROM candidas INNER JOIN elections ON elections.id = candidas.election_id";
+			$public_fields = " * FROM elections";
 
 			if($_options['limit'])
 			{
@@ -152,7 +176,7 @@ class candidas
 			}
 			else
 			{
-				$order = " ORDER BY candidas.id DESC ";
+				$order = " ORDER BY elections.id DESC ";
 			}
 		}
 		else
@@ -163,13 +187,18 @@ class candidas
 			}
 			else
 			{
-				$order = " ORDER BY candidas.id $_options[order] ";
+				$order = " ORDER BY elections.id $_options[order] ";
 			}
 		}
 
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
 
+		$no_limit = false;
+		if($_options['limit'] === false)
+		{
+			$no_limit = true;
+		}
 
 		unset($_options['pagenation']);
 		unset($_options['get_count']);
@@ -186,21 +215,21 @@ class candidas
 			{
 				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
 				{
-					// for similar "candidas.`field` LIKE '%valud%'"
-					$where[] = " candidas.`$key` $value[0] $value[1] ";
+					// for similar "elections.`field` LIKE '%valud%'"
+					$where[] = " elections.`$key` $value[0] $value[1] ";
 				}
 			}
 			elseif($value === null)
 			{
-				$where[] = " candidas.`$key` IS NULL ";
+				$where[] = " elections.`$key` IS NULL ";
 			}
 			elseif(is_numeric($value))
 			{
-				$where[] = " candidas.`$key` = $value ";
+				$where[] = " elections.`$key` = $value ";
 			}
 			elseif(is_string($value))
 			{
-				$where[] = " candidas.`$key` = '$value' ";
+				$where[] = " elections.`$key` = '$value' ";
 			}
 		}
 
@@ -210,7 +239,7 @@ class candidas
 		{
 			$_string = trim($_string);
 
-			$search = "(candidas.title  LIKE '%$_string%' )";
+			$search = "(elections.title  LIKE '%$_string%' )";
 			if($where)
 			{
 				$search = " AND ". $search;
@@ -228,9 +257,8 @@ class candidas
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT	COUNT(candidas.id) AS `count`	FROM candidas	$where $search ";
+			$pagenation_query = "SELECT	COUNT(elections.id) AS `count`	FROM elections	$where $search ";
 			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, 'election');
-
 			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
@@ -244,7 +272,11 @@ class candidas
 		}
 
 		$json = json_encode(func_get_args());
-		$query = " SELECT $public_fields $where $search $order $limit -- candidas::search() 	-- $json";
+		if($no_limit)
+		{
+			$limit = null;
+		}
+		$query = " SELECT $public_fields $where $search $order $limit -- elections::search() 	-- $json";
 
 		if(!$only_one_value)
 		{
@@ -257,61 +289,6 @@ class candidas
 		}
 
 		return $result;
-	}
-
-
-	/**
-	 * { item_description }
-	 */
-	public static function list($_election_id)
-	{
-		if($_election_id && is_numeric($_election_id))
-		{
-			$query = "SELECT candidas.*, CONCAT(name, ' ', family) as `name_family` FROM candidas WHERE candidas.election_id = $_election_id AND candidas.status = 'active' ";
-			$result = \lib\db::get($query, null, false, 'election');
-
-			return $result;
-		}
-	}
-
-
-	public static function get_list_all($_cat)
-	{
-
-		$query =
-		"
-			SELECT
-				candidas.*,
-				elections.*,
-				(
-					SELECT ((results.total * 100) / elections.voted)
-					FROM results
-					WHERE results.election_id = elections.id
-					AND results.candida_id = candidas.id
-					AND results.status = 'enable'
-					LIMIT 1
-				) AS `win_present`,
-				((elections.voted * 100) / elections.eligible) AS `work_present`,
-				(
-					SELECT ((results.total * 100) / elections.eligible)
-					FROM results
-					WHERE results.election_id = elections.id
-					AND results.candida_id = candidas.id
-					AND results.status = 'enable'
-					LIMIT 1
-				) AS `win_present_all`
-			FROM
-				candidas
-			INNER JOIN elections ON elections.id = candidas.election_id
-			WHERE
-				elections.cat = '$_cat' AND
-				candidas.status = 'active'
-			ORDER BY win_present DESC
-			";
-		$result = \lib\db::get($query, null, false, 'election');
-		// var_dump($result);exit();
-		return $result;
-
 	}
 
 }

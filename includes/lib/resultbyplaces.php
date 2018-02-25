@@ -1,7 +1,7 @@
 <?php
-namespace content\lib;
+namespace lib;
 
-class elections
+class resultbyplaces
 {
 
 	/**
@@ -16,50 +16,27 @@ class elections
 		$set = \lib\db\config::make_set($_args);
 		if($set)
 		{
-			\lib\db::query("INSERT INTO elections SET $set", 'election');
+			\lib\db::query("INSERT INTO resultbyplaces SET $set", 'election');
 			return \lib\db::insert_id(\lib\db::$link_open['election']);
 		}
 	}
 
 
 	/**
-	 * get election record
+	 * { function_description }
 	 *
-	 * @param      <type>  $_id    The identifier
+	 * @param      <type>  $_args  The arguments
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function get($_id)
+	public static function check($_args)
 	{
-		if($_id && is_numeric($_id))
+		$where = \lib\db\config::make_where($_args);
+		if($where)
 		{
-			$query = "SELECT * FROM elections WHERE id = $_id LIMIT 1";
-			$result = \lib\db::get($query, null, true, 'election');
+			$query  = "SELECT id FROM resultbyplaces WHERE $where LIMIT 1";
+			$result = \lib\db::get($query, 'id', true, 'election');
 			return $result;
-		}
-		return false;
-	}
-
-
-
-	/**
-	 * check url
-	 *
-	 * @param      <type>  $_url   The url
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public static function check_url($_url)
-	{
-		if($_url && is_string($_url))
-		{
-			$_url   = \lib\utility\safe::safe($_url);
-			$query  = "SELECT * FROM elections WHERE en_url = '$_url' OR fa_url = '$_url' LIMIT 1";
-			$result = \lib\db::get($query, null, true, 'election');
-			if(isset($result['id']))
-			{
-				return $result['id'];
-			}
 		}
 		return false;
 	}
@@ -79,7 +56,7 @@ class elections
 			return false;
 		}
 
-		$query = "UPDATE elections SET $set WHERE id = $_id LIMIT 1";
+		$query = "UPDATE resultbyplaces SET $set WHERE id = $_id LIMIT 1";
 		return \lib\db::query($query, 'election');
 	}
 
@@ -138,14 +115,14 @@ class elections
 		if($_options['get_count'] === true)
 		{
 			$get_count      = true;
-			$public_fields  = " COUNT(elections.id) AS 'electioncount' FROM	elections";
+			$public_fields  = " COUNT(resultbyplaces.id) AS 'resultbyplacescount' FROM	resultbyplaces";
 			$limit          = null;
 			$only_one_value = true;
 		}
 		else
 		{
 			$limit         = null;
-			$public_fields = " * FROM elections";
+			$public_fields = " resultbyplaces.*, elections.title FROM resultbyplaces INNER JOIN elections ON elections.id = resultbyplaces.election_id";
 
 			if($_options['limit'])
 			{
@@ -176,7 +153,7 @@ class elections
 			}
 			else
 			{
-				$order = " ORDER BY elections.id DESC ";
+				$order = " ORDER BY resultbyplaces.id DESC ";
 			}
 		}
 		else
@@ -187,7 +164,7 @@ class elections
 			}
 			else
 			{
-				$order = " ORDER BY elections.id $_options[order] ";
+				$order = " ORDER BY resultbyplaces.id $_options[order] ";
 			}
 		}
 
@@ -215,21 +192,21 @@ class elections
 			{
 				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
 				{
-					// for similar "elections.`field` LIKE '%valud%'"
-					$where[] = " elections.`$key` $value[0] $value[1] ";
+					// for similar "resultbyplaces.`field` LIKE '%valud%'"
+					$where[] = " resultbyplaces.`$key` $value[0] $value[1] ";
 				}
 			}
 			elseif($value === null)
 			{
-				$where[] = " elections.`$key` IS NULL ";
+				$where[] = " resultbyplaces.`$key` IS NULL ";
 			}
 			elseif(is_numeric($value))
 			{
-				$where[] = " elections.`$key` = $value ";
+				$where[] = " resultbyplaces.`$key` = $value ";
 			}
 			elseif(is_string($value))
 			{
-				$where[] = " elections.`$key` = '$value' ";
+				$where[] = " resultbyplaces.`$key` = '$value' ";
 			}
 		}
 
@@ -239,7 +216,7 @@ class elections
 		{
 			$_string = trim($_string);
 
-			$search = "(elections.title  LIKE '%$_string%' )";
+			$search = "(resultbyplaces.title  LIKE '%$_string%' )";
 			if($where)
 			{
 				$search = " AND ". $search;
@@ -257,8 +234,9 @@ class elections
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT	COUNT(elections.id) AS `count`	FROM elections	$where $search ";
+			$pagenation_query = "SELECT	COUNT(resultbyplaces.id) AS `count`	FROM resultbyplaces	$where $search ";
 			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, 'election');
+
 			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
@@ -272,11 +250,13 @@ class elections
 		}
 
 		$json = json_encode(func_get_args());
+
 		if($no_limit)
 		{
 			$limit = null;
 		}
-		$query = " SELECT $public_fields $where $search $order $limit -- elections::search() 	-- $json";
+
+		$query = " SELECT $public_fields $where $search $order $limit -- resultbyplaces::search() 	-- $json";
 
 		if(!$only_one_value)
 		{
@@ -285,10 +265,53 @@ class elections
 		}
 		else
 		{
-			$result = \lib\db::get($query, 'electioncount', true, 'election');
+			$result = \lib\db::get($query, 'resultbyplacescount', true, 'election');
 		}
 
 		return $result;
+	}
+
+
+	public static function get_election($_election_id)
+	{
+		if(!is_numeric($_election_id))
+		{
+			return false;
+		}
+
+		$query =
+		"
+			SELECT
+				election.resultbyplaces.*,
+				saloos_tools.locations.*
+			FROM
+				election.resultbyplaces
+			LEFT JOIN saloos_tools.locations ON saloos_tools.locations.id = election.resultbyplaces.place
+			WHERE election.resultbyplaces.election_id = $_election_id
+			ORDER BY election.resultbyplaces.candida_id ASC
+		";
+		$result = \lib\db::get($query, null, false, 'election');
+		$temp = [];
+
+		foreach ($result as $key => $value)
+		{
+			if(isset($value['type']))
+			{
+				if(!isset($temp[$value['type']][$value['id']]['data']))
+				{
+					$temp[$value['type']][$value['id']] =
+					[
+						'data' => [],
+						'location' => ['name' => $value['name'], 'local_name' => $value['local_name']],
+					];
+				}
+				$temp[$value['type']][$value['id']]['data'][$value['candida_id']] = $value['total'];
+			}
+		}
+
+		// var_dump($temp,$result);exit();
+
+		return $temp;
 	}
 
 }

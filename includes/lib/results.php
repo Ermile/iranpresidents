@@ -1,5 +1,5 @@
 <?php
-namespace content\lib;
+namespace lib;
 
 class results
 {

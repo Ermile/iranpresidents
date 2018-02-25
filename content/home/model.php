@@ -14,7 +14,7 @@ class model extends \mvc\model
 	 */
 	public function check_url($_url)
 	{
-		return \content\lib\elections::check_url($_url);
+		return \lib\elections::check_url($_url);
 	}
 
 
@@ -29,10 +29,10 @@ class model extends \mvc\model
 		if($election_id)
 		{
 			$result               = [];
-			$election             = \content\lib\elections::get($election_id);
+			$election             = \lib\elections::get($election_id);
 			$result['election']   = $election;
-			$vote                 = \content\lib\results::get_last($election_id);
-			$candida_id           = \content\lib\candidas::list($election_id);
+			$vote                 = \lib\results::get_last($election_id);
+			$candida_id           = \lib\candidas::list($election_id);
 
 			$result['candida']    = $candida_id;
 			$result['candida_id'] = array_column($candida_id, 'name_family', 'candida_id');
@@ -48,7 +48,7 @@ class model extends \mvc\model
 				$vote[$key]['percent'] = round((intval($value['total']) * 100) / $total, 3);
 			}
 			$result['result'] = $vote;
-			$senario          = \content\lib\results::get_senario($election_id);
+			$senario          = \lib\results::get_senario($election_id);
 			$temp_senario     = [];
 
 			foreach ($senario as $key => $value)
@@ -151,10 +151,10 @@ class model extends \mvc\model
 				$result['senario'] = null;
 			}
 
-			$time_line = \content\lib\results::get_time_line($election_id);
+			$time_line = \lib\results::get_time_line($election_id);
 			$result['time_line'] = $time_line;
 
-			$result['result_by_city'] = \content\lib\resultbyplaces::get_election($election_id);
+			$result['result_by_city'] = \lib\resultbyplaces::get_election($election_id);
 			if(isset($result['election']['status']) && $result['election']['status'] != 'awaiting')
 			{
 				if(isset($result['result'][0]['total']) && isset($result['result'][1]['total']) && $result['result'][1]['total'] === $result['result'][0]['total']  && $result['result'][1]['total'] === '0')
@@ -192,7 +192,7 @@ class model extends \mvc\model
 	 */
 	public function get_home($_args)
 	{
-		$time_line = \content\lib\results::home_page('president', true);
+		$time_line = \lib\results::home_page('president', true);
 		return $time_line;
 	}
 
@@ -205,7 +205,7 @@ class model extends \mvc\model
 	public function get_candida($_args)
 	{
 		$cat = 'president';
-		$result = \content\lib\candidas::get_list_all($cat);
+		$result = \lib\candidas::get_list_all($cat);
 		return $result;
 	}
 
