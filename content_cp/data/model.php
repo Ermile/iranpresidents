@@ -1,7 +1,7 @@
 <?php
-namespace content\data;
+namespace content_cp\data;
 
-class model extends \content\main\model
+class model extends \mvc\model
 {
 
 }

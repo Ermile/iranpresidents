@@ -1,14 +1,14 @@
 <?php
-namespace content\data;
+namespace content_cp\data;
 
-class view extends \content\main\view
+class view extends \mvc\view
 {
 	/**
 	 * cofnig
 	 */
 	public function config()
 	{
-		$election = \content\lib\elections::search(null, ['limit' => 50]);
+		$election = \lib\elections::search(null, ['limit' => 50]);
 
 		$this->data->election_list = $election;
 		$running = [];

@@ -1,5 +1,5 @@
 <?php
-namespace content\admin\candida;
+namespace content_cp\admin\candida;
 
 class controller extends \mvc\controller
 {

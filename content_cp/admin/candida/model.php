@@ -1,9 +1,9 @@
 <?php
-namespace content\admin\candida;
+namespace content_cp\admin\candida;
 use \lib\utility;
 use \lib\debug;
 
-class model extends \content\main\model
+class model extends \mvc\model
 {
 
 	/**
@@ -13,7 +13,7 @@ class model extends \content\main\model
 	 */
 	public function get_list()
 	{
-		return \content\lib\candidas::search();
+		return \lib\candidas::search();
 	}
 
 
@@ -76,7 +76,7 @@ class model extends \content\main\model
 	 */
 	public function get_candida($_args)
 	{
-		$result = \content\lib\candidas::get($this->getid($_args));
+		$result = \lib\candidas::get($this->getid($_args));
 		return $result;
 	}
 
@@ -96,7 +96,7 @@ class model extends \content\main\model
 			return false;
 		}
 
-		$result = \content\lib\candidas::update($this->getPost(), $id);
+		$result = \lib\candidas::update($this->getPost(), $id);
 
 		if($result)
 		{
@@ -156,7 +156,7 @@ class model extends \content\main\model
 			return false;
 		}
 
-		$result = \content\lib\candidas::insert($args);
+		$result = \lib\candidas::insert($args);
 
 		if($result)
 		{

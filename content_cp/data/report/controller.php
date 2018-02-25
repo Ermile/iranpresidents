@@ -1,5 +1,5 @@
 <?php
-namespace content\data\report;
+namespace content_cp\data\report;
 
 class controller extends \mvc\controller
 {

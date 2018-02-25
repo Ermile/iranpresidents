@@ -1,9 +1,9 @@
 <?php
-namespace content\data\report;
+namespace content_cp\data\report;
 use \lib\utility;
 use \lib\debug;
 
-class model extends \content\main\model
+class model extends \mvc\model
 {
 
 	/**
@@ -17,16 +17,16 @@ class model extends \content\main\model
 	{
 		$id                 = $this->getid($_args);
 		$result             = [];
-		$result['election'] = \content\lib\elections::search(null, ['id' => $id, 'limit' => 1]);
+		$result['election'] = \lib\elections::search(null, ['id' => $id, 'limit' => 1]);
 
 		if(isset($result['election'][0]))
 		{
 			$result['election'] = $result['election'][0];
 		}
 
-		$result['candida']  = \content\lib\candidas::search(null,
+		$result['candida']  = \lib\candidas::search(null,
 			['election_id' => $id, 'pagenation' => false, 'sort' => 'family', 'order' => 'asc']);
-		$result['report']   = \content\lib\reports::search(null,
+		$result['report']   = \lib\reports::search(null,
 			['election_id' => $id, 'pagenation' => false, 'sort' => 'id', 'order' => 'asc']);
 
 		return $result;
@@ -40,7 +40,7 @@ class model extends \content\main\model
 	 */
 	public function get_list()
 	{
-		return \content\lib\reports::search();
+		return \lib\reports::search();
 	}
 
 
@@ -86,7 +86,7 @@ class model extends \content\main\model
 
 		if(!empty($temp))
 		{
-			$report_id = \content\lib\reports::insert($report);
+			$report_id = \lib\reports::insert($report);
 		}
 
 		$insert = [];
@@ -106,11 +106,11 @@ class model extends \content\main\model
 
 		if(!empty($insert))
 		{
-			\content\lib\results::disable_old($id);
-			$result = \content\lib\results::insert_multi($insert);
+			\lib\results::disable_old($id);
+			$result = \lib\results::insert_multi($insert);
 			if($result)
 			{
-				// \content\lib\results::update_cash($id);
+				// \lib\results::update_cash($id);
 				debug::true(T_("Result added"));
 			}
 			else
@@ -128,7 +128,7 @@ class model extends \content\main\model
 	 */
 	public function get_report($_args)
 	{
-		$result = \content\lib\reports::get($this->getid($_args));
+		$result = \lib\reports::get($this->getid($_args));
 		return $result;
 	}
 
@@ -160,7 +160,7 @@ class model extends \content\main\model
 			'invalid'     => utility::post('invalid'),
 		];
 
-		$result = \content\lib\reports::update($update, $id);
+		$result = \lib\reports::update($update, $id);
 		if($result)
 		{
 			debug::true(T_("Report updated"));
@@ -198,7 +198,7 @@ class model extends \content\main\model
 			debug::error(T_("Please select one items of election"));
 			return false;
 		}
-		$result = \content\lib\reports::insert($args);
+		$result = \lib\reports::insert($args);
 		if($result)
 		{
 			debug::true(T_("report added"));
@@ -216,7 +216,7 @@ class model extends \content\main\model
 		$result['report'] = $this->get_report($_args);
 		if(isset($result['report']['id']))
 		{
-			$result['vote'] = \content\lib\results::search(null,['report_id' => $result['report']['id']]);
+			$result['vote'] = \lib\results::search(null,['report_id' => $result['report']['id']]);
 		}
 		return $result;
 	}
@@ -237,7 +237,7 @@ class model extends \content\main\model
 		$update = array_filter($update);
 		if(!empty($update))
 		{
-			\content\lib\reports::update($update, $id);
+			\lib\reports::update($update, $id);
 		}
 		$post = utility::post();
 		foreach ($post as $key => $value)
@@ -246,7 +246,7 @@ class model extends \content\main\model
 			{
 				if(isset($split[1]) && $value)
 				{
-					\content\lib\results::update(['total' => $value], $split[1]);
+					\lib\results::update(['total' => $value], $split[1]);
 				}
 			}
 		}

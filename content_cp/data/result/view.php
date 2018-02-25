@@ -1,8 +1,8 @@
 <?php
-namespace content\data\result;
+namespace content_cp\data\result;
 use \lib\utility\location;
 
-class view extends \content\main\view
+class view extends \mvc\view
 {
 	public function config()
 	{
@@ -17,10 +17,10 @@ class view extends \content\main\view
 	public function view_add_city($_args)
 	{
 		$election_id          = $this->model()->getid($_args);
-		$election             = \content\lib\elections::get($election_id);
+		$election             = \lib\elections::get($election_id);
 		$this->data->election = $election;
 
-		$candida              = \content\lib\candidas::search(null,['election_id' => $election_id, 'sort' => 'family', 'order' => 'asc']);
+		$candida              = \lib\candidas::search(null,['election_id' => $election_id, 'sort' => 'family', 'order' => 'asc']);
 		$this->data->candida  = $candida;
 
 		$city_list            = $_args->api_callback;
@@ -36,7 +36,7 @@ class view extends \content\main\view
 			{
 				$child_id = array_column($child, 'id');
 
-				$saved_value = \content\lib\resultbyplaces::search(null,
+				$saved_value = \lib\resultbyplaces::search(null,
 				[
 					'limit'       => false,
 					'election_id' => $election_id,

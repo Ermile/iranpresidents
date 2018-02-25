@@ -1,7 +1,7 @@
 <?php
-namespace content\admin;
+namespace content_cp\admin;
 
-class view extends \content\main\view
+class view extends \mvc\view
 {
 
 }

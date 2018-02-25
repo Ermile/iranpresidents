@@ -1,9 +1,9 @@
 <?php
-namespace content\data\result;
+namespace content_cp\data\result;
 use \lib\utility;
 use \lib\debug;
 
-class model extends \content\main\model
+class model extends \mvc\model
 {
 	public $countres  = null;
 	public $provinces = null;
@@ -70,7 +70,7 @@ class model extends \content\main\model
 		$id = $this->getid($_args);
 		if($id)
 		{
-			$result = \content\lib\results::search(null, ['election_id' => $id]);
+			$result = \lib\results::search(null, ['election_id' => $id]);
 			return $result;
 		}
 	}
@@ -174,14 +174,14 @@ class model extends \content\main\model
 			{
 				$temp_total = $value['total'];
 				unset($value['total']);
-				if(!$id = \content\lib\resultbyplaces::check($value))
+				if(!$id = \lib\resultbyplaces::check($value))
 				{
 					$value['total'] = $temp_total;
-					\content\lib\resultbyplaces::insert($value);
+					\lib\resultbyplaces::insert($value);
 				}
 				else
 				{
-					\content\lib\resultbyplaces::update(['total' => $temp_total], $id);
+					\lib\resultbyplaces::update(['total' => $temp_total], $id);
 				}
 			}
 		}
@@ -202,7 +202,7 @@ class model extends \content\main\model
 	 */
 	public function get_election_list()
 	{
-		return \content\lib\elections::search(null,['pagenation' => false, 'limit' => false]);
+		return \lib\elections::search(null,['pagenation' => false, 'limit' => false]);
 	}
 }
 ?>

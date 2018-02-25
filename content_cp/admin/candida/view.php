@@ -1,7 +1,7 @@
 <?php
-namespace content\admin\candida;
+namespace content_cp\admin\candida;
 
-class view extends \content\main\view
+class view extends \mvc\view
 {
 
 	/**
@@ -9,7 +9,7 @@ class view extends \content\main\view
 	 */
 	public function config()
 	{
-		$this->data->election_list = \content\lib\elections::search();
+		$this->data->election_list = \lib\elections::search();
 	}
 
 

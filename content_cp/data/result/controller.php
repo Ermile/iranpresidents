@@ -1,5 +1,5 @@
 <?php
-namespace content\data\result;
+namespace content_cp\data\result;
 
 class controller extends \mvc\controller
 {

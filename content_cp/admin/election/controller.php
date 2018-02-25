@@ -1,5 +1,5 @@
 <?php
-namespace content\admin\election;
+namespace content_cp\admin\election;
 
 class controller extends \mvc\controller
 {
@@ -8,7 +8,7 @@ class controller extends \mvc\controller
 	 */
 	public function ready()
 	{
-		exit();
+
 		\lib\permission::access('election:admin:admin', 'block');
 
 		$this->get("election", "election")->ALL("/admin\/election\/edit=(\d+)/");

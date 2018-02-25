@@ -1,9 +1,9 @@
 <?php
-namespace content\admin\election;
+namespace content_cp\admin\election;
 use \lib\utility;
 use \lib\debug;
 
-class model extends \content\main\model
+class model extends \mvc\model
 {
 
 	/**
@@ -65,7 +65,7 @@ class model extends \content\main\model
 	 */
 	public function get_list()
 	{
-		return \content\lib\elections::search();
+		return \lib\elections::search();
 	}
 
 
@@ -76,7 +76,7 @@ class model extends \content\main\model
 	 */
 	public function get_election($_args)
 	{
-		$result = \content\lib\elections::get($this->getid($_args));
+		$result = \lib\elections::get($this->getid($_args));
 		return $result;
 	}
 
@@ -96,7 +96,7 @@ class model extends \content\main\model
 			return false;
 		}
 
-		$result = \content\lib\elections::update($this->getPosts(), $id);
+		$result = \lib\elections::update($this->getPosts(), $id);
 		if($result)
 		{
 			debug::true(T_("Election updated"));
@@ -117,7 +117,7 @@ class model extends \content\main\model
 	 */
 	public function post_election($_args)
 	{
-		$result = \content\lib\elections::insert($this->getPosts());
+		$result = \lib\elections::insert($this->getPosts());
 		if($result)
 		{
 			debug::true(T_("Election added"));
