@@ -9,13 +9,13 @@
 */
 self::$language =
 [
-	'default' => 'fa',
+	'default' => 'en',
 	'list'    => ['fa','en',],
 ];
 /**
  * system default lanuage
  */
-self::$config['default_language']             = 'fa';
+self::$config['default_language']             = 'en';
 self::$config['redirect_url']                 = 'https://iranpresidents.com';
 self::$config['multi_domain']                 = true;
 self::$config['redirect_to_main']             = true;
