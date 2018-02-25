@@ -3,7 +3,7 @@ namespace content\home;
 use \lib\utility;
 use \lib\debug;
 
-class model extends \content\main\model
+class model extends \mvc\model
 {
 	/**
 	 * check url exist
