@@ -6,11 +6,11 @@ class controller extends \content\main\controller
 	/**
 	 * route candidas page
 	 */
-	public function _route()
+	public function ready()
 	{
-		parent::_route();
+		parent::ready();
 
-		$this->access('election:admin:admin', 'block');
+		\lib\permission::access('election:admin:admin', 'block');
 
 		$this->get("list", "list")->ALL();
 		$this->get("candida", "candida")->ALL("/admin\/candida\/edit=(\d+)/");

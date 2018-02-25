@@ -5,12 +5,12 @@ class controller extends \content\main\controller
 {
 	public $change = 0;
 	public $all = 0;
-	public function _route()
+	public function ready()
 	{
 
-		parent::_route();
+		parent::ready();
 
-		$this->access('election:admin:admin', 'block');
+		\lib\permission::access('election:admin:admin', 'block');
 		if(\lib\utility::get("fix_file"))
 		{
 			$query = "SELECT candidas.*, elections.*, candidas.id AS `xid` FROM candidas  LEFT JOIN elections ON elections.id = candidas.election_id";

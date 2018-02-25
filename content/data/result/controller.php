@@ -3,11 +3,11 @@ namespace content\data\result;
 
 class controller extends \content\main\controller
 {
-	public function _route()
+	public function ready()
 	{
-		parent::_route();
+		parent::ready();
 
-		$this->access('election:data:admin', 'block');
+		\lib\permission::access('election:data:admin', 'block');
 
 		$this->get("result", "result")->ALL("/^data\/result\/(\d+)$/");
 
