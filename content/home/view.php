@@ -9,6 +9,7 @@ class view extends \content\main\view
 	 */
 	public function config()
 	{
+		$this->data->bodyclass = '';
 		$running  = [];
 		$election = \content\lib\elections::search();
 
