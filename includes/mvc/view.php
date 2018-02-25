@@ -36,7 +36,7 @@ class view extends \lib\view
 	 */
 	function pushState()
 	{
-
+		exit();
 	}
 }
 ?>
