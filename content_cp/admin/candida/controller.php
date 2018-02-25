@@ -1,7 +1,7 @@
 <?php
 namespace content\admin\candida;
 
-class controller extends \content\main\controller
+class controller extends \mvc\controller
 {
 	/**
 	 * route candidas page

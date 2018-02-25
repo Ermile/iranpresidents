@@ -1,7 +1,7 @@
 <?php
 namespace content\data\result;
 
-class controller extends \content\main\controller
+class controller extends \mvc\controller
 {
 	public function ready()
 	{

@@ -1,7 +1,7 @@
 <?php
 namespace content\admin;
 
-class controller extends \content\main\controller
+class controller extends \mvc\controller
 {
 	public $change = 0;
 	public $all = 0;
