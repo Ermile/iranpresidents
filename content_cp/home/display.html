@@ -1,0 +1,55 @@
+{%extends display.cpMain%}
+
+
+{%block pageContent%}
+ <div class="f">
+ 	<div class="c4 s12">{{block ("iElection")}}</div>
+ 	<div class="c4 s12">{{block ("iCandidas")}}</div>
+ 	<div class="c4 s12">{{block ("iReport")}}</div>
+ 	<div class="c4 s12">{{block ("iResult")}}</div>
+ </div>
+{%endblock%}
+
+
+
+
+{%block iCandidas%}
+<a class="dcard x1" href='{{url.baseFull}}/admin/candida'>
+ <div class="statistic">
+  <div class="value"><i class="sf-user-secret"></i></div>
+  <div class="label">{%trans "Candidas"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block iElection%}
+<a class="dcard x1" href='{{url.baseFull}}/admin/election'>
+ <div class="statistic">
+  <div class="value"><i class="sf-envelope"></i></div>
+  <div class="label">{%trans "Elections"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+{%block iReport%}
+<a class="dcard x1" href='{{url.baseFull}}/data/report'>
+ <div class="statistic">
+  <div class="value"><i class="sf-analytics-chart-graph"></i></div>
+  <div class="label">{%trans "Report"%}</div>
+ </div>
+</a>
+{%endblock%}
+
+
+
+{%block iResult%}
+<a class="dcard x1" href='{{url.baseFull}}/data/result'>
+ <div class="statistic">
+  <div class="value"><i class="sf-folder-1"></i></div>
+  <div class="label">{%trans "Result"%}</div>
+ </div>
+</a>
+{%endblock%}
