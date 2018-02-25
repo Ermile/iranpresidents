@@ -15,6 +15,11 @@ header nav a:hover{background-color:rgba(0,0,0,.25);color:#fff;}
 header nav a:focus{background-color:rgba(0,0,0,.4);color:#fff;}
 header nav a:active{background-color:rgba(0,0,0,.5);color:#fff;}
 
+.page-title{margin:70px 0 5em;padding:10em 0 5em;border-top:3px solid #eeeff0;border-bottom:3px solid #eeeff0;background-image:url(../images/election/asanoha.png);font-weight:700;text-align:center}
+.page-title h1{font-size:3em;}
+.page-title h2{font-size:1.5em;}
+a{transition:0.3s}
+/*.page-title h1{font-weight: }*/
 
 
 .text-center{text-align:center}
@@ -26,9 +31,8 @@ header nav a:active{background-color:rgba(0,0,0,.5);color:#fff;}
 .image.round.low{border:.25em solid #fff}
 .image>img{display:block}
 
-.box-top{margin-bottom:5em;padding:10em 0 5em;border-top:3px solid #eeeff0;border-bottom:3px solid #eeeff0;background-image:url(../images/election/asanoha.png)}
 
-.election-title,.page-title{font-weight:700;margin:0;text-align:center}
+.election-title{font-weight:700;margin:0;text-align:center}
 .election-title+.container{margin-top:1rem}
 
 .top-one{text-align:center}

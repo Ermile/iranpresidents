@@ -13,8 +13,8 @@ class view extends \mvc\view
 		$running  = [];
 		$election = \content\lib\elections::search();
 
-		$this->data->page['title']   = T_('Iranian president election result');
-		$this->data->page['desc']    = T_('Live and complete result of iran election after revolution until now.'). ' '. T_('Live result of iran 12 president election');
+		$this->data->page['title']   = T_('Presidents of Islamic Republic of Iran');
+		$this->data->page['desc']    = T_('Live and complete result of iran elections after revolution until now.');
 
 		$this->data->election_list = $election;
 
