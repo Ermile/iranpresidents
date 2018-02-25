@@ -1,0 +1,51 @@
+{%extends display.dash%}
+{%block content%}
+
+{%if result%}
+	<h1>{%trans "Election list"%}</h1>
+	<div class="f">
+		<div>{%trans "id"%}</div>
+		=
+		<div>{%trans "total"%}</div>
+		<div>{%trans "status"%}</div>
+
+		<div>{%trans "desc"%}</div>
+
+		<div>{%trans "title"%}</div>
+		<div>{%trans "name"%}</div>
+		<div>{%trans "family"%}</div>
+		<div>{%trans "father"%}</div>
+		<div>{%trans "nationalcode"%}</div>
+		<div>{%trans "birthdate"%}</div>
+		<div>{%trans "electioncode"%}</div>
+		<div>{%trans "date"%}</div>
+		<div>{%trans "level"%}</div>
+		<div>{%trans "number"%}</div>
+		<div>{%trans "cash"%}</div>
+		<div>{%trans "voted"%}</div>
+		<div>{%trans "invalid"%}</div>
+	</div>
+
+	{%for key, value in result%}
+	<div class="f">
+		<div><a href="{{url.base}}/data/result/{{value.id}}">{{value.id}}</a></div>
+		<div>{{value.total}}</div>
+		<div>{{value.status}}</div>
+		<div>{{value.desc}}</div>
+		<div>{{value.title}}</div>
+		<div>{{value.name}}</div>
+		<div>{{value.family}}</div>
+		<div>{{value.father}}</div>
+		<div>{{value.nationalcode}}</div>
+		<div>{{value.birthdate}}</div>
+		<div>{{value.electioncode}}</div>
+		<div>{{value.date}}</div>
+		<div>{{value.level}}</div>
+		<div>{{value.number}}</div>
+		<div>{{value.cash}}</div>
+		<div>{{value.voted}}</div>
+		<div>{{value.invalid}}</div>
+	</div>
+	{%endfor%}
+{%endif%}
+{%endblock%}

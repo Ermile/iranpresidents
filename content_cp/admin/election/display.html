@@ -1,0 +1,175 @@
+{% extends display.dash %}
+{%block content%}
+
+{%if election_list%}
+	<h1>{% trans "Election list"%}</h1>
+<div class="dt">
+	<div class="f th">
+		<div class="c2">{%trans "Title"%}</div>
+		<div class="c">{%trans "Status"%}</div>
+		<div class="c">{%trans "Eligible"%}</div>
+		<div class="c">{%trans "Voted"%}</div>
+		<div class="c">{%trans "Invalid"%}</div>
+		<div class="c">{%trans "Cash"%}</div>
+		<div class="c">{%trans "Branchs"%}</div>
+		<div class="c">{%trans "First vote male count"%}</div>
+		<div class="c">{%trans "First vote female count"%}</div>
+		<div class="c">{%trans "Signuped"%}</div>
+		<div class="c">{%trans "Verified"%}</div>
+		<div class="c">{%trans "Candida count"%}</div>
+		<div class="c">{%trans "Start time"%}</div>
+		<div class="c">{%trans "End_time"%}</div>
+		<div class="c">{%trans "Election date"%}</div>
+		<div class="c">{%trans "Jalali year"%}</div>
+		<div class="c">{%trans "Year"%}</div>
+		<div class="c">{%trans "En url"%}</div>
+		<div class="c">{%trans "Fa url"%}</div>
+		<div class="c">{%trans "Cat"%}</div>
+		<div class="c">{%trans "Win"%}</div>
+	</div>
+	{%for key, value in election_list%}
+	<div class="f">
+		<div class="c2" title="{{value.en_title}}"><a href="{{url.base}}/admin/election/edit={{value.id}}"><b>{{value.title}}</b></a></div>
+		<div class="c" title='{{value.desc}}'>{%set myStatus = value.status%}{%trans myStatus %}</div>
+		<div class="c">{{value.eligible|number_format|fitNumber}}</div>
+		<div class="c">{{value.voted|number_format|fitNumber}}</div>
+		<div class="c">{{value.invalid|number_format|fitNumber}}</div>
+		<div class="c">{{value.cash|number_format|fitNumber}}</div>
+		<div class="c">{{value.branchs|number_format|fitNumber}}</div>
+		<div class="c">{{value.first_vote_male_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.first_vote_female_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.signuped_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.verified_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.candida_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.start_time|jdate("Y-m-d H:i:s")}}</div>
+		<div class="c">{{value.end_time|jdate("Y-m-d H:i:s")}}</div>
+		<div class="c">{{value.election_date|jdate("Y-m-d")}}</div>
+		<div class="c">{{value.jalali_year|fitNumber}}</div>
+		<div class="c">{{value.year|fitNumber}}</div>
+		<div class="c"><a href="{{url.base}}/{{value.en_url}}"><b>{%trans "Link"%}</b></a></div>
+		<div class="c"><a href="{{url.base}}/{{value.fa_url}}"><b>{%trans "Link"%}</b></a></div>
+		<div class="c">{{value.cat}}</div>
+		<div class="c">{{value.win}}</div>
+	</div>
+	{%endfor%}
+</div>
+{%endif%}
+
+{%if edit_election%}
+	<h1>{%trans "Edit election data" %} {{election.title}}</h1>
+{%else%}
+	<h1>{%trans "Add new election"%}</h1>
+{%endif%}
+<form method="post" class="df">
+	<div class="f">
+		<label for="title" class="c1">{%trans "Title"%}</label>
+		<input type="text" name="title" id="title" value="{{election.title}}" placeholder='{%trans "Title"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="en_title" class="c1">{%trans "En Title"%}</label>
+		<input type="text" name="en_title" id="en_title" value="{{election.en_title}}" placeholder='{%trans "En Title"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="eligible" class="c1">{%trans "Eligible"%}</label>
+		<input type="number" name="eligible" id="eligible" value="{{election.eligible}}" placeholder='{%trans "Eligible"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="voted" class="c1">{%trans "Voted"%}</label>
+		<input type="number" name="voted" id="voted" value="{{election.voted}}" placeholder='{%trans "Voted"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="invalid" class="c1">{%trans "Invalid"%}</label>
+		<input type="number" name="invalid" id="invalid" value="{{election.invalid}}" placeholder='{%trans "Invalid"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="cash" class="c1">{%trans "Cashs"%}</label>
+		<input type="number" name="cash" id="cash" value="{{election.cash}}" placeholder='{%trans "Cashs"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="branchs" class="c1">{%trans "Branchs"%}</label>
+		<input type="number" name="branchs" id="branchs" value="{{election.branchs}}" placeholder='{%trans "Branchs"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="first_vote_male_count" class="c1">{%trans "First vote male"%}</label>
+		<input type="number" name="first_vote_male_count" id="first_vote_male_count" value="{{election.first_vote_male_count}}" placeholder='{%trans "First vote male"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="first_vote_female_count" class="c1">{%trans "First vote female"%}</label>
+		<input type="number" name="first_vote_female_count" id="first_vote_female_count" value="{{election.first_vote_female_count}}" placeholder='{%trans "First vote female"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="signuped_count" class="c1">{%trans "Signuped"%}</label>
+		<input type="number" name="signuped_count" id="signuped_count" value="{{election.signuped_count}}" placeholder='{%trans "Signuped"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="verified_count" class="c1">{%trans "Verified"%}</label>
+		<input type="number" name="verified_count" id="verified_count" value="{{election.verified_count}}" placeholder='{%trans "Verified"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="candida_count" class="c1">{%trans "Candida"%}</label>
+		<input type="number" name="candida_count" id="candida_count" value="{{election.candida_count}}" placeholder='{%trans "Candida"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="start_time" class="c1">{%trans "Start time"%}</label>
+		<input type="text" name="start_time" id="start_time" value="{{election.start_time}}" placeholder='{%trans "Start time"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="end_time" class="c1">{%trans "End time"%}</label>
+		<input type="text" name="end_time" id="end_time" value="{{election.end_time}}" placeholder='{%trans "End time"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="election_date" class="c1">{%trans "Election date"%}</label>
+		<input type="text" name="election_date" id="election_date" value="{{election.election_date}}" placeholder='{%trans "Election date"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="jalali_year" class="c1">{%trans "Jalali year"%}</label>
+		<input type="number" name="jalali_year" id="jalali_year" value="{{election.jalali_year}}" placeholder='{%trans "Jalali year"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="year" class="c1">{%trans "Year"%}</label>
+		<input type="number" name="year" id="year" value="{{election.year}}" placeholder='{%trans "Year"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="en_url" class="c1">{%trans "En url"%}</label>
+		<input type="text" name="en_url" id="en_url" value="{{election.en_url}}" placeholder='{%trans "En url"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="fa_url" class="c1">{%trans "Fa url"%}</label>
+		<input type="text" name="fa_url" id="fa_url" value="{{election.fa_url}}" placeholder='{%trans "Fa url"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="cat" class="c1">{%trans "Cat"%}</label>
+		<input type="text" name="cat" id="cat" value="{{election.cat}}" placeholder='{%trans "Cat"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="win" class="c1">{%trans "Win"%}</label>
+		<select name="win" class="c5">
+			<option value="">{%trans "Please select one item"%}</option>
+			{%for key, value in candidas%}
+				<option value="{{value.id}}">{{value.name}} {{value.family}}</option>
+			{%endfor%}
+			</select>
+	</div>
+	<div class="f">
+		<label for="desc" class="c1">{%trans "Desc"%}</label>
+		<textarea  name="desc" id="desc" placeholder='{%trans "Desc"%}' class="c5">{{election.desc}}</textarea>
+	</div>
+	<div class="f">
+		<label for="status" class="c1">{%trans "status"%}</label>
+		<select name="status" class="c5">
+			<option value="awaiting" {%if election.status == 'awaiting' %}selected{%endif%}>{%trans "awaiting"%}</option>
+			<option value="running" {%if election.status == 'running' %}selected{%endif%}>{%trans "running"%}</option>
+			<option value="done" {%if election.status == 'done' %}selected{%endif%}>{%trans "done"%}</option>
+		</select>
+	</div>
+	<div class="f">
+		<label for="submit" class="c1">{%trans "Save"%}</label>
+		{%if edit_election%}
+			<input type="submit" value='{%trans "Update"%}' class="c5">
+		{%else%}
+			<input type="submit" value='{%trans "Save"%}' class="c5">
+		{%endif%}
+	</div>
+</form>
+
+{%endblock%}
