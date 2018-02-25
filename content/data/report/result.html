@@ -17,8 +17,8 @@
 	</div>
 		{%for key, value in list.report%}
 		<div class="f">
-			<div><a href="{{url.base}}/election/data/report/edit={{value.id}}">{{value.date | fitNumber}}</a></div>
-			<div><a href="{{url.base}}/election/data/report/vote={{value.id}}">نمایش آراء</a></div>
+			<div><a href="{{url.base}}/data/report/edit={{value.id}}">{{value.date | fitNumber}}</a></div>
+			<div><a href="{{url.base}}/data/report/vote={{value.id}}">نمایش آراء</a></div>
 			<div>{{value.level}}</div>
 			<div>{{value.number|number_format|fitNumber}}</div>
 			<div>{{value.cash|number_format|fitNumber}}</div>
