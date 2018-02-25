@@ -1,10 +1,5 @@
 {%extends display.mvc%}
 
-{%block head_css%}
- {%set codeUrl%}{%if url.tld == 'dev'%}http://code.ermile.dev/css/{%else%}https://code.ermile.com/css/{%endif%}{%endset%}
- <link rel="stylesheet"       href="{{codeUrl}}ermile-10.1.0.css">
- <link rel="stylesheet"       href="{{url.static}}{{'css/style-election.css' | filemtime(true)}}">
-{%endblock%}
 
 {%block content%}
  {{block('header')}}
@@ -16,11 +11,7 @@
 
 {%block header%}
 <header class="flex justify-between s-column s-align-center">
- {%if site.currentlang == 'en'%}
-  <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo-en.svg"></a>
- {%else%}
-  <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo-fa.svg"></a>
- {%endif%}
+ <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo.png"></a>
 
  <nav class="flex align-center">
   <a href="{{url.base}}">{%trans "All Elections"%}</a>
