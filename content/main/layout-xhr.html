@@ -1,20 +1,21 @@
  <div class="wrapper" data-xhr='wrapper'>
 {%block content%}
-  <div class="page-block">
+  <div class="page-title">
    <div class="cn">
-{%block pageTitle%}
-    <div class="tile">
-     <h2>{{pageTitle}}</h2>
-     <h3>{{pageDesc}}</h3>
-    </div>
+    <h1><a href="{{url.full}}">{{page.title}}</a></h1>
+{%block pageQuickView%}
+    <h2>{{page.desc}}</h2>
 {%endblock%}
    </div>
   </div>
+
+{%block pageData%}
   <div class="pc">
    <div class="cn">
 {%block page%}{%endblock%}
    </div>
   </div>
 {%block pageExtra%}{%endblock%}
+{%endblock%}
 {%endblock%}
  </div>
