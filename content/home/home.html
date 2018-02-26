@@ -8,13 +8,13 @@
      {%set myOrder %}{%if utilityGET.order == "desc" or not utilityGET.order%}asc{%else%}desc{%endif%}{%endset%}
     <tr class="info">
       <th class="pAn"></th>
-      <th data-sort='{{myOrder}}' class="year"><a href="{{url.base}}?sort=year&order={{myOrder}}">{%trans "Year"%}</a></th>
+      <th data-sort='{%if utilityGET.sort == "year"%}{{myOrder}}{%endif%}' class="year"><a href="{{url.base}}?sort=year&order={{myOrder}}">{%trans "Year"%}</a></th>
       <th class="elected">{%trans "President elected"%}</th>
-      <th data-sort='{{myOrder}}' class="percent"><a href="{{url.base}}?sort=percent&order={{myOrder}}">{%trans "Winner percentage"%}</a></th>
-      <th data-sort='{{myOrder}}' class="vote"><a href="{{url.base}}?sort=vote&order={{myOrder}}">{%trans "Popular vote"%}</a></th>
-      <th data-sort='{{myOrder}}' class="eligible"><a href="{{url.base}}?sort=eligible&order={{myOrder}}">{%trans "Eligible person"%}</a></th>
-      <th data-sort='{{myOrder}}' class="turnout"><a href="{{url.base}}?sort=turnout&order={{myOrder}}">{%trans "Turnout"%}</a></th>
-      <th data-sort='{{myOrder}}' class="acceptance"><a href="{{url.base}}?sort=acceptance&order={{myOrder}}">{%trans "Winner acceptance"%}</a></th>
+      <th data-sort='{%if utilityGET.sort == "percent"%}{{myOrder}}{%endif%}' class="percent"><a href="{{url.base}}?sort=percent&order={{myOrder}}">{%trans "Winner percentage"%}</a></th>
+      <th data-sort='{%if utilityGET.sort == "vote"%}{{myOrder}}{%endif%}' class="vote"><a href="{{url.base}}?sort=vote&order={{myOrder}}">{%trans "Popular vote"%}</a></th>
+      <th data-sort='{%if utilityGET.sort == "eligible"%}{{myOrder}}{%endif%}' class="eligible"><a href="{{url.base}}?sort=eligible&order={{myOrder}}">{%trans "Eligible person"%}</a></th>
+      <th data-sort='{%if utilityGET.sort == "turnout"%}{{myOrder}}{%endif%}' class="turnout"><a href="{{url.base}}?sort=turnout&order={{myOrder}}">{%trans "Turnout"%}</a></th>
+      <th data-sort='{%if utilityGET.sort == "acceptance"%}{{myOrder}}{%endif%}' class="acceptance"><a href="{{url.base}}?sort=acceptance&order={{myOrder}}">{%trans "Winner acceptance"%}</a></th>
     </tr>
   </thead>
   <tbody>
