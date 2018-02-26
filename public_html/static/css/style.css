@@ -249,7 +249,9 @@ a[href*="amcharts.com"]{display:none!important}
 
 @media (max-width: 767px) {
   .tbl .turnout{display:none;}
-  .image>img{width:40px}
+  .image.low>img{width:40px}
   .tbl.result h2{width:auto;display:block;font-size:1.2em;}
   .tbl.result h2 .name{display:none;}
+  header{padding-right:5px;padding-left:5px;}
+  header nav a{padding:0 5px}
 }
