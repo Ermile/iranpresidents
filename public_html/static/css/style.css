@@ -24,8 +24,10 @@ header nav a:active{background-color:rgba(0,0,0,.5);color:#fff;}
 .page-title h3{margin:0;margin-bottom:2em;font-size:1.5em;}
 
 /* footer */
-footer{font-size:1.2em;background-color:#eee;padding:2em 0;margin-top:5em;color:#fff;transition:0.3s;border-top:5px solid transparent;}
+footer{font-size:1.2em;background-color:#eee;padding:1em 0;margin-top:5em;color:#fff;transition:0.3s;border-top:5px solid transparent;}
 footer:hover{border-color:#ddd}
+.love{line-height:1.5em;margin:1em 0;font-size:1.1em}
+footer .langlist{line-height:1.5em;margin:1em 0;}
 
 /* result tbl*/
 .tbl.result{text-align:center!important;}
