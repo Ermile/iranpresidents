@@ -51,9 +51,6 @@
 
 
 
-
-
-
 {%block winner%}
  {%if result.election.status == 'done' and result.election.win%}
   {%for key, value in result.candida%}
@@ -87,9 +84,6 @@
 {%block rivals%}
 {%if result.election.status == 'awaiting'%}
 {%else%}
-
-
- <div class="container unselectable">
   <div class="top-two">
 
    {%if result.rival%}
@@ -179,7 +173,6 @@
    {% endif %}
 {%endif%}
   </div>
- </div>
 
 
 {%endif%}
@@ -192,7 +185,7 @@
 {%block candidates%}
 {%if  result.election.status == 'awaiting'%}
  {%if result.candida%}
-  <div class="election-tbl unselectable" id="candidates">
+  <div class="election-tbl" id="candidates">
    {%for key, value in result.candida%}
     {%if site.currentlang == 'en'%}
      <div class="f">
@@ -262,7 +255,7 @@
 {%block result%}
 {%if result.election.status == 'awaiting'%}
 {%else%}
-  <div class="election-tbl unselectable" id="total-result">
+  <div class="election-tbl" id="total-result">
    {%for key, value in result.result%}
     {%if site.currentlang == 'en'%}
      <div class="f">
@@ -333,9 +326,9 @@
 <div class="chartbox election-tbl">
 
   {%if site.currentlang == 'en' and result.election.en_title%}
-   <h2>{%trans "Comparison result of"%} {{result.election.en_title}}</h2>
+   <h3>{%trans "Comparison result of"%} {{result.election.en_title}}</h3>
   {%elseif site.currentlang == 'fa' and result.election.title%}
-   <h2>نتایج مقایسه‌ای روند اعلام نتایج {{result.election.title}}</h2>
+   <h3>نتایج مقایسه‌ای روند اعلام نتایج {{result.election.title}}</h3>
   {%endif%}
 
 
@@ -350,8 +343,8 @@
 
 {%block province_result%}
 {% if result.result_by_city.province %}
-<p class="d-title unselectable">{% trans "Candidates Votes on Provinces" %}</p>
-<div class="election-tbl unselectable" id="place-results">
+<p class="d-title">{% trans "Candidates Votes on Provinces" %}</p>
+<div class="election-tbl" id="place-results">
  <div class="f th">
   <div class="c">{%trans "Province"%}</div>
   {%for k, v in result.candida_id%}
@@ -374,8 +367,8 @@
 
 {%block city_result%}
 {% if result.result_by_city.city %}
-<p class="d-title unselectable">{% trans "Candidates Votes on Cities" %}</p>
-<div class="election-tbl unselectable" id="place-results">
+<p class="d-title">{% trans "Candidates Votes on Cities" %}</p>
+<div class="election-tbl" id="place-results">
  <div class="f th">
   <div class="c">{%trans "City"%}</div>
   {%for k, v in result.candida_id%}
@@ -407,7 +400,7 @@
 {%block time_line%}
 {%if result.time_line%}
 
- <div class="timeline-box unselectable">
+ <div class="timeline-box">
   <div class="timeline flex justify-around s-column">
 {%for key, value in result.time_line%}
    <a href="{%if site.currentlang == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
@@ -420,7 +413,7 @@
     {%endif%}
 
     </div>
-    <div class="info flex f-column s-row justify-center">
+    <div class="detail flex f-column s-row justify-center">
      {%if site.currentlang == 'en'%}
      <h3>{{value.en_title}}</h3>
      <h4>{{value.en_name}}</h4>
