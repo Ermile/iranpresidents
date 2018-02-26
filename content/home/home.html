@@ -2,130 +2,78 @@
 
 
 {%block page%}
-  <div class="election-tbl">
 
-
-   {%if site.currentlang == 'en'%}
-     <div class="f th">
-
-      <div class="c1 s2 all-center">{%trans "Year"%}</div>
-      <div class="c1 s2 all-center">{%trans "Turnout"%}</div>
-      <div class="c1 s0 all-center"></div>
-      <div class="c2 s3 all-center">{%trans "President elected"%}</div>
-      <div class="c6 s2 all-center">{%trans "Percentage"%}</div>
-      <div class="c1 s3 all-center">{%trans "Popular vote"%}</div>
-
-     </div>
-
-    {%for key, value in result%}
-    <div class="tr">
-     <div class="tp" style="width:{{value.win_present_all}}%"></div>
-     <div class="f">
-      <div class="c1 s6 all-center year">
-       <a href="{{value.election_en_url}}"><span>{{value.year|fitNumber}}</span></a>
-      </div>
-
-      <div class="c1 s6 all-center turnout">
-       <span title='{%trans "Percent of total eligible"%} {{value.win_present_all|number_format|fitNumber}}%'>{{value.work_present|number_format|fitNumber}}%</span>
-      </div>
-
-      <div class="c1 s6 all-center">
-        <a href="{{value.election_en_url}}">
-         <div class="image round low">
-         {%if value.win_url%}
-          <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.en_name}} {{value.en_fame}}'>
-         {%else%}
-          <img src='{{dlUrl}}/files/election/unknown.png' alt='{%trans "Unknown"%}'>
-         {%endif%}
-         </div>
-        </a>
-      </div>
-
-      <div class="c2 s6 vertical-center">
-       <h4 class="first-name">{%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}</h4>
-       <h4 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%elseif value.en_family%}{{value.en_family}}{%else%}-{%endif%}</h4>
-      </div>
-
-      <div class="c6 s6 all-center">
-       <div class="percentage-container">
-        <div class="percentage-value">{%if value.win_present is defined and value.win_present%}{{value.win_present|fitNumber}}%{%else%}{%endif%}</div>
-        <div class="percentage-bar">
-         <div class="percentage-progress" style="width:{{value.win_present}}%"></div>
-        </div>
-       </div>
-      </div>
-
-      <div class="c1 s6 all-center text-center">
-       <span title='{%trans "Eligible"%} {{value.eligible|number_format|fitNumber}}'>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
-      </div>
-
-     </div>
-    </div>
-    {%endfor%}
-
-   {%else%}
-
-     <div class="f th">
-      <div class="c1 s2 all-center">{%trans "Year"%}</div>
-      <div class="c1 s2 all-center">{%trans "Turnout"%}</div>
-      <div class="c1 s0 all-center"></div>
-      <div class="c2 s3 all-center">{%trans "President elected"%}</div>
-      <div class="c6 s2 all-center">{%trans "Percentage"%}</div>
-      <div class="c1 s3 all-center">{%trans "Popular vote"%}</div>
-     </div>
-
-    {%for key, value in result%}
-    <div class="tr">
-     <div class="tp" style="width:{{value.win_present_all}}%"></div>
-     <div class="f">
-      <div class="c1 s6 all-center year">
-       <a href="{{value.fa_url}}"><span>{{value.jalali_year|fitNumber}}</span></a>
-      </div>
-
-      <div class="c1 s6 all-center turnout">
-       <span title='{%trans "Percent of total eligible"%} {{value.win_present_all|number_format|fitNumber}}%'>{{value.work_present|number_format|fitNumber}}%</span>
-      </div>
-
-      <div class="c1 s6 all-center">
-        <a href="{{value.fa_url}}">
-         <div class="image round low">
-         {%if value.win_url%}
-          <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.name}} {{value.fame}}'>
-         {%else%}
-          <img src='{{dlUrl}}/files/election/unknown.png' alt='{%trans "Unknown"%}'>
-         {%endif%}
-         </div>
-        </a>
-      </div>
-
-      <div class="c2 s6 vertical-center">
-       <h4 class="first-name">{%if value.family == value.fame%}{{value.name}}{%else%}{{value.name}} {{value.family}}{%endif%}</h4>
-       <h4 class="last-name">{%if value.fame%}{{value.fame}}{%elseif value.family%}{{value.family}}{%else%}-{%endif%}</h4>
-      </div>
-
-      <div class="c6 s6 all-center">
-       <div class="percentage-container">
-        <div class="percentage-value">{%if value.win_present is defined and value.win_present%}{{value.win_present|fitNumber}}%{%else%}{%endif%}</div>
-        <div class="percentage-bar">
-         <div class="percentage-progress" style="width:{{value.win_present}}%"></div>
-        </div>
-       </div>
-      </div>
-
-      <div class="c1 s6 all-center text-center">
-       <span title='{%trans "Eligible"%} {{value.eligible|number_format|fitNumber}}'>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
-      </div>
-
-{%if false%}
-      <div class="c1 s6 all-center">
-       <span>{{value.win_present_all|number_format|fitNumber}}%</span>
-      </div>
+<table class="tbl result">
+  <thead>
+    <tr class="info">
+      <th class="pAn"></th>
+      <th>{%trans "Year"%}</th>
+      <th>{%trans "President elected"%}</th>
+      <th>{%trans "Winner percentage"%}</th>
+      <th>{%trans "Popular vote"%}</th>
+      <th>{%trans "Eligible person"%}</th>
+      <th>{%trans "Turnout"%}</th>
+      <th>{%trans "Winner acceptance"%}</th>
+    </tr>
+  </thead>
+  <tbody>
+{%for key, value in result%}
+    <tr>
+      <td class="acceptancePr" style="width:{{value.win_present_all}}%"></td>
+      <td class="percentPr" style="width:{{value.win_present}}%"></td>
+      <td class="eligiblePr" style="width:{{value.work_present}}%"></td>
+      <td class="fs14">
+{%if site.currentlang == 'en'%}
+        <a href="{{value.election_en_url}}" title="{{value.en_title}}">{{value.year|fitNumber}}</a>
+{%else%}
+        <a href="{{value.fa_url}}" title="{{value.title}}">{{value.jalali_year|fitNumber}}</a>
 {%endif%}
-     </div>
-    </div>
-    {%endfor%}
-   {%endif%}
+      </td>
+      <td>
+        <a href="{%if site.currentlang == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
+          <div class="image round low">
+{%if value.win_url%}
+            <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.en_name}} {{value.en_fame}}'>
+{%else%}
+            <img src='{{dlUrl}}/files/election/unknown.png' alt='{%trans "Unknown"%}'>
+{%endif%}
+          </div>
+          <h2>
+{%if site.currentlang == 'en'%}
+           <span class="name">{%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}</span>
+           <span class="family">{%if value.en_fame%}{{value.en_fame}}{%elseif value.en_family%}{{value.en_family}}{%else%}-{%endif%}</span>
+{%else%}
+           <span class="name">{%if value.family == value.fame%}{{value.name}}{%else%}{{value.name}} {{value.family}}{%endif%}</span>
+           <span class="family">{%if value.fame%}{{value.fame}}{%elseif value.family%}{{value.family}}{%else%}-{%endif%}</span>
+{%endif%}
+          </h2>
+        </a>
+      </td>
+      <td class="percent">
+        <span>{%if value.win_present is defined and value.win_present%}{{value.win_present|fitNumber}}%{%else%}{%endif%}</span>
+      </td>
+      <td class="vote">
+        <div>
+          <span>{{value.voted|number_format|fitNumber}}</span><abbr>{%trans "vote"%}</abbr>
+        </div>
+      </td>
+      <td class="eligible">
+        <span>{{value.eligible|number_format|fitNumber}}</span><abbr>{%trans "person"%}</abbr>
+      </td>
+      <td class="turnout">
+        <span title='{{value.voted|number_format|fitNumber}} {%trans "of"%} {{value.eligible|number_format|fitNumber}} {%trans "person"%}'>
+          {{value.work_present|number_format|fitNumber}}%
+        </span>
+      </td>
+      <td class="acceptance">
+        <span title='{{(value.voted*value.win_present/100)|number_format|fitNumber}} (!) {%trans "of"%} {{value.eligible|number_format|fitNumber}} {%trans "eligible person"%} <br>{%trans "Percent from total eligible person in Iran to vote this candida"%}'>
+          {{value.win_present_all|number_format(2)|fitNumber}}%
+        </span>
+      </td>
+    </tr>
+{%endfor%}
+  </tbody>
+</table>
 
-
-  </div>
 {%endblock%}
+

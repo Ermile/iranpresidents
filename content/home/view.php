@@ -9,7 +9,6 @@ class view extends \mvc\view
 	 */
 	public function config()
 	{
-		$this->data->bodyclass = '';
 		$running  = [];
 		$election = \lib\elections::search();
 
