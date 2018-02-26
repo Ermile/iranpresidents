@@ -7,13 +7,13 @@
   <thead>
     <tr class="info">
       <th class="pAn"></th>
-      <th>{%trans "Year"%}</th>
-      <th>{%trans "President elected"%}</th>
-      <th>{%trans "Winner percentage"%}</th>
-      <th>{%trans "Popular vote"%}</th>
-      <th>{%trans "Eligible person"%}</th>
-      <th>{%trans "Turnout"%}</th>
-      <th>{%trans "Winner acceptance"%}</th>
+      <th class="year">{%trans "Year"%}</th>
+      <th class="elected">{%trans "President elected"%}</th>
+      <th class="percent">{%trans "Winner percentage"%}</th>
+      <th class="vote">{%trans "Popular vote"%}</th>
+      <th class="eligible">{%trans "Eligible person"%}</th>
+      <th class="turnout">{%trans "Turnout"%}</th>
+      <th class="acceptance">{%trans "Winner acceptance"%}</th>
     </tr>
   </thead>
   <tbody>
@@ -22,14 +22,14 @@
       <td class="acceptancePr" style="width:{{value.win_present_all}}%"></td>
       <td class="percentPr" style="width:{{value.win_present}}%"></td>
       <td class="eligiblePr" style="width:{{value.work_present}}%"></td>
-      <td class="fs14">
+      <td class="year">
 {%if site.currentlang == 'en'%}
         <a href="{{value.election_en_url}}" title="{{value.en_title}}">{{value.year|fitNumber}}</a>
 {%else%}
         <a href="{{value.fa_url}}" title="{{value.title}}">{{value.jalali_year|fitNumber}}</a>
 {%endif%}
       </td>
-      <td>
+      <td class="elected">
         <a href="{%if site.currentlang == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
           <div class="image round low">
 {%if value.win_url%}

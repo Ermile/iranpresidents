@@ -24,25 +24,28 @@ footer{font-size:1.2em;background-color:#eee;padding:2em 0;margin-top:5em;color:
 footer:hover{border-color:#ddd}
 
 .tbl.result{text-align:center!important;}
-.tbl.result td{vertical-align:middle;}
+.tbl.result td{vertical-align:middle;padding:0}
 .tbl.result thead tr{transition:0.3s;}
 .tbl.result tbody tr{height:100px;position:relative;}
 .tbl.result td > *{line-height:30px;display:block;}
 .tbl.result h2{display:inline-block;vertical-align:middle;text-align:center;margin:0;width:12em;}
 .tbl.result h2 .name{display:block;font-size:0.7em}
 .tbl.result h2 .family{display:block;font-size:1em;font-weight: 700;}
-.tbl.result .percent span{font-size:1.8em;font-weight:700;color:#333}
-.tbl.result .vote{font-size:1.2em;}
-.tbl.result .vote span{display:block;line-height:1.2em;font-size:1.4em;}
-.tbl.result .vote abbr{display:block;line-height:1em}
-.tbl.result .eligible{font-size:1.2em;}
-.tbl.result .eligible span{display:block;line-height:1.2em;font-size:1.4em;}
-.tbl.result .eligible abbr{display:block;line-height:1em}
-.tbl.result .turnout{font-size:1.5em}
-.tbl.result .acceptance span{font-size:1.8em;font-weight:700;}
-.tbl.result .acceptancePr{padding:0;margin:20px 0;height:60px;max-width:100%;border:none;position:absolute;z-index:-1;background-color:#fff;}
-.tbl.result .percentPr{padding:0;margin:20px 0;height:60px;max-width:100%;border:none;position:absolute;z-index:-2;background-color:rgba(255,255,255,0.7);}
-.tbl.result .eligiblePr{padding:0;margin:20px 0;height:60px;max-width:100%;border:none;position:absolute;z-index:-3;background-color:rgba(80,218,54,0.1);}
+.tbl.result tbody .year{font-size:1.4em;padding:0 0.5em;}
+.tbl.result tbody .percent span{font-size:1.8em;font-weight:700;color:#333}
+.tbl.result tbody .vote{font-size:1.2em;}
+.tbl.result tbody .vote span{display:block;line-height:1.2em;font-size:1.4em;}
+.tbl.result tbody .vote abbr{display:block;line-height:1em}
+.tbl.result tbody .eligible{font-size:1.2em;}
+.tbl.result tbody .eligible span{display:block;line-height:1.2em;font-size:1.4em;}
+.tbl.result tbody .eligible abbr{display:block;line-height:1em}
+.tbl.result tbody .turnout{font-size:1.5em}
+.tbl.result tbody .acceptance span{font-size:1.8em;font-weight:700;}
+.tbl.result tbody .acceptancePr{padding:0;margin:20px 0;height:60px;max-width:100%;border:none;position:absolute;z-index:-1;background-color:#fff;}
+.tbl.result tbody .percentPr{padding:0;margin:20px 0;height:60px;max-width:100%;border:none;position:absolute;z-index:-2;background-color:rgba(255,255,255,0.7);}
+.tbl.result tbody .eligiblePr{padding:0;margin:20px 0;height:60px;max-width:100%;border:none;position:absolute;z-index:-3;background-color:rgba(80,218,54,0.1);}
+
+
 
 
 .txtC-f{text-align:center!important;}
@@ -54,6 +57,10 @@ footer:hover{border-color:#ddd}
 .image.round.medium{border:.5em solid #fff}
 .image.round.low{border:.25em solid #fff}
 .image>img{display:block;width:80px}
+
+
+
+
 
 
 .election-title{font-weight:700;margin:0;text-align:center}
@@ -192,8 +199,6 @@ footer:hover{border-color:#ddd}
 
 .election-tbl > .f{transition:0.3s}
 .election-tbl > .f:not(.th):hover{background-color:#eee}
-.turnout{font-weight:bold;font-size:1.5em}
-.year{font-size:1.2em}
 
 .chart{direction:ltr}
 .chart *, .map *{font-family:IRANSans,Tahoma,sans-serif!important}
@@ -213,6 +218,7 @@ a[href*="amcharts.com"]{display:none!important}
 @media all and (min-width: 1200px) {
   .timeline-box .timeline .image{width:7em;height:7em}
 }
+
 
 @media all and (max-width: 767px) {
  .container{min-width:initial}
@@ -236,3 +242,15 @@ a[href*="amcharts.com"]{display:none!important}
 }
 
 
+@media all and (max-width: 959px) {
+  .tbl .vote{display:none;}
+  .tbl .eligible{display:none;}
+  .tbl .acceptance span{padding:0 0.5em;}
+}
+
+@media (max-width: 767px) {
+  .tbl .turnout{display:none;}
+  .image>img{width:40px}
+  .tbl.result h2{width:auto;display:block;font-size:1.2em;}
+  .tbl.result h2 .name{display:none;}
+}
