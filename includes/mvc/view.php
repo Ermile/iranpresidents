@@ -15,10 +15,6 @@ class view extends \lib\view
 
 		$this->data->bodyclass               = 'unselectable';
 
-
-		// if you need to set a class for body element in html add in this value
-		$this->data->bodyclass           = null;
-
 		if(method_exists($this, 'options'))
 		{
 			$this->options();
