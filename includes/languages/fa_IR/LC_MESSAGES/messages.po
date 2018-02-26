@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Iranpresidents - Persian\n"
-"POT-Creation-Date: 2018-02-26 16:58+0330\n"
-"PO-Revision-Date: 2018-02-26 17:01+0330\n"
+"POT-Creation-Date: 2018-02-26 17:31+0330\n"
+"PO-Revision-Date: 2018-02-26 17:32+0330\n"
 "Last-Translator: Javad <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -9386,11 +9386,13 @@ msgstr "درصد کل افراد واجد شرایط در ایران به تعد
 
 #: iranpresidents/includes/languages/trans_twig.php:46
 msgid ""
-"Analytics and other data validated by Ermile based on islamic republican newspaper "
-"archive and some other resources."
+"Analytics and other data validated by <a href='https://ermile.com' "
+"target='_blank'>Ermile</a> based on islamic republican newspaper archive and some "
+"other resources."
 msgstr ""
-"آمار و تجزیه و تحلیل صورت گرفته توسط ارمایل اعتبارسنجی و تایید شده است؛ هم‌چنین "
-"داده‌های اولیه از آرشیو روزنامه جمهوری اسلامی و سایر منابع بدست آمده است."
+"آمار و تجزیه و تحلیل صورت گرفته توسط <a href='https://ermile.com' "
+"target='_blank'>ارمایل</a> اعتبارسنجی و تایید شده است؛ هم‌چنین داده‌های اولیه از "
+"آرشیو روزنامه جمهوری اسلامی و سایر منابع بدست آمده است."
 
 #: iranpresidents/includes/languages/trans_twig.php:49
 msgid "Trusted by Ermile"

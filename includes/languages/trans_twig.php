@@ -43,7 +43,7 @@ class twigTransTerms
 	echo T_("Percent from total eligible person in Iran to vote this candida");       // Line 70
 
 	//----------------------------------------------------content\template\footer.html
-	echo T_("Analytics and other data validated by Ermile based on islamic republican newspaper archive and some other resources.");// Line 4
+	echo T_("Analytics and other data validated by <a href='https://ermile.com' target='_blank'>Ermile</a> based on islamic republican newspaper archive and some other resources.");// Line 4
 
 	//----------------------------------------------------content\template\header.html
 	echo T_("Trusted by Ermile");                                                     // Line 2

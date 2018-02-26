@@ -26,7 +26,7 @@ header nav a:active{background-color:rgba(0,0,0,.5);color:#fff;}
 /* footer */
 footer{font-size:1.2em;background-color:#eee;padding:1em 0;margin-top:5em;color:#fff;transition:0.3s;border-top:5px solid transparent;}
 footer:hover{border-color:#ddd}
-.love{line-height:1.5em;margin:1em 0;font-size:1.1em}
+.love{line-height:1.5em;margin:1em 0;font-size:1.1em;color:#00667a;}
 footer .langlist{line-height:1.5em;margin:1em 0;}
 
 /* result tbl*/
