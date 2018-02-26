@@ -192,7 +192,21 @@ class model extends \mvc\model
 	 */
 	public function get_home($_args)
 	{
-		$time_line = \lib\results::home_page('president', true);
+		$sort  = null;
+		$order = null;
+
+
+		if(\lib\utility::get('sort'))
+		{
+			$sort = \lib\utility::get('sort');
+		}
+
+		if(\lib\utility::get('order') && in_array(\lib\utility::get('order'), ['asc', 'desc']))
+		{
+			$order = \lib\utility::get('order');
+		}
+
+		$time_line = \lib\results::home_page('president', $sort, $order);
 		return $time_line;
 	}
 

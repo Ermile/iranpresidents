@@ -478,8 +478,47 @@ class results
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function home_page($_cat)
+	public static function home_page($_cat, $_sort = null, $_order = null)
 	{
+		$order = "DESC";
+		if($_order)
+		{
+			$order = $_order;
+		}
+
+		$sort = 'elections.election_date';
+		if($_sort)
+		{
+			switch ($_sort)
+			{
+				case 'year':
+					$sort = 'elections.election_date';
+					break;
+
+				case 'winpresent':
+					$sort = 'win_present';
+					break;
+
+				case 'accept':
+					$sort = 'win_present_all';
+					break;
+
+				case 'workpresent':
+					$sort = 'work_present';
+					break;
+
+				case 'voted':
+				case 'eligible':
+					$sort = $_sort;
+					break;
+
+				default:
+					$sort = 'elections.election_date';
+					# code...
+					break;
+			}
+		}
+
 		$query =
 		"
 			SELECT
@@ -508,7 +547,7 @@ class results
 			LEFT JOIN candidas ON candidas.id = elections.win
 			WHERE
 				elections.cat = '$_cat'
-			ORDER BY elections.election_date DESC
+			ORDER BY $sort $order
 		";
 		$result = \lib\db::get($query, null, false, 'election');
 		// var_dump($result);exit();
