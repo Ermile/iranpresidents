@@ -323,7 +323,8 @@ class twigTransTerms
 	echo T_("Log items");                                                             // Line 86
 	echo T_("Logs");                                                                  // Line 31
 	echo T_("Users");                                                                 // Line 100 Seperate
-	echo T_("Notifications");                                                         // Line 127
+	echo T_("Notifications");                                                         // Line 116
+	echo T_("Short URL");                                                             // Line 127
 	echo T_("Send notify");                                                           // Line 138
 	echo T_("Sample");                                                                // Line 65
 
