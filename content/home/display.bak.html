@@ -2,55 +2,60 @@
 
 
 {% set dlUrl %}{{url.protocol}}://{{url.raw}}{% endset %}
-{%set election_title%}{%if site.currentlang == 'en'%}{{result.election.en_title}}{%else%}{{result.election.title}}{%endif%}{%endset%}
+{%if site.currentlang == 'en'%}
+ {%set election_title%}{{result.election.en_title}}{%endset%}
+{%else%}
+ {%set election_title%}{{result.election.title}}{%endset%}
+{%endif%}
 
 
-{%block pageQuickView%}
+{%block content%}
+
+{%if url.tld == 'dev' %}
+  {{block('comment')}}
+{%endif%}
+
+{{block('header')}}
+
+
+ <div class="box-top unselectable">
+  {%if site.currentlang == 'en' and result.election.en_title%}
+   <h1 class="election-title">{%trans "Results of"%} {{result.election.en_title}}</h1>
+  {%elseif site.currentlang == 'fa' and result.election.title%}
+   <h1 class="election-title">{%trans "Results of"%} {{result.election.title}}</h1>
+  {%endif%}
+
   {{block('live')}}
   {{block('winner')}}
   {{block('rivals')}}
-{%endblock%}
+ </div>
 
-
-
-{%block page%}
+ <div class="container unselectable">
   {{block('candidates')}}
   {{block('result')}}
   {{block('comparison')}}
   {{block('province_result')}}
   {{block('city_result')}}
-{%endblock%}
+ </div>
 
-
-
-{%block pageExtra%}
  {{block('time_line')}}
  {{block('taglist')}}
 {%endblock%}
 
+{%block header%}
+<header class="flex justify-between s-column s-align-center">
+ {%if site.currentlang == 'en'%}
+  <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo-en.svg"></a>
+ {%else%}
+  <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo-fa.svg"></a>
+ {%endif%}
 
-
-
-
-
-
-
-{%block live%}
-{%if result.election.status == 'running'%}
- <div class="election-update">
-  <div class="live"><i></i><span class="title">{%trans "Live"%}</span></div>
-{%if false%}
-  <div class="election-update-time">
-   <span title='{%trans "Last Update"%} {{result.result[0]["report_date"]|tdate()}}'>{{result.result[0]['report_date']|tdate()}}</span>
-  </div>
-{%endif%}
-
- </div>
-{%endif%}
+ <nav class="flex align-center">
+  <a href="{{url.base}}">{%trans "All Elections"%}</a>
+  <a href="{{url.base}}/candida">{%trans "All Candidates"%}</a>
+ </nav>
+</header>
 {%endblock%}
-
-
-
 
 
 
@@ -65,7 +70,9 @@
      {%set winner%}{{value.name}} {{value.fame}}{%endset%}
     {%endif%}
 
-      <div class="image medium">
+    <div class="container unselectable">
+     <div class="top-one">
+      <div class="image round medium">
        {%if value.win_url%}
         <img src="{{dlUrl}}{{value.win_url}}" alt="{{winner}}">
        {%elseif result.candida[result.election.win - 1]['file_url_2']%}
@@ -74,8 +81,10 @@
         <img src="{{dlUrl}}{{value.file_url}}" alt="{{winner}}">
        {%endif%}
       </div>
-      <h2 class="winner">{{winner}}</h2>
-      <h3>{%trans "President-elect of"%} {{election_title}}</h3>
+      <h2 class="winner-name">{{winner}}</h2>
+      <h2 class="winner-title">{%trans "President-elect of"%} {{election_title}}</h2>
+     </div>
+    </div>
 
    {%endif%}
   {%endfor%}
@@ -98,7 +107,7 @@
      {% if result.rival[0]['file_url'] %}
 
 
-     <div class="image medium"><img src="{%if result.rival[0]['file_url_2']%}{{dlUrl}}{{result.rival[0]['file_url_2']}}{%else%}{{dlUrl}}{{result.rival[0]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[0]['en_name']}} {{result.rival[0]['en_fame']}}{%else%}{{result.rival[0]['name']}} {{result.rival[0]['fame']}}{%endif%}"></div>
+     <div class="image round medium"><img src="{%if result.rival[0]['file_url_2']%}{{dlUrl}}{{result.rival[0]['file_url_2']}}{%else%}{{dlUrl}}{{result.rival[0]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[0]['en_name']}} {{result.rival[0]['en_fame']}}{%else%}{{result.rival[0]['name']}} {{result.rival[0]['fame']}}{%endif%}"></div>
      {% endif %}
      <div class="data flex f-column align-center justify-end">
 
@@ -151,7 +160,7 @@
 
 
      {% if result.rival[1]['file_url'] %}
-      <div class="image medium"><img src="{%if result.rival[1]['file_url_2']%}{{dlUrl}}{{result.rival[1]['file_url_2']}}{%else%}{{dlUrl}}{{result.rival[1]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[1]['en_name']}} {{result.rival[1]['en_fame']}}{%else%}{{result.rival[1]['name']}} {{result.rival[1]['fame']}}{%endif%}"></div>
+      <div class="image round medium"><img src="{%if result.rival[1]['file_url_2']%}{{dlUrl}}{{result.rival[1]['file_url_2']}}{%else%}{{dlUrl}}{{result.rival[1]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[1]['en_name']}} {{result.rival[1]['en_fame']}}{%else%}{{result.rival[1]['name']}} {{result.rival[1]['fame']}}{%endif%}"></div>
      {% endif %}
     </div>
    </div>
@@ -187,6 +196,20 @@
 
 
 
+{%block live%}
+{%if result.election.status == 'running'%}
+ <div class="election-update unselectable">
+  <div class="live"><i></i><span class="title">{%trans "Live"%}</span></div>
+{%if false%}
+  <div class="election-update-time">
+   <span title='{%trans "Last Update"%} {{result.result[0]["report_date"]|tdate()}}'>{{result.result[0]['report_date']|tdate()}}</span>
+  </div>
+{%endif%}
+
+ </div>
+{%endif%}
+{%endblock%}
+
 
 
 {%block candidates%}
@@ -197,7 +220,7 @@
     {%if site.currentlang == 'en'%}
      <div class="f">
       <div class="c2 s6 all-center">
-       <div class="image low">
+       <div class="image round low">
         <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
        </div>
       </div>
@@ -225,7 +248,7 @@
     {%else%}
      <div class="f">
       <div class="c2 s6 all-center">
-       <div class="image low">
+       <div class="image round low">
         <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
        </div>
       </div>
@@ -267,7 +290,7 @@
     {%if site.currentlang == 'en'%}
      <div class="f">
       <div class="c2 s6 all-center">
-       <div class="image low">
+       <div class="image round low">
         <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
        </div>
       </div>
@@ -295,7 +318,7 @@
     {%else%}
      <div class="f">
       <div class="c2 s6 all-center">
-       <div class="image low">
+       <div class="image round low">
         <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
        </div>
       </div>
@@ -411,7 +434,7 @@
   <div class="timeline flex justify-around s-column">
 {%for key, value in result.time_line%}
    <a href="{%if site.currentlang == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
-    <div class="image low">
+    <div class="image round low">
 
     {%if value.win_url%}
      <img src="{{dlUrl}}{{value.win_url}}" alt="">

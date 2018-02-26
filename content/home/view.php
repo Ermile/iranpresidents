@@ -63,7 +63,7 @@ class view extends \mvc\view
 			if(isset($this->data->result['election']['en_title']))
 			{
 				$title_of_el = $this->data->result['election']['en_title'];
-				$this->data->page['title'] = $title_of_el;
+				$this->data->page['title'] = T_('Results of'). ' '. $title_of_el;
 				$this->data->page['desc'] = T_('Live result of '). $title_of_el;
 			}
 		}
