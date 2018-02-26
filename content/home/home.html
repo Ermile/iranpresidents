@@ -5,15 +5,16 @@
 
 <table class="tbl result">
   <thead>
+     {%set myOrder %}{%if utilityGET.order == "desc" or not utilityGET.order%}asc{%else%}desc{%endif%}{%endset%}
     <tr class="info">
       <th class="pAn"></th>
-      <th class="year">{%trans "Year"%}</th>
+      <th data-sort='{{myOrder}}' class="year"><a href="{{url.base}}?sort=year&order={{myOrder}}">{%trans "Year"%}</a></th>
       <th class="elected">{%trans "President elected"%}</th>
-      <th class="percent">{%trans "Winner percentage"%}</th>
-      <th class="vote">{%trans "Popular vote"%}</th>
-      <th class="eligible">{%trans "Eligible person"%}</th>
-      <th class="turnout">{%trans "Turnout"%}</th>
-      <th class="acceptance">{%trans "Winner acceptance"%}</th>
+      <th data-sort='{{myOrder}}' class="percent"><a href="{{url.base}}?sort=percent&order={{myOrder}}">{%trans "Winner percentage"%}</a></th>
+      <th data-sort='{{myOrder}}' class="vote"><a href="{{url.base}}?sort=vote&order={{myOrder}}">{%trans "Popular vote"%}</a></th>
+      <th data-sort='{{myOrder}}' class="eligible"><a href="{{url.base}}?sort=eligible&order={{myOrder}}">{%trans "Eligible person"%}</a></th>
+      <th data-sort='{{myOrder}}' class="turnout"><a href="{{url.base}}?sort=turnout&order={{myOrder}}">{%trans "Turnout"%}</a></th>
+      <th data-sort='{{myOrder}}' class="acceptance"><a href="{{url.base}}?sort=acceptance&order={{myOrder}}">{%trans "Winner acceptance"%}</a></th>
     </tr>
   </thead>
   <tbody>

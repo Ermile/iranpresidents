@@ -495,19 +495,22 @@ class results
 					$sort = 'elections.election_date';
 					break;
 
-				case 'winpresent':
+				case 'percent':
 					$sort = 'win_present';
 					break;
 
-				case 'accept':
+				case 'acceptance':
 					$sort = 'win_present_all';
 					break;
 
-				case 'workpresent':
+				case 'turnout':
 					$sort = 'work_present';
 					break;
 
-				case 'voted':
+				case 'vote':
+					$sort = 'voted';
+					break;
+
 				case 'eligible':
 					$sort = $_sort;
 					break;
