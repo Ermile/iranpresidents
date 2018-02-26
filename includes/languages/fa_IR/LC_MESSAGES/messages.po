@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Iranpresidents - Persian\n"
-"POT-Creation-Date: 2018-02-26 16:36+0330\n"
-"PO-Revision-Date: 2018-02-26 16:50+0330\n"
+"POT-Creation-Date: 2018-02-26 16:58+0330\n"
+"PO-Revision-Date: 2018-02-26 17:01+0330\n"
 "Last-Translator: Javad <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -1510,7 +1510,6 @@ msgid "Back to Logs list"
 msgstr "بازگشت به لیست لاگ‌ها"
 
 #: dash/addons/content_su/logs/view.php:9
-#, fuzzy
 msgid "Logs list"
 msgstr "لیست لاگ‌ها"
 
@@ -8384,7 +8383,6 @@ msgstr "بانک سینا"
 
 #: dash/addons/includes/languages/trans_addons.php:1507
 #: iranpresidents/includes/languages/trans_addons.php:1508
-#, fuzzy
 msgid "Post"
 msgstr "نوشته‌ها"
 
@@ -9191,7 +9189,7 @@ msgstr "مشکلی در ذخیره‌سازی مخاطب پیش آمد"
 msgid "Presidents of Islamic Republic of Iran"
 msgstr "رئیس‌جمهورهای منتخب مردم در جمهوری اسلامی ایران"
 
-#: iranpresidents/content/home/view.php:16
+#: iranpresidents/content/home/view.php:16 iranpresidents/includes/mvc/view.php:11
 msgid "Live and complete result of iran elections after revolution until now."
 msgstr "نتایج زنده و کامل انتخابات ریاست جمهوری ایران از انقلاب اسلامی تاکنون."
 
@@ -9242,9 +9240,8 @@ msgstr "خطا در افزودن انتخابات"
 
 #: iranpresidents/content_cp/data/report/model.php:114
 #: iranpresidents/content_cp/data/result/model.php:191
-#, fuzzy
 msgid "Result added"
-msgstr "نتیجه‌ای یافت نشد."
+msgstr "نتایج اضافه شد"
 
 #: iranpresidents/content_cp/data/report/model.php:118
 #: iranpresidents/content_cp/data/result/model.php:195
@@ -9252,9 +9249,8 @@ msgid "Error in adding result"
 msgstr "خطا در افزودن نتیجه"
 
 #: iranpresidents/content_cp/data/report/model.php:166
-#, fuzzy
 msgid "Report updated"
-msgstr "سرصفحه گزارش"
+msgstr "گزارش بروز شد"
 
 #: iranpresidents/content_cp/data/report/model.php:170
 msgid "Error in update report"
@@ -9410,7 +9406,7 @@ msgstr "بررسی نتیجه تمام انتخابات‌ها"
 
 #: iranpresidents/includes/languages/trans_twig.php:52
 msgid "All Elections"
-msgstr "همه‌ی انتخابات"
+msgstr "تمام ادوار انتخابات"
 
 #: iranpresidents/includes/languages/trans_twig.php:53
 msgid "view list of all candidates and compare result of them"
@@ -9418,7 +9414,7 @@ msgstr "مشاهده لیست کاندیداهای ریاست جمهوری و م
 
 #: iranpresidents/includes/languages/trans_twig.php:54
 msgid "All Candidates"
-msgstr "همه‌ی نامزدها"
+msgstr "تمام نامزدها"
 
 #: iranpresidents/includes/languages/trans_twig.php:59
 msgid "Candida List"
@@ -9642,7 +9638,7 @@ msgstr "عنوان به انگلیسی"
 
 #: iranpresidents/includes/languages/trans_twig.php:130
 msgid "Cashs"
-msgstr ""
+msgstr "نقدی‌ها"
 
 #: iranpresidents/includes/languages/trans_twig.php:131
 msgid "First vote male"
@@ -9701,9 +9697,8 @@ msgid "Running Election"
 msgstr "انتخابات جاری"
 
 #: iranpresidents/includes/languages/trans_twig.php:150
-#, fuzzy
 msgid "Report list"
-msgstr "گزارش‌ها"
+msgstr "لیست گزارشات"
 
 #: iranpresidents/includes/languages/trans_twig.php:152
 msgid "date"
@@ -9730,14 +9725,12 @@ msgid "invalid"
 msgstr "نامعتبر"
 
 #: iranpresidents/includes/languages/trans_twig.php:158
-#, fuzzy
 msgid "Edit report resutl"
-msgstr "ویرایش نوشته"
+msgstr "ویرایش نتیجه گزارش"
 
 #: iranpresidents/includes/languages/trans_twig.php:159
-#, fuzzy
 msgid "Add new report"
-msgstr "افزودن نوشته جدید"
+msgstr "افزودن گزارش جدید"
 
 #: iranpresidents/includes/languages/trans_twig.php:170
 msgid "Add city result of election"
@@ -9771,10 +9764,16 @@ msgstr "پول"
 msgid "toman"
 msgstr "تومان"
 
-#: iranpresidents/includes/mvc/view.php:10 iranpresidents/includes/mvc/view.php:11
-#: iranpresidents/includes/mvc/view.php:12
-msgid "Iran presidents"
+#: iranpresidents/includes/mvc/view.php:10
+msgid "Iran Presidents"
 msgstr "رئیس جمهور های ایران"
+
+#: iranpresidents/includes/mvc/view.php:12
+msgid "Know more about iranian presidents"
+msgstr "درباره رئیس جمهورهای ادوار مختلف جمهوری اسلامی ایران بیشتر بدانید"
+
+#~ msgid "Iran presidents"
+#~ msgstr "رئیس جمهور های ایران"
 
 #~ msgid "Iranian president election result"
 #~ msgstr "نتایج انتخابات ریاست جمهوری ایران"
@@ -9791,9 +9790,6 @@ msgstr "رئیس جمهور های ایران"
 #, fuzzy
 #~ msgid "Can not set the time"
 #~ msgstr "ما نمی توانیم کاربر را در فروشگاه شما ثبت کنیم."
-
-#~ msgid "Iran Presidents"
-#~ msgstr "رئیس جمهور های ایران"
 
 #~ msgid "Total Polls"
 #~ msgstr "مجموع نظرسنجی‌ها"
