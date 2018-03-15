@@ -1,7 +1,6 @@
 <?php
 namespace content\home;
-use \lib\utility;
-use \lib\debug;
+
 
 class model extends \mvc\model
 {
@@ -251,16 +250,16 @@ class model extends \mvc\model
 	 */
 	public function post_comment($_args)
 	{
-		$name    = utility::post('name');
-		$mobile  = utility::post('mobile');
-		$comment = utility::post('comment');
+		$name    = \lib\utility::post('name');
+		$mobile  = \lib\utility::post('mobile');
+		$comment = \lib\utility::post('comment');
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input'   => utility::post(),
+				'input'   => \lib\utility::post(),
 				'session' => $_SESSION,
 			],
 		];
@@ -304,7 +303,7 @@ class model extends \mvc\model
 		if(mb_strlen($comment) > 1000)
 		{
 			\lib\db\logs::set('comment:in:election:too:large', $user_id, $log_meta);
-			debug::error(T_("Text too large!"), 'comment');
+			\lib\debug::error(T_("Text too large!"), 'comment');
 			return false;
 		}
 
@@ -326,12 +325,12 @@ class model extends \mvc\model
 		if($insert)
 		{
 			\lib\db\logs::set('user:send:contact', $user_id, $log_meta);
-			debug::true(T_("Thank You For contacting us"));
+			\lib\debug::true(T_("Thank You For contacting us"));
 		}
 		else
 		{
 			\lib\db\logs::set('user:send:contact:fail', $user_id, $log_meta);
-			debug::error(T_("We could'nt save the contact"));
+			\lib\debug::error(T_("We could'nt save the contact"));
 		}
 
 	}

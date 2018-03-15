@@ -1,7 +1,6 @@
 <?php
 namespace content_cp\data\report;
-use \lib\utility;
-use \lib\debug;
+
 
 class model extends \mvc\model
 {
@@ -60,16 +59,16 @@ class model extends \mvc\model
 
 		$report                = [];
 		$report['election_id'] = $id;
-		$report['date']        = utility::post('date');
-		$report['level']       = utility::post('level');
-		$report['number']      = utility::post('number');
-		$report['cash']        = utility::post('cash');
-		$report['voted']       = utility::post('voted');
-		$report['invalid']     = utility::post('invalid');
+		$report['date']        = \lib\utility::post('date');
+		$report['level']       = \lib\utility::post('level');
+		$report['number']      = \lib\utility::post('number');
+		$report['cash']        = \lib\utility::post('cash');
+		$report['voted']       = \lib\utility::post('voted');
+		$report['invalid']     = \lib\utility::post('invalid');
 
 		$candida_total    = [];
 
-		foreach (utility::post() as $key => $value)
+		foreach (\lib\utility::post() as $key => $value)
 		{
 			if(preg_match("/^total\_(\d+)$/", $key, $split))
 			{
@@ -111,11 +110,11 @@ class model extends \mvc\model
 			if($result)
 			{
 				// \lib\results::update_cash($id);
-				debug::true(T_("Result added"));
+				\lib\debug::true(T_("Result added"));
 			}
 			else
 			{
-				debug::error(T_("Error in adding result"));
+				\lib\debug::error(T_("Error in adding result"));
 			}
 		}
 	}
@@ -149,25 +148,25 @@ class model extends \mvc\model
 
 		$update =
 		[
-			'election_id' => utility::post('election_id'),
-			'date'        => utility::post('date'),
-			'status'      => utility::post('status'),
-			'desc'        => utility::post('desc'),
-			'level'       => utility::post('level'),
-			'number'      => utility::post('number'),
-			'cash'        => utility::post('cash'),
-			'voted'       => utility::post('voted'),
-			'invalid'     => utility::post('invalid'),
+			'election_id' => \lib\utility::post('election_id'),
+			'date'        => \lib\utility::post('date'),
+			'status'      => \lib\utility::post('status'),
+			'desc'        => \lib\utility::post('desc'),
+			'level'       => \lib\utility::post('level'),
+			'number'      => \lib\utility::post('number'),
+			'cash'        => \lib\utility::post('cash'),
+			'voted'       => \lib\utility::post('voted'),
+			'invalid'     => \lib\utility::post('invalid'),
 		];
 
 		$result = \lib\reports::update($update, $id);
 		if($result)
 		{
-			debug::true(T_("Report updated"));
+			\lib\debug::true(T_("Report updated"));
 		}
 		else
 		{
-			debug::error(T_("Error in update report"));
+			\lib\debug::error(T_("Error in update report"));
 		}
 	}
 
@@ -183,29 +182,29 @@ class model extends \mvc\model
 
 		$args =
 		[
-			'election_id' => utility::post('election_id'),
-			'date'        => utility::post('date'),
-			'status'      => utility::post('status'),
-			'desc'        => utility::post('desc'),
-			'level'       => utility::post('level'),
-			'number'      => utility::post('number'),
-			'cash'        => utility::post('cash'),
-			'voted'       => utility::post('voted'),
-			'invalid'     => utility::post('invalid'),
+			'election_id' => \lib\utility::post('election_id'),
+			'date'        => \lib\utility::post('date'),
+			'status'      => \lib\utility::post('status'),
+			'desc'        => \lib\utility::post('desc'),
+			'level'       => \lib\utility::post('level'),
+			'number'      => \lib\utility::post('number'),
+			'cash'        => \lib\utility::post('cash'),
+			'voted'       => \lib\utility::post('voted'),
+			'invalid'     => \lib\utility::post('invalid'),
 		];
 		if(!is_numeric($args['election_id']) || !$args['election_id'])
 		{
-			debug::error(T_("Please select one items of election"));
+			\lib\debug::error(T_("Please select one items of election"));
 			return false;
 		}
 		$result = \lib\reports::insert($args);
 		if($result)
 		{
-			debug::true(T_("report added"));
+			\lib\debug::true(T_("report added"));
 		}
 		else
 		{
-			debug::error(T_("Error in adding report"));
+			\lib\debug::error(T_("Error in adding report"));
 		}
 	}
 
@@ -224,22 +223,22 @@ class model extends \mvc\model
 
 	public function post_report_vote($_args)
 	{
-		$id                = utility::post('id') ? utility::post('id') : null;
+		$id                = \lib\utility::post('id') ? \lib\utility::post('id') : null;
 		$update            = [];
-		$update['date']    = utility::post('date') ? utility::post('date') : null;
-		$update['level']   = utility::post('level') ? utility::post('level') : null;
-		$update['number']  = utility::post('number') ? utility::post('number') : null;
-		$update['cash']    = utility::post('cash') ? utility::post('cash') : null;
-		$update['voted']   = utility::post('voted') ? utility::post('voted') : null;
-		$update['invalid'] = utility::post('invalid') ? utility::post('invalid') : null;
-		$update['status']  = utility::post('status') ? utility::post('status') : null;
+		$update['date']    = \lib\utility::post('date') ? \lib\utility::post('date') : null;
+		$update['level']   = \lib\utility::post('level') ? \lib\utility::post('level') : null;
+		$update['number']  = \lib\utility::post('number') ? \lib\utility::post('number') : null;
+		$update['cash']    = \lib\utility::post('cash') ? \lib\utility::post('cash') : null;
+		$update['voted']   = \lib\utility::post('voted') ? \lib\utility::post('voted') : null;
+		$update['invalid'] = \lib\utility::post('invalid') ? \lib\utility::post('invalid') : null;
+		$update['status']  = \lib\utility::post('status') ? \lib\utility::post('status') : null;
 
 		$update = array_filter($update);
 		if(!empty($update))
 		{
 			\lib\reports::update($update, $id);
 		}
-		$post = utility::post();
+		$post = \lib\utility::post();
 		foreach ($post as $key => $value)
 		{
 			if(preg_match("/^total\_(\d+)$/", $key, $split))
@@ -251,13 +250,13 @@ class model extends \mvc\model
 			}
 		}
 
-		if(debug::$status)
+		if(\lib\debug::$status)
 		{
-			debug::true(T_("Updated"));
+			\lib\debug::true(T_("Updated"));
 		}
 		else
 		{
-			debug::error(T_("Can not update"));
+			\lib\debug::error(T_("Can not update"));
 		}
 	}
 }

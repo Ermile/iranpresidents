@@ -1,7 +1,6 @@
 <?php
 namespace content_cp\admin\candida;
-use \lib\utility;
-use \lib\debug;
+
 
 class model extends \mvc\model
 {
@@ -26,23 +25,23 @@ class model extends \mvc\model
 	{
 		$args =
 		[
-			'name'         => utility::post('name'),
-			'en_name'      => utility::post('en_name'),
-			'family'       => utility::post('family'),
-			'en_family'    => utility::post('en_family'),
-			'father'       => utility::post('father'),
-			'en_father'    => utility::post('en_father'),
-			'fame'         => utility::post('fame'),
-			'en_fame'      => utility::post('en_fame'),
-			'birthdate'    => utility::post('birthdate'),
-			'nationalcode' => utility::post('nationalcode'),
-			'electioncode' => utility::post('electioncode'),
-			'election_id'  => utility::post('election_id'),
-			'status'       => utility::post('status'),
-			'desc'         => utility::post('desc'),
+			'name'         => \lib\utility::post('name'),
+			'en_name'      => \lib\utility::post('en_name'),
+			'family'       => \lib\utility::post('family'),
+			'en_family'    => \lib\utility::post('en_family'),
+			'father'       => \lib\utility::post('father'),
+			'en_father'    => \lib\utility::post('en_father'),
+			'fame'         => \lib\utility::post('fame'),
+			'en_fame'      => \lib\utility::post('en_fame'),
+			'birthdate'    => \lib\utility::post('birthdate'),
+			'nationalcode' => \lib\utility::post('nationalcode'),
+			'electioncode' => \lib\utility::post('electioncode'),
+			'election_id'  => \lib\utility::post('election_id'),
+			'status'       => \lib\utility::post('status'),
+			'desc'         => \lib\utility::post('desc'),
 		];
 
-		if(!utility::post('birthdate'))
+		if(!\lib\utility::post('birthdate'))
 		{
 			unset($args['birthdate']);
 		}
@@ -100,11 +99,11 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			debug::true(T_("Candida updated"));
+			\lib\debug::true(T_("Candida updated"));
 		}
 		else
 		{
-			debug::error(T_("Error in update candida"));
+			\lib\debug::error(T_("Error in update candida"));
 		}
 
 	}
@@ -119,7 +118,7 @@ class model extends \mvc\model
 	 */
 	public function find_updload($_name)
 	{
-		if(utility::files($_name))
+		if(\lib\utility::files($_name))
 		{
 			$target_dir = root. "public_html/static/images/election/";
 			if(!\lib\utility\file::exists($target_dir))
@@ -127,11 +126,11 @@ class model extends \mvc\model
 				\lib\utility\file::makeDir($target_dir);
 			}
 
-			$basename = basename(utility::files($_name)["name"]);
+			$basename = basename(\lib\utility::files($_name)["name"]);
 
 			$target_file = $target_dir . $basename;
 
-			if (move_uploaded_file(utility::files($_name)["tmp_name"], $target_file))
+			if (move_uploaded_file(\lib\utility::files($_name)["tmp_name"], $target_file))
 			{
 				return 'images/election/'. $basename;
 			}
@@ -152,7 +151,7 @@ class model extends \mvc\model
 
 		if(!is_numeric($args['election_id']) || !$args['election_id'])
 		{
-			debug::error(T_("Please select one items of election"));
+			\lib\debug::error(T_("Please select one items of election"));
 			return false;
 		}
 
@@ -160,11 +159,11 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			debug::true(T_("Candida added"));
+			\lib\debug::true(T_("Candida added"));
 		}
 		else
 		{
-			debug::error(T_("Error in adding candida"));
+			\lib\debug::error(T_("Error in adding candida"));
 		}
 	}
 }

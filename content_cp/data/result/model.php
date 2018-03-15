@@ -1,7 +1,6 @@
 <?php
 namespace content_cp\data\result;
-use \lib\utility;
-use \lib\debug;
+
 
 class model extends \mvc\model
 {
@@ -129,7 +128,7 @@ class model extends \mvc\model
 	{
 		$election_id = $this->getid($_args);
 		$location    = $this->find_location_url();
-		$post        = utility::post();
+		$post        = \lib\utility::post();
 		$location    = null;
 
 		$location = 'province';
@@ -188,11 +187,11 @@ class model extends \mvc\model
 
 		if(\lib\debug::$status)
 		{
-			debug::true(T_("Result added"));
+			\lib\debug::true(T_("Result added"));
 		}
 		else
 		{
-			debug::error(T_("Error in adding result"));
+			\lib\debug::error(T_("Error in adding result"));
 		}
 	}
 
