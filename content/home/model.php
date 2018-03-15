@@ -195,14 +195,14 @@ class model extends \mvc\model
 		$order = null;
 
 
-		if(\lib\utility::get('sort'))
+		if(\lib\request::get('sort'))
 		{
-			$sort = \lib\utility::get('sort');
+			$sort = \lib\request::get('sort');
 		}
 
-		if(\lib\utility::get('order') && in_array(\lib\utility::get('order'), ['asc', 'desc']))
+		if(\lib\request::get('order') && in_array(\lib\request::get('order'), ['asc', 'desc']))
 		{
-			$order = \lib\utility::get('order');
+			$order = \lib\request::get('order');
 		}
 
 		$time_line = \lib\results::home_page('president', $sort, $order);
