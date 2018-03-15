@@ -25,7 +25,7 @@ class model extends \mvc\model
 	 */
 	public function get_load($_args)
 	{
-		$election_id = $this->check_url(\lib\router::get_url());
+		$election_id = $this->check_url(\lib\url::directory());
 		if($election_id)
 		{
 			$result               = [];

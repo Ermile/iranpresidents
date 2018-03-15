@@ -5,7 +5,7 @@ class controller extends \mvc\controller
 {
 	public function ready()
 	{
-		$url = \lib\router::get_url();
+		$url = \lib\url::directory();
 
 		if($id = $this->model()->check_url($url))
 		{
