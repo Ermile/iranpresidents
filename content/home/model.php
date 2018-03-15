@@ -250,16 +250,16 @@ class model extends \mvc\model
 	 */
 	public function post_comment($_args)
 	{
-		$name    = \lib\utility::post('name');
-		$mobile  = \lib\utility::post('mobile');
-		$comment = \lib\utility::post('comment');
+		$name    = \lib\request::post('name');
+		$mobile  = \lib\request::post('mobile');
+		$comment = \lib\request::post('comment');
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input'   => \lib\utility::post(),
+				'input'   => \lib\request::post(),
 				'session' => $_SESSION,
 			],
 		];

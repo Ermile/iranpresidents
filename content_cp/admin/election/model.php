@@ -14,42 +14,42 @@ class model extends \mvc\model
 	{
 		$args =
 		[
-			'title'                   => \lib\utility::post('title'),
-			'en_title'                => \lib\utility::post('en_title'),
-			'status'                  => \lib\utility::post('status'),
-			'eligible'                => \lib\utility::post('eligible'),
-			'voted'                   => \lib\utility::post('voted'),
-			'invalid'                 => \lib\utility::post('invalid'),
-			'cash'                    => \lib\utility::post('cash'),
-			'branchs'                 => \lib\utility::post('branchs'),
-			'first_vote_male_count'   => \lib\utility::post('first_vote_male_count'),
-			'first_vote_female_count' => \lib\utility::post('first_vote_female_count'),
-			'signuped_count'          => \lib\utility::post('signuped_count'),
-			'verified_count'          => \lib\utility::post('verified_count'),
-			'candida_count'           => \lib\utility::post('candida_count'),
-			'start_time'              => date("Y-m-d H:i:s", strtotime(\lib\utility::post('start_time'))),
-			'end_time'                => date("Y-m-d H:i:s", strtotime(\lib\utility::post('end_time'))),
-			'election_date'           => \lib\utility::post('election_date'),
-			'jalali_year'             => \lib\utility::post('jalali_year'),
-			'year'                    => \lib\utility::post('year'),
-			'en_url'                  => \lib\utility::post('en_url'),
-			'fa_url'                  => \lib\utility::post('fa_url'),
-			'cat'                     => \lib\utility::post('cat'),
-			'win'                     => \lib\utility::post('win'),
-			'desc'                    => \lib\utility::post('desc'),
+			'title'                   => \lib\request::post('title'),
+			'en_title'                => \lib\request::post('en_title'),
+			'status'                  => \lib\request::post('status'),
+			'eligible'                => \lib\request::post('eligible'),
+			'voted'                   => \lib\request::post('voted'),
+			'invalid'                 => \lib\request::post('invalid'),
+			'cash'                    => \lib\request::post('cash'),
+			'branchs'                 => \lib\request::post('branchs'),
+			'first_vote_male_count'   => \lib\request::post('first_vote_male_count'),
+			'first_vote_female_count' => \lib\request::post('first_vote_female_count'),
+			'signuped_count'          => \lib\request::post('signuped_count'),
+			'verified_count'          => \lib\request::post('verified_count'),
+			'candida_count'           => \lib\request::post('candida_count'),
+			'start_time'              => date("Y-m-d H:i:s", strtotime(\lib\request::post('start_time'))),
+			'end_time'                => date("Y-m-d H:i:s", strtotime(\lib\request::post('end_time'))),
+			'election_date'           => \lib\request::post('election_date'),
+			'jalali_year'             => \lib\request::post('jalali_year'),
+			'year'                    => \lib\request::post('year'),
+			'en_url'                  => \lib\request::post('en_url'),
+			'fa_url'                  => \lib\request::post('fa_url'),
+			'cat'                     => \lib\request::post('cat'),
+			'win'                     => \lib\request::post('win'),
+			'desc'                    => \lib\request::post('desc'),
 		];
 
-		if(!\lib\utility::post('start_time'))
+		if(!\lib\request::post('start_time'))
 		{
 			unset($args['start_time']);
 		}
 
-		if(!\lib\utility::post('end_time'))
+		if(!\lib\request::post('end_time'))
 		{
 			unset($args['end_time']);
 		}
 
-		if(!\lib\utility::post('election_date'))
+		if(!\lib\request::post('election_date'))
 		{
 			unset($args['election_date']);
 		}

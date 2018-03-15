@@ -59,16 +59,16 @@ class model extends \mvc\model
 
 		$report                = [];
 		$report['election_id'] = $id;
-		$report['date']        = \lib\utility::post('date');
-		$report['level']       = \lib\utility::post('level');
-		$report['number']      = \lib\utility::post('number');
-		$report['cash']        = \lib\utility::post('cash');
-		$report['voted']       = \lib\utility::post('voted');
-		$report['invalid']     = \lib\utility::post('invalid');
+		$report['date']        = \lib\request::post('date');
+		$report['level']       = \lib\request::post('level');
+		$report['number']      = \lib\request::post('number');
+		$report['cash']        = \lib\request::post('cash');
+		$report['voted']       = \lib\request::post('voted');
+		$report['invalid']     = \lib\request::post('invalid');
 
 		$candida_total    = [];
 
-		foreach (\lib\utility::post() as $key => $value)
+		foreach (\lib\request::post() as $key => $value)
 		{
 			if(preg_match("/^total\_(\d+)$/", $key, $split))
 			{
@@ -148,15 +148,15 @@ class model extends \mvc\model
 
 		$update =
 		[
-			'election_id' => \lib\utility::post('election_id'),
-			'date'        => \lib\utility::post('date'),
-			'status'      => \lib\utility::post('status'),
-			'desc'        => \lib\utility::post('desc'),
-			'level'       => \lib\utility::post('level'),
-			'number'      => \lib\utility::post('number'),
-			'cash'        => \lib\utility::post('cash'),
-			'voted'       => \lib\utility::post('voted'),
-			'invalid'     => \lib\utility::post('invalid'),
+			'election_id' => \lib\request::post('election_id'),
+			'date'        => \lib\request::post('date'),
+			'status'      => \lib\request::post('status'),
+			'desc'        => \lib\request::post('desc'),
+			'level'       => \lib\request::post('level'),
+			'number'      => \lib\request::post('number'),
+			'cash'        => \lib\request::post('cash'),
+			'voted'       => \lib\request::post('voted'),
+			'invalid'     => \lib\request::post('invalid'),
 		];
 
 		$result = \lib\reports::update($update, $id);
@@ -182,15 +182,15 @@ class model extends \mvc\model
 
 		$args =
 		[
-			'election_id' => \lib\utility::post('election_id'),
-			'date'        => \lib\utility::post('date'),
-			'status'      => \lib\utility::post('status'),
-			'desc'        => \lib\utility::post('desc'),
-			'level'       => \lib\utility::post('level'),
-			'number'      => \lib\utility::post('number'),
-			'cash'        => \lib\utility::post('cash'),
-			'voted'       => \lib\utility::post('voted'),
-			'invalid'     => \lib\utility::post('invalid'),
+			'election_id' => \lib\request::post('election_id'),
+			'date'        => \lib\request::post('date'),
+			'status'      => \lib\request::post('status'),
+			'desc'        => \lib\request::post('desc'),
+			'level'       => \lib\request::post('level'),
+			'number'      => \lib\request::post('number'),
+			'cash'        => \lib\request::post('cash'),
+			'voted'       => \lib\request::post('voted'),
+			'invalid'     => \lib\request::post('invalid'),
 		];
 		if(!is_numeric($args['election_id']) || !$args['election_id'])
 		{
@@ -223,22 +223,22 @@ class model extends \mvc\model
 
 	public function post_report_vote($_args)
 	{
-		$id                = \lib\utility::post('id') ? \lib\utility::post('id') : null;
+		$id                = \lib\request::post('id') ? \lib\request::post('id') : null;
 		$update            = [];
-		$update['date']    = \lib\utility::post('date') ? \lib\utility::post('date') : null;
-		$update['level']   = \lib\utility::post('level') ? \lib\utility::post('level') : null;
-		$update['number']  = \lib\utility::post('number') ? \lib\utility::post('number') : null;
-		$update['cash']    = \lib\utility::post('cash') ? \lib\utility::post('cash') : null;
-		$update['voted']   = \lib\utility::post('voted') ? \lib\utility::post('voted') : null;
-		$update['invalid'] = \lib\utility::post('invalid') ? \lib\utility::post('invalid') : null;
-		$update['status']  = \lib\utility::post('status') ? \lib\utility::post('status') : null;
+		$update['date']    = \lib\request::post('date') ? \lib\request::post('date') : null;
+		$update['level']   = \lib\request::post('level') ? \lib\request::post('level') : null;
+		$update['number']  = \lib\request::post('number') ? \lib\request::post('number') : null;
+		$update['cash']    = \lib\request::post('cash') ? \lib\request::post('cash') : null;
+		$update['voted']   = \lib\request::post('voted') ? \lib\request::post('voted') : null;
+		$update['invalid'] = \lib\request::post('invalid') ? \lib\request::post('invalid') : null;
+		$update['status']  = \lib\request::post('status') ? \lib\request::post('status') : null;
 
 		$update = array_filter($update);
 		if(!empty($update))
 		{
 			\lib\reports::update($update, $id);
 		}
-		$post = \lib\utility::post();
+		$post = \lib\request::post();
 		foreach ($post as $key => $value)
 		{
 			if(preg_match("/^total\_(\d+)$/", $key, $split))

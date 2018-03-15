@@ -25,23 +25,23 @@ class model extends \mvc\model
 	{
 		$args =
 		[
-			'name'         => \lib\utility::post('name'),
-			'en_name'      => \lib\utility::post('en_name'),
-			'family'       => \lib\utility::post('family'),
-			'en_family'    => \lib\utility::post('en_family'),
-			'father'       => \lib\utility::post('father'),
-			'en_father'    => \lib\utility::post('en_father'),
-			'fame'         => \lib\utility::post('fame'),
-			'en_fame'      => \lib\utility::post('en_fame'),
-			'birthdate'    => \lib\utility::post('birthdate'),
-			'nationalcode' => \lib\utility::post('nationalcode'),
-			'electioncode' => \lib\utility::post('electioncode'),
-			'election_id'  => \lib\utility::post('election_id'),
-			'status'       => \lib\utility::post('status'),
-			'desc'         => \lib\utility::post('desc'),
+			'name'         => \lib\request::post('name'),
+			'en_name'      => \lib\request::post('en_name'),
+			'family'       => \lib\request::post('family'),
+			'en_family'    => \lib\request::post('en_family'),
+			'father'       => \lib\request::post('father'),
+			'en_father'    => \lib\request::post('en_father'),
+			'fame'         => \lib\request::post('fame'),
+			'en_fame'      => \lib\request::post('en_fame'),
+			'birthdate'    => \lib\request::post('birthdate'),
+			'nationalcode' => \lib\request::post('nationalcode'),
+			'electioncode' => \lib\request::post('electioncode'),
+			'election_id'  => \lib\request::post('election_id'),
+			'status'       => \lib\request::post('status'),
+			'desc'         => \lib\request::post('desc'),
 		];
 
-		if(!\lib\utility::post('birthdate'))
+		if(!\lib\request::post('birthdate'))
 		{
 			unset($args['birthdate']);
 		}
