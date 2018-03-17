@@ -185,13 +185,13 @@ class model extends \mvc\model
 			}
 		}
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			\lib\debug::true(T_("Result added"));
+			\lib\notif::true(T_("Result added"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in adding result"));
+			\lib\notif::error(T_("Error in adding result"));
 		}
 	}
 

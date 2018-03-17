@@ -110,11 +110,11 @@ class model extends \mvc\model
 			if($result)
 			{
 				// \lib\results::update_cash($id);
-				\lib\debug::true(T_("Result added"));
+				\lib\notif::true(T_("Result added"));
 			}
 			else
 			{
-				\lib\debug::error(T_("Error in adding result"));
+				\lib\notif::error(T_("Error in adding result"));
 			}
 		}
 	}
@@ -162,11 +162,11 @@ class model extends \mvc\model
 		$result = \lib\reports::update($update, $id);
 		if($result)
 		{
-			\lib\debug::true(T_("Report updated"));
+			\lib\notif::true(T_("Report updated"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in update report"));
+			\lib\notif::error(T_("Error in update report"));
 		}
 	}
 
@@ -194,17 +194,17 @@ class model extends \mvc\model
 		];
 		if(!is_numeric($args['election_id']) || !$args['election_id'])
 		{
-			\lib\debug::error(T_("Please select one items of election"));
+			\lib\notif::error(T_("Please select one items of election"));
 			return false;
 		}
 		$result = \lib\reports::insert($args);
 		if($result)
 		{
-			\lib\debug::true(T_("report added"));
+			\lib\notif::true(T_("report added"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in adding report"));
+			\lib\notif::error(T_("Error in adding report"));
 		}
 	}
 
@@ -250,13 +250,13 @@ class model extends \mvc\model
 			}
 		}
 
-		if(\lib\debug::$status)
+		if(\lib\notif::$status)
 		{
-			\lib\debug::true(T_("Updated"));
+			\lib\notif::true(T_("Updated"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Can not update"));
+			\lib\notif::error(T_("Can not update"));
 		}
 	}
 }

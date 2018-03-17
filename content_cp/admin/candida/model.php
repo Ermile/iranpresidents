@@ -99,11 +99,11 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			\lib\debug::true(T_("Candida updated"));
+			\lib\notif::true(T_("Candida updated"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in update candida"));
+			\lib\notif::error(T_("Error in update candida"));
 		}
 
 	}
@@ -151,7 +151,7 @@ class model extends \mvc\model
 
 		if(!is_numeric($args['election_id']) || !$args['election_id'])
 		{
-			\lib\debug::error(T_("Please select one items of election"));
+			\lib\notif::error(T_("Please select one items of election"));
 			return false;
 		}
 
@@ -159,11 +159,11 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			\lib\debug::true(T_("Candida added"));
+			\lib\notif::true(T_("Candida added"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in adding candida"));
+			\lib\notif::error(T_("Error in adding candida"));
 		}
 	}
 }

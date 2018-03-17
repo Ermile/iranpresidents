@@ -303,7 +303,7 @@ class model extends \mvc\model
 		if(mb_strlen($comment) > 1000)
 		{
 			\lib\db\logs::set('comment:in:election:too:large', $user_id, $log_meta);
-			\lib\debug::error(T_("Text too large!"), 'comment');
+			\lib\notif::error(T_("Text too large!"), 'comment');
 			return false;
 		}
 
@@ -325,12 +325,12 @@ class model extends \mvc\model
 		if($insert)
 		{
 			\lib\db\logs::set('user:send:contact', $user_id, $log_meta);
-			\lib\debug::true(T_("Thank You For contacting us"));
+			\lib\notif::true(T_("Thank You For contacting us"));
 		}
 		else
 		{
 			\lib\db\logs::set('user:send:contact:fail', $user_id, $log_meta);
-			\lib\debug::error(T_("We could'nt save the contact"));
+			\lib\notif::error(T_("We could'nt save the contact"));
 		}
 
 	}

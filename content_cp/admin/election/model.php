@@ -98,11 +98,11 @@ class model extends \mvc\model
 		$result = \lib\elections::update($this->getPosts(), $id);
 		if($result)
 		{
-			\lib\debug::true(T_("Election updated"));
+			\lib\notif::true(T_("Election updated"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in update election"));
+			\lib\notif::error(T_("Error in update election"));
 		}
 
 	}
@@ -119,11 +119,11 @@ class model extends \mvc\model
 		$result = \lib\elections::insert($this->getPosts());
 		if($result)
 		{
-			\lib\debug::true(T_("Election added"));
+			\lib\notif::true(T_("Election added"));
 		}
 		else
 		{
-			\lib\debug::error(T_("Error in adding election"));
+			\lib\notif::error(T_("Error in adding election"));
 		}
 	}
 }
