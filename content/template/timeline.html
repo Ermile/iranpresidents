@@ -4,7 +4,7 @@
  <div class="timeline-box">
   <div class="timeline flex justify-around s-column">
 {%for key, value in result.time_line%}
-   <a href="{%if site.currentlang == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
+   <a href="{%if lang.current == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
     <div class="image low">
 
     {%if value.win_url%}
@@ -15,7 +15,7 @@
 
     </div>
     <div class="detail flex f-column s-row justify-center">
-     {%if site.currentlang == 'en'%}
+     {%if lang.current == 'en'%}
      <h3>{{value.en_title}}</h3>
      <h4>{{value.en_name}}</h4>
      <h4>{{value.en_fame}}</h4>

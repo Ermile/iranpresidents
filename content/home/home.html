@@ -24,14 +24,14 @@
       <td class="percentPr" style="width:{{value.win_present}}%"></td>
       <td class="eligiblePr" style="width:{{value.work_present}}%"></td>
       <td class="year">
-{%if site.currentlang == 'en'%}
+{%if lang.current == 'en'%}
         <a href="{{value.election_en_url}}" title="{{value.en_title}}">{{value.year|fitNumber}}</a>
 {%else%}
         <a href="{{value.fa_url}}" title="{{value.title}}">{{value.jalali_year|fitNumber}}</a>
 {%endif%}
       </td>
       <td class="elected">
-        <a href="{%if site.currentlang == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
+        <a href="{%if lang.current == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
           <div class="image low">
 {%if value.win_url%}
             <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.en_name}} {{value.en_fame}}'>
@@ -40,7 +40,7 @@
 {%endif%}
           </div>
           <h2>
-{%if site.currentlang == 'en'%}
+{%if lang.current == 'en'%}
            <span class="name">{%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}</span>
            <span class="family">{%if value.en_fame%}{{value.en_fame}}{%elseif value.en_family%}{{value.en_family}}{%else%}-{%endif%}</span>
 {%else%}

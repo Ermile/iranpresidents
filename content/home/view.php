@@ -49,7 +49,7 @@ class view extends \mvc\view
 		$result = $_args->api_callback;
 		$this->data->result = $result;
 
-		if($this->data->site['currentlang'] == 'fa')
+		if($this->data->lang['current'] == 'fa')
 		{
 			if(isset($this->data->result['election']['title']))
 			{

@@ -15,7 +15,7 @@
     <div class="c1 all-center">{%trans "Votes"%}</div>
     {%endif%}
    </div>
-   {%if site.currentlang == 'en'%}
+   {%if lang.current == 'en'%}
     {%for key, value in result%}
      <div class="f">
       <div class="c1 s4 all-center">{{(key+1)|fitNumber}}</div>
