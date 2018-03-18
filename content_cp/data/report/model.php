@@ -250,7 +250,7 @@ class model extends \mvc\model
 			}
 		}
 
-		if(\lib\notif::$status)
+		if(\lib\engine\process::status())
 		{
 			\lib\notif::ok(T_("Updated"));
 		}
