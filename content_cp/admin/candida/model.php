@@ -118,7 +118,7 @@ class model extends \mvc\model
 	 */
 	public function find_updload($_name)
 	{
-		if(\lib\utility::files($_name))
+		if(\lib\request::files($_name))
 		{
 			$target_dir = root. "public_html/static/images/election/";
 			if(!\lib\utility\file::exists($target_dir))
@@ -126,11 +126,11 @@ class model extends \mvc\model
 				\lib\utility\file::makeDir($target_dir);
 			}
 
-			$basename = basename(\lib\utility::files($_name)["name"]);
+			$basename = basename(\lib\request::files($_name)["name"]);
 
 			$target_file = $target_dir . $basename;
 
-			if (move_uploaded_file(\lib\utility::files($_name)["tmp_name"], $target_file))
+			if (move_uploaded_file(\lib\request::files($_name)["tmp_name"], $target_file))
 			{
 				return 'images/election/'. $basename;
 			}
