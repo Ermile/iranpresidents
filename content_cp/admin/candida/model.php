@@ -99,7 +99,7 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			\lib\notif::true(T_("Candida updated"));
+			\lib\notif::ok(T_("Candida updated"));
 		}
 		else
 		{
@@ -159,7 +159,7 @@ class model extends \mvc\model
 
 		if($result)
 		{
-			\lib\notif::true(T_("Candida added"));
+			\lib\notif::ok(T_("Candida added"));
 		}
 		else
 		{

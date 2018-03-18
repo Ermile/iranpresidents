@@ -98,7 +98,7 @@ class model extends \mvc\model
 		$result = \lib\elections::update($this->getPosts(), $id);
 		if($result)
 		{
-			\lib\notif::true(T_("Election updated"));
+			\lib\notif::ok(T_("Election updated"));
 		}
 		else
 		{
@@ -119,7 +119,7 @@ class model extends \mvc\model
 		$result = \lib\elections::insert($this->getPosts());
 		if($result)
 		{
-			\lib\notif::true(T_("Election added"));
+			\lib\notif::ok(T_("Election added"));
 		}
 		else
 		{

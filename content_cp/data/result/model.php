@@ -187,7 +187,7 @@ class model extends \mvc\model
 
 		if(\lib\notif::$status)
 		{
-			\lib\notif::true(T_("Result added"));
+			\lib\notif::ok(T_("Result added"));
 		}
 		else
 		{

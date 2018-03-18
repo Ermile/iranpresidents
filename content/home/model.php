@@ -325,7 +325,7 @@ class model extends \mvc\model
 		if($insert)
 		{
 			\lib\db\logs::set('user:send:contact', $user_id, $log_meta);
-			\lib\notif::true(T_("Thank You For contacting us"));
+			\lib\notif::ok(T_("Thank You For contacting us"));
 		}
 		else
 		{

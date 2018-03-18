@@ -110,7 +110,7 @@ class model extends \mvc\model
 			if($result)
 			{
 				// \lib\results::update_cash($id);
-				\lib\notif::true(T_("Result added"));
+				\lib\notif::ok(T_("Result added"));
 			}
 			else
 			{
@@ -162,7 +162,7 @@ class model extends \mvc\model
 		$result = \lib\reports::update($update, $id);
 		if($result)
 		{
-			\lib\notif::true(T_("Report updated"));
+			\lib\notif::ok(T_("Report updated"));
 		}
 		else
 		{
@@ -200,7 +200,7 @@ class model extends \mvc\model
 		$result = \lib\reports::insert($args);
 		if($result)
 		{
-			\lib\notif::true(T_("report added"));
+			\lib\notif::ok(T_("report added"));
 		}
 		else
 		{
@@ -252,7 +252,7 @@ class model extends \mvc\model
 
 		if(\lib\notif::$status)
 		{
-			\lib\notif::true(T_("Updated"));
+			\lib\notif::ok(T_("Updated"));
 		}
 		else
 		{
