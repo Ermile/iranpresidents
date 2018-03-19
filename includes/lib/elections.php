@@ -53,7 +53,7 @@ class elections
 	{
 		if($_url && is_string($_url))
 		{
-			$_url   = \lib\utility\safe::safe($_url);
+			$_url   = \lib\safe::safe($_url);
 			$query  = "SELECT * FROM elections WHERE en_url = '$_url' OR fa_url = '$_url' LIMIT 1";
 			$result = \lib\db::get($query, null, true, 'election');
 			if(isset($result['id']))
