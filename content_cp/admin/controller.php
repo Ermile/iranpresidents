@@ -44,9 +44,9 @@ class controller extends \mvc\controller
 	{
 		$base         = root."public_html/files/election";
 
-		if(!\lib\utility\file::exists($base))
+		if(!\lib\file::exists($base))
 		{
-			\lib\utility\file::makeDir($base);
+			\lib\file::makeDir($base);
 		}
 
 		$new_file_url = "";
@@ -92,7 +92,7 @@ class controller extends \mvc\controller
 		$xx = root. 'public_html' . $new_file_url;
 		var_dump($old_file_url, $xx);
 		$this->all++;
-		$moved = \lib\utility\file::copy($old_file_url, $xx);
+		$moved = \lib\file::copy($old_file_url, $xx);
 		if($moved)
 		{
 			\lib\db::query("UPDATE candidas SET $_type = '$new_file_url' where id = $_data[xid] LIMIT 1", 'election' );
