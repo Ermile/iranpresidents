@@ -2,9 +2,9 @@
 namespace content\candida;
 
 
-class view extends \mvc\view
+class view
 {
-	public function config()
+	public function config2()
 	{
 		$this->data->page['title'] = T_('All Candidates of Presidential Elections of Islamic Republic of Iran');
 		$this->data->page['desc']  = T_('Review all candidates details');
