@@ -1,7 +1,7 @@
 <?php
 namespace content\home;
 
-class controller extends \mvc\controller
+class controller
 {
 	public function ready()
 	{

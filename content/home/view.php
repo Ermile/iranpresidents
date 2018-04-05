@@ -1,14 +1,15 @@
 <?php
 namespace content\home;
 
-class view extends \mvc\view
+class view
 {
 
 	/**
 	 * { function_description }
 	 */
-	public function config()
+	public static function config()
 	{
+		return;
 		$running  = [];
 		$election = \lib\elections::search();
 

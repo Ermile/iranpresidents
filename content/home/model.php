@@ -2,7 +2,7 @@
 namespace content\home;
 
 
-class model extends \mvc\model
+class model
 {
 	/**
 	 * check url exist
