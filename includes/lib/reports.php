@@ -13,7 +13,7 @@ class reports
 	 */
 	public static function insert($_args)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
 			\lib\db::query("INSERT INTO reports SET $set", 'election');
@@ -49,7 +49,7 @@ class reports
 	 */
 	public static function update($_args, $_id)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if(!$set || !$_id || !is_numeric($_id))
 		{
 			return false;

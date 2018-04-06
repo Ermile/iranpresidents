@@ -284,14 +284,14 @@ class model
 		if($mobile)
 		{
 			// check existing mobile
-			$exists_user = \lib\db\users::get_by_mobile($mobile);
+			$exists_user = \dash\db\users::get_by_mobile($mobile);
 			// register if the mobile is valid
 			if(!$exists_user || empty($exists_user))
 			{
 				// signup user by site_guest
-				$user_id = \lib\db\users::signup(['ignore' => true, 'mobile' => $mobile ,'type' => 'inspection', 'port' => 'site_guest', 'displayname' => $name]);
+				$user_id = \dash\db\users::signup(['ignore' => true, 'mobile' => $mobile ,'type' => 'inspection', 'port' => 'site_guest', 'displayname' => $name]);
 				// save log by caller 'user:send:contact:register:by:mobile'
-				\lib\db\logs::set('user:send:contact:register:by:mobile:in:election', $user_id, $log_meta);
+				\dash\db\logs::set('user:send:contact:register:by:mobile:in:election', $user_id, $log_meta);
 			}
 		}
 
@@ -302,7 +302,7 @@ class model
 
 		if(mb_strlen($comment) > 1000)
 		{
-			\lib\db\logs::set('comment:in:election:too:large', $user_id, $log_meta);
+			\dash\db\logs::set('comment:in:election:too:large', $user_id, $log_meta);
 			\lib\notif::error(T_("Text too large!"), 'comment');
 			return false;
 		}
@@ -324,12 +324,12 @@ class model
 		$insert = \lib\db::query($query, 'election');
 		if($insert)
 		{
-			\lib\db\logs::set('user:send:contact', $user_id, $log_meta);
+			\dash\db\logs::set('user:send:contact', $user_id, $log_meta);
 			\lib\notif::ok(T_("Thank You For contacting us"));
 		}
 		else
 		{
-			\lib\db\logs::set('user:send:contact:fail', $user_id, $log_meta);
+			\dash\db\logs::set('user:send:contact:fail', $user_id, $log_meta);
 			\lib\notif::error(T_("We could'nt save the contact"));
 		}
 

@@ -13,7 +13,7 @@ class resultbyplaces
 	 */
 	public static function insert($_args)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
 			\lib\db::query("INSERT INTO resultbyplaces SET $set", 'election');
@@ -31,7 +31,7 @@ class resultbyplaces
 	 */
 	public static function check($_args)
 	{
-		$where = \lib\db\config::make_where($_args);
+		$where = \dash\db\config::make_where($_args);
 		if($where)
 		{
 			$query  = "SELECT id FROM resultbyplaces WHERE $where LIMIT 1";
@@ -50,7 +50,7 @@ class resultbyplaces
 	 */
 	public static function update($_args, $_id)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if(!$set || !$_id || !is_numeric($_id))
 		{
 			return false;

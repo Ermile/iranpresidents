@@ -31,7 +31,7 @@ class view extends \mvc\view
 		if(is_array($find_location_url))
 		{
 			$location = end($find_location_url);
-			$child = \lib\db\locations::get_child($location);
+			$child = \dash\db\locations::get_child($location);
 			if(is_array($child))
 			{
 				$child_id = array_column($child, 'id');

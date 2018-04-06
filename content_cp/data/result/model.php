@@ -25,7 +25,7 @@ class model extends \mvc\model
 		if(!$this->provinces)
 		{
 			$country_id    = $this->countres;
-			$province_list = \lib\db\locations::get_child($country_id);
+			$province_list = \dash\db\locations::get_child($country_id);
 			$temp          = $province_list;
 			$name          = array_column($temp, 'name', 'id');
 			$localname     = array_column($temp, 'local_name', 'id');
@@ -41,7 +41,7 @@ class model extends \mvc\model
 		else
 		{
 			$province_id = $this->provinces;
-			$city_list   = \lib\db\locations::get_child($province_id);
+			$city_list   = \dash\db\locations::get_child($province_id);
 			$temp        = $city_list;
 			$name        = array_column($temp, 'name', 'id');
 			$localname   = array_column($temp, 'local_name', 'id');
@@ -86,8 +86,8 @@ class model extends \mvc\model
 
 		if(isset($url[4]))
 		{
-			$provinces = \lib\db\locations::get_child($url[4]);
-			$countres = \lib\db\locations::get_country($url[4]);
+			$provinces = \dash\db\locations::get_child($url[4]);
+			$countres = \dash\db\locations::get_country($url[4]);
 			if(isset($countres['id']))
 			{
 				$this->countres = $countres['id'];
@@ -96,8 +96,8 @@ class model extends \mvc\model
 
 		if(isset($url[5]))
 		{
-			$city = \lib\db\locations::get_child($url[5]);
-			$provinces = \lib\db\locations::get_province($url[5]);
+			$city = \dash\db\locations::get_child($url[5]);
+			$provinces = \dash\db\locations::get_province($url[5]);
 			if(isset($provinces['id']))
 			{
 				$this->provinces = $provinces['id'];

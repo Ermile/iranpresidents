@@ -13,7 +13,7 @@ class results
 	 */
 	public static function insert($_args)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
 			\lib\db::query("INSERT INTO results SET $set", 'election');
@@ -29,7 +29,7 @@ class results
 	 */
 	public static function insert_multi($_args)
 	{
-		$_args = \lib\db\config::make_multi_insert($_args);
+		$_args = \dash\db\config::make_multi_insert($_args);
 		if($_args)
 		{
 			return \lib\db::query("INSERT INTO results $_args", 'election');
@@ -63,7 +63,7 @@ class results
 	 */
 	public static function update($_args, $_id)
 	{
-		$set = \lib\db\config::make_set($_args);
+		$set = \dash\db\config::make_set($_args);
 		if(!$set || !$_id || !is_numeric($_id))
 		{
 			return false;
