@@ -239,7 +239,7 @@ class model
 			$election_id = $this->check_url($url);
 		}
 		$query = "SELECT * FROM comments WHERE status = 'approved' ";
-		$result = \lib\db::get($query, null, false, 'election');
+		$result = \dash\db::get($query, null, false, 'election');
 		// var_dump($result);exit();
 		return $result;
 	}
@@ -321,7 +321,7 @@ class model
 			comments.meta    = NULL
 			-- comments.visitor_id =
 		";
-		$insert = \lib\db::query($query, 'election');
+		$insert = \dash\db::query($query, 'election');
 		if($insert)
 		{
 			\dash\db\logs::set('user:send:contact', $user_id, $log_meta);

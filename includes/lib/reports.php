@@ -16,8 +16,8 @@ class reports
 		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
-			\lib\db::query("INSERT INTO reports SET $set", 'election');
-			return \lib\db::insert_id(\lib\db::$link_open['election']);
+			\dash\db::query("INSERT INTO reports SET $set", 'election');
+			return \dash\db::insert_id(\dash\db::$link_open['election']);
 		}
 	}
 
@@ -34,7 +34,7 @@ class reports
 		if($_id && is_numeric($_id))
 		{
 			$query = "SELECT * FROM reports WHERE id = $_id LIMIT 1";
-			$result = \lib\db::get($query, null, true, 'election');
+			$result = \dash\db::get($query, null, true, 'election');
 			return $result;
 		}
 		return false;
@@ -56,7 +56,7 @@ class reports
 		}
 
 		$query = "UPDATE reports SET $set WHERE id = $_id LIMIT 1";
-		return \lib\db::query($query, 'election');
+		return \dash\db::query($query, 'election');
 	}
 
 
@@ -229,9 +229,9 @@ class reports
 		if($pagenation && !$get_count)
 		{
 			$pagenation_query = "SELECT	COUNT(reports.id) AS `count`	FROM reports	$where $search ";
-			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, 'election');
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, 'election');
 
-			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
+			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
 		else
@@ -248,12 +248,12 @@ class reports
 
 		if(!$only_one_value)
 		{
-			$result = \lib\db::get($query, null, false, 'election');
+			$result = \dash\db::get($query, null, false, 'election');
 			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
 		{
-			$result = \lib\db::get($query, 'electioncount', true, 'election');
+			$result = \dash\db::get($query, 'electioncount', true, 'election');
 		}
 
 		return $result;

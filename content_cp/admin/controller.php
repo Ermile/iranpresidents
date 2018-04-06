@@ -14,7 +14,7 @@ class controller extends \mvc\controller
 		if(\dash\request::get("fix_file"))
 		{
 			$query = "SELECT candidas.*, elections.*, candidas.id AS `xid` FROM candidas  LEFT JOIN elections ON elections.id = candidas.election_id";
-			$candida = \lib\db::get($query, null, false, 'election');
+			$candida = \dash\db::get($query, null, false, 'election');
 			foreach ($candida as $key => $value)
 			{
 				if(isset($value['file_url']))
@@ -95,7 +95,7 @@ class controller extends \mvc\controller
 		$moved = \dash\file::copy($old_file_url, $xx);
 		if($moved)
 		{
-			\lib\db::query("UPDATE candidas SET $_type = '$new_file_url' where id = $_data[xid] LIMIT 1", 'election' );
+			\dash\db::query("UPDATE candidas SET $_type = '$new_file_url' where id = $_data[xid] LIMIT 1", 'election' );
 			$this->change++;
 		}
 	}

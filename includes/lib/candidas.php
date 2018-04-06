@@ -16,8 +16,8 @@ class candidas
 		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
-			\lib\db::query("INSERT INTO candidas SET $set", 'election');
-			return \lib\db::insert_id(\lib\db::$link_open['election']);
+			\dash\db::query("INSERT INTO candidas SET $set", 'election');
+			return \dash\db::insert_id(\dash\db::$link_open['election']);
 		}
 	}
 
@@ -34,7 +34,7 @@ class candidas
 		if($_id && is_numeric($_id))
 		{
 			$query = "SELECT * FROM candidas WHERE id = $_id LIMIT 1";
-			$result = \lib\db::get($query, null, true, 'election');
+			$result = \dash\db::get($query, null, true, 'election');
 			return $result;
 		}
 		return false;
@@ -56,7 +56,7 @@ class candidas
 		}
 
 		$query = "UPDATE candidas SET $set WHERE id = $_id LIMIT 1";
-		return \lib\db::query($query, 'election');
+		return \dash\db::query($query, 'election');
 	}
 
 
@@ -229,9 +229,9 @@ class candidas
 		if($pagenation && !$get_count)
 		{
 			$pagenation_query = "SELECT	COUNT(candidas.id) AS `count`	FROM candidas	$where $search ";
-			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, 'election');
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, 'election');
 
-			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
+			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
 		else
@@ -248,12 +248,12 @@ class candidas
 
 		if(!$only_one_value)
 		{
-			$result = \lib\db::get($query, null, false, 'election');
+			$result = \dash\db::get($query, null, false, 'election');
 			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
 		{
-			$result = \lib\db::get($query, 'electioncount', true, 'election');
+			$result = \dash\db::get($query, 'electioncount', true, 'election');
 		}
 
 		return $result;
@@ -268,7 +268,7 @@ class candidas
 		if($_election_id && is_numeric($_election_id))
 		{
 			$query = "SELECT candidas.*, CONCAT(name, ' ', family) as `name_family` FROM candidas WHERE candidas.election_id = $_election_id AND candidas.status = 'active' ";
-			$result = \lib\db::get($query, null, false, 'election');
+			$result = \dash\db::get($query, null, false, 'election');
 
 			return $result;
 		}
@@ -308,7 +308,7 @@ class candidas
 				candidas.status = 'active'
 			ORDER BY win_present DESC
 			";
-		$result = \lib\db::get($query, null, false, 'election');
+		$result = \dash\db::get($query, null, false, 'election');
 		// var_dump($result);exit();
 		return $result;
 

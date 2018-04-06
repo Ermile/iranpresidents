@@ -16,8 +16,8 @@ class results
 		$set = \dash\db\config::make_set($_args);
 		if($set)
 		{
-			\lib\db::query("INSERT INTO results SET $set", 'election');
-			return \lib\db::insert_id(\lib\db::$link_open['election']);
+			\dash\db::query("INSERT INTO results SET $set", 'election');
+			return \dash\db::insert_id(\dash\db::$link_open['election']);
 		}
 	}
 
@@ -32,7 +32,7 @@ class results
 		$_args = \dash\db\config::make_multi_insert($_args);
 		if($_args)
 		{
-			return \lib\db::query("INSERT INTO results $_args", 'election');
+			return \dash\db::query("INSERT INTO results $_args", 'election');
 		}
 	}
 
@@ -48,7 +48,7 @@ class results
 		if($_id && is_numeric($_id))
 		{
 			$query = "SELECT * FROM results WHERE id = $_id LIMIT 1";
-			$result = \lib\db::get($query, null, true, 'election');
+			$result = \dash\db::get($query, null, true, 'election');
 			return $result;
 		}
 		return false;
@@ -70,7 +70,7 @@ class results
 		}
 
 		$query = "UPDATE results SET $set WHERE id = $_id LIMIT 1";
-		return \lib\db::query($query, 'election');
+		return \dash\db::query($query, 'election');
 	}
 
 
@@ -263,9 +263,9 @@ class results
 		if($pagenation && !$get_count)
 		{
 			$pagenation_query = "SELECT	COUNT(results.id) AS `count`	FROM results	$where $search ";
-			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, 'election');
+			$pagenation_query = \dash\db::get($pagenation_query, 'count', true, 'election');
 
-			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
+			list($limit_start, $limit) = \dash\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}
 		else
@@ -282,12 +282,12 @@ class results
 
 		if(!$only_one_value)
 		{
-			$result = \lib\db::get($query, null, false, 'election');
+			$result = \dash\db::get($query, null, false, 'election');
 			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
 		{
-			$result = \lib\db::get($query, 'electioncount', true, 'election');
+			$result = \dash\db::get($query, 'electioncount', true, 'election');
 		}
 
 		return $result;
@@ -347,7 +347,7 @@ class results
 				elections.id = $_election_id
 			LIMIT 1
 		";
-		\lib\db::query($query, 'election');
+		\dash\db::query($query, 'election');
 	}
 
 
@@ -363,7 +363,7 @@ class results
 			return false;
 		}
 		$query = "UPDATE results SET results.status = 'disable' WHERE results.status = 'enable' AND results.election_id = $_election_id ";
-		return \lib\db::query($query, 'election');
+		return \dash\db::query($query, 'election');
 	}
 
 
@@ -396,7 +396,7 @@ class results
 				results.status  = 'enable'
 			ORDER BY total DESC
 		";
-		$result = \lib\db::get($query, null, false, 'election');
+		$result = \dash\db::get($query, null, false, 'election');
 		return $result;
 	}
 
@@ -428,7 +428,7 @@ class results
 				elections.id    = $_election_id
 			ORDER BY reports.date ASC
 		";
-		$result = \lib\db::get($query, null, false, 'election');
+		$result = \dash\db::get($query, null, false, 'election');
 		return $result;
 	}
 
@@ -467,7 +467,7 @@ class results
 				$cat
 			ORDER BY elections.election_date ASC
 		";
-		$result = \lib\db::get($query, null, false, 'election');
+		$result = \dash\db::get($query, null, false, 'election');
 		return $result;
 	}
 
@@ -552,7 +552,7 @@ class results
 				elections.cat = '$_cat'
 			ORDER BY $sort $order
 		";
-		$result = \lib\db::get($query, null, false, 'election');
+		$result = \dash\db::get($query, null, false, 'election');
 		// var_dump($result);exit();
 		return $result;
 	}
