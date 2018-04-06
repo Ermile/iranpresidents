@@ -81,7 +81,7 @@ class model extends \mvc\model
 	public function find_location_url()
 	{
 		$url       = \dash\url::directory();
-		$url       = \lib\safe::safe($url);
+		$url       = \dash\safe::safe($url);
 		$url       = explode('/', $url);
 
 		if(isset($url[4]))
@@ -187,11 +187,11 @@ class model extends \mvc\model
 
 		if(\lib\engine\process::status())
 		{
-			\lib\notif::ok(T_("Result added"));
+			\dash\notif::ok(T_("Result added"));
 		}
 		else
 		{
-			\lib\notif::error(T_("Error in adding result"));
+			\dash\notif::error(T_("Error in adding result"));
 		}
 	}
 

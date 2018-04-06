@@ -10,7 +10,7 @@ class controller extends \mvc\controller
 	{
 		parent::ready();
 
-		\lib\permission::access('election:admin:admin', 'block');
+		\dash\permission::access('election:admin:admin', 'block');
 
 		$this->get("list", "list")->ALL();
 		$this->get("candida", "candida")->ALL("/admin\/candida\/edit=(\d+)/");

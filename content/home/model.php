@@ -303,7 +303,7 @@ class model
 		if(mb_strlen($comment) > 1000)
 		{
 			\dash\db\logs::set('comment:in:election:too:large', $user_id, $log_meta);
-			\lib\notif::error(T_("Text too large!"), 'comment');
+			\dash\notif::error(T_("Text too large!"), 'comment');
 			return false;
 		}
 
@@ -325,12 +325,12 @@ class model
 		if($insert)
 		{
 			\dash\db\logs::set('user:send:contact', $user_id, $log_meta);
-			\lib\notif::ok(T_("Thank You For contacting us"));
+			\dash\notif::ok(T_("Thank You For contacting us"));
 		}
 		else
 		{
 			\dash\db\logs::set('user:send:contact:fail', $user_id, $log_meta);
-			\lib\notif::error(T_("We could'nt save the contact"));
+			\dash\notif::error(T_("We could'nt save the contact"));
 		}
 
 	}

@@ -28,12 +28,12 @@ class view
 
 		$this->data->running = $running;
 
-		if(\lib\permission::access('election:admin:admin'))
+		if(\dash\permission::access('election:admin:admin'))
 		{
 			$this->data->perm_admin = true;
 		}
 
-		if(\lib\permission::access('election:data:admin'))
+		if(\dash\permission::access('election:data:admin'))
 		{
 			$this->data->perm_data = true;
 		}
