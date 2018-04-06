@@ -25,7 +25,7 @@
 		{%for key, value in candida_list%}
 	<div class="f">
 		<div class="c2">{{value.title}}</div>
-		<div class="c"><a href="{{url.base}}/admin/candida/edit={{value.id}}"><b>{{value.name}}</b></a></div>
+		<div class="c"><a href="{{url.here}}/admin/candida/edit={{value.id}}"><b>{{value.name}}</b></a></div>
 		<div class="c">{{value.en_name}}</div>
 		<div class="c">{{value.family}}</div>
 		<div class="c">{{value.en_family}}</div>
@@ -37,9 +37,9 @@
 		<div class="c">{{value.birthdate|jdate("Y-m-d")}}</div>
 		<div class="c">{{value.electioncode|fitNumber}}</div>
 		<div class="c">{{value.desc}}</div>
-		<div class="c">{% if value.file_url %}<img height="100" width="100" src="{{url.base}}{{value.file_url}}">{% else %}<b>-</b>{% endif %}</div>
-		<div class="c">{% if value.file_url_2 %}<img height="100" width="100" src="{{url.base}}{{value.file_url_2}}">{% else %}<b>-</b>{% endif %}</div>
-		<div class="c">{% if value.win_url %}<img height="100" width="100" src="{{url.base}}{{value.win_url}}">{% else %}<b>-</b>{% endif %}</div>
+		<div class="c">{% if value.file_url %}<img height="100" width="100" src="{{url.here}}{{value.file_url}}">{% else %}<b>-</b>{% endif %}</div>
+		<div class="c">{% if value.file_url_2 %}<img height="100" width="100" src="{{url.here}}{{value.file_url_2}}">{% else %}<b>-</b>{% endif %}</div>
+		<div class="c">{% if value.win_url %}<img height="100" width="100" src="{{url.here}}{{value.win_url}}">{% else %}<b>-</b>{% endif %}</div>
 	</div>
 		{%endfor%}
 </div>

@@ -29,7 +29,7 @@
 	</div>
 	{%for key, value in election_list%}
 	<div class="f">
-		<div class="c2" title="{{value.en_title}}"><a href="{{url.base}}/admin/election/edit={{value.id}}"><b>{{value.title}}</b></a></div>
+		<div class="c2" title="{{value.en_title}}"><a href="{{url.here}}/admin/election/edit={{value.id}}"><b>{{value.title}}</b></a></div>
 		<div class="c" title='{{value.desc}}'>{%set myStatus = value.status%}{%trans myStatus %}</div>
 		<div class="c">{{value.eligible|number_format|fitNumber}}</div>
 		<div class="c">{{value.voted|number_format|fitNumber}}</div>
@@ -46,8 +46,8 @@
 		<div class="c">{{value.election_date|jdate("Y-m-d")}}</div>
 		<div class="c">{{value.jalali_year|fitNumber}}</div>
 		<div class="c">{{value.year|fitNumber}}</div>
-		<div class="c"><a href="{{url.base}}/{{value.en_url}}"><b>{%trans "Link"%}</b></a></div>
-		<div class="c"><a href="{{url.base}}/{{value.fa_url}}"><b>{%trans "Link"%}</b></a></div>
+		<div class="c"><a href="{{url.here}}/{{value.en_url}}"><b>{%trans "Link"%}</b></a></div>
+		<div class="c"><a href="{{url.here}}/{{value.fa_url}}"><b>{%trans "Link"%}</b></a></div>
 		<div class="c">{{value.cat}}</div>
 		<div class="c">{{value.win}}</div>
 	</div>

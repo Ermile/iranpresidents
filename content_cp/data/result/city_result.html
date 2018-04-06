@@ -16,7 +16,7 @@
 	{%for key, value in list%}
 			<div class="f">
 				<div>
-					<a href="{{url.base}}/data/result/{{election.id}}/place/{{city_url}}/{{key}}">{{value}}</a><br>
+					<a href="{{url.here}}/data/result/{{election.id}}/place/{{city_url}}/{{key}}">{{value}}</a><br>
 				</div>
 			{%for k, v in candida%}
 				<div><input type="number" name="total_{{key}}_{{v.id}}" value="{{result[key][v.id]}}" ></div>
