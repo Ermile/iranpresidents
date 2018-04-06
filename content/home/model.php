@@ -195,14 +195,14 @@ class model
 		$order = null;
 
 
-		if(\lib\request::get('sort'))
+		if(\dash\request::get('sort'))
 		{
-			$sort = \lib\request::get('sort');
+			$sort = \dash\request::get('sort');
 		}
 
-		if(\lib\request::get('order') && in_array(\lib\request::get('order'), ['asc', 'desc']))
+		if(\dash\request::get('order') && in_array(\dash\request::get('order'), ['asc', 'desc']))
 		{
-			$order = \lib\request::get('order');
+			$order = \dash\request::get('order');
 		}
 
 		$time_line = \lib\results::home_page('president', $sort, $order);
@@ -250,16 +250,16 @@ class model
 	 */
 	public function post_comment($_args)
 	{
-		$name    = \lib\request::post('name');
-		$mobile  = \lib\request::post('mobile');
-		$comment = \lib\request::post('comment');
+		$name    = \dash\request::post('name');
+		$mobile  = \dash\request::post('mobile');
+		$comment = \dash\request::post('comment');
 
 		$log_meta =
 		[
 			'data' => null,
 			'meta' =>
 			[
-				'input'   => \lib\request::post(),
+				'input'   => \dash\request::post(),
 				'session' => $_SESSION,
 			],
 		];

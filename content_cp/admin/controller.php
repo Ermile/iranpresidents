@@ -11,7 +11,7 @@ class controller extends \mvc\controller
 		parent::ready();
 
 		\lib\permission::access('election:admin:admin', 'block');
-		if(\lib\request::get("fix_file"))
+		if(\dash\request::get("fix_file"))
 		{
 			$query = "SELECT candidas.*, elections.*, candidas.id AS `xid` FROM candidas  LEFT JOIN elections ON elections.id = candidas.election_id";
 			$candida = \lib\db::get($query, null, false, 'election');

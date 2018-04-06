@@ -128,7 +128,7 @@ class model extends \mvc\model
 	{
 		$election_id = $this->getid($_args);
 		$location    = $this->find_location_url();
-		$post        = \lib\request::post();
+		$post        = \dash\request::post();
 		$location    = null;
 
 		$location = 'province';

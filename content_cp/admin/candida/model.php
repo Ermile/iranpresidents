@@ -25,23 +25,23 @@ class model extends \mvc\model
 	{
 		$args =
 		[
-			'name'         => \lib\request::post('name'),
-			'en_name'      => \lib\request::post('en_name'),
-			'family'       => \lib\request::post('family'),
-			'en_family'    => \lib\request::post('en_family'),
-			'father'       => \lib\request::post('father'),
-			'en_father'    => \lib\request::post('en_father'),
-			'fame'         => \lib\request::post('fame'),
-			'en_fame'      => \lib\request::post('en_fame'),
-			'birthdate'    => \lib\request::post('birthdate'),
-			'nationalcode' => \lib\request::post('nationalcode'),
-			'electioncode' => \lib\request::post('electioncode'),
-			'election_id'  => \lib\request::post('election_id'),
-			'status'       => \lib\request::post('status'),
-			'desc'         => \lib\request::post('desc'),
+			'name'         => \dash\request::post('name'),
+			'en_name'      => \dash\request::post('en_name'),
+			'family'       => \dash\request::post('family'),
+			'en_family'    => \dash\request::post('en_family'),
+			'father'       => \dash\request::post('father'),
+			'en_father'    => \dash\request::post('en_father'),
+			'fame'         => \dash\request::post('fame'),
+			'en_fame'      => \dash\request::post('en_fame'),
+			'birthdate'    => \dash\request::post('birthdate'),
+			'nationalcode' => \dash\request::post('nationalcode'),
+			'electioncode' => \dash\request::post('electioncode'),
+			'election_id'  => \dash\request::post('election_id'),
+			'status'       => \dash\request::post('status'),
+			'desc'         => \dash\request::post('desc'),
 		];
 
-		if(!\lib\request::post('birthdate'))
+		if(!\dash\request::post('birthdate'))
 		{
 			unset($args['birthdate']);
 		}
@@ -118,7 +118,7 @@ class model extends \mvc\model
 	 */
 	public function find_updload($_name)
 	{
-		if(\lib\request::files($_name))
+		if(\dash\request::files($_name))
 		{
 			$target_dir = root. "public_html/static/images/election/";
 			if(!\lib\file::exists($target_dir))
@@ -126,11 +126,11 @@ class model extends \mvc\model
 				\lib\file::makeDir($target_dir);
 			}
 
-			$basename = basename(\lib\request::files($_name)["name"]);
+			$basename = basename(\dash\request::files($_name)["name"]);
 
 			$target_file = $target_dir . $basename;
 
-			if (move_uploaded_file(\lib\request::files($_name)["tmp_name"], $target_file))
+			if (move_uploaded_file(\dash\request::files($_name)["tmp_name"], $target_file))
 			{
 				return 'images/election/'. $basename;
 			}
