@@ -15,7 +15,7 @@ class controller extends \mvc\controller
 
 		$this->post("add_result")->ALL("/data\/report\/(\d+)/");
 
-		if(preg_match("/data\/report\/(\d+)/", \lib\url::directory()))
+		if(preg_match("/data\/report\/(\d+)/", \dash\url::directory()))
 		{
 			$this->display_name = 'content\data\report\result.html';
 		}
@@ -26,7 +26,7 @@ class controller extends \mvc\controller
 
 		$this->post("report_vote")->ALL("/data\/report\/vote=(\d+)/");
 
-		if(preg_match("/data\/report\/vote=(\d+)/", \lib\url::directory()))
+		if(preg_match("/data\/report\/vote=(\d+)/", \dash\url::directory()))
 		{
 			$this->display_name = 'content\data\report\vote.html';
 		}

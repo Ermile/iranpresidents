@@ -24,7 +24,7 @@ class model
 	 */
 	public function get_load($_args)
 	{
-		$election_id = $this->check_url(\lib\url::directory());
+		$election_id = $this->check_url(\dash\url::directory());
 		if($election_id)
 		{
 			$result               = [];

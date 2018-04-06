@@ -5,7 +5,7 @@ class controller
 {
 	public function ready()
 	{
-		$url = \lib\url::directory();
+		$url = \dash\url::directory();
 
 		if($id = $this->model()->check_url($url))
 		{

@@ -71,7 +71,7 @@ class view
 
 		if(isset($this->data->result['candida'][0]['file_url']))
 		{
-			$image_of_winner = \lib\url::base(). $this->data->result['candida'][0]['file_url'];
+			$image_of_winner = \dash\url::base(). $this->data->result['candida'][0]['file_url'];
 
 			$this->data->share['twitterCard'] = 'summary_large_image';
 			$this->data->share['image']       = $image_of_winner;

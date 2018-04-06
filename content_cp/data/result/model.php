@@ -80,7 +80,7 @@ class model extends \mvc\model
 	 */
 	public function find_location_url()
 	{
-		$url       = \lib\url::directory();
+		$url       = \dash\url::directory();
 		$url       = \lib\safe::safe($url);
 		$url       = explode('/', $url);
 

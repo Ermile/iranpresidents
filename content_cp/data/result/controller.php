@@ -12,7 +12,7 @@ class controller extends \mvc\controller
 		$this->get("result", "result")->ALL("/^data\/result\/(\d+)$/");
 
 		$this->get("add_city", "add_city")->ALL("/data\/result\/(\d+)\/place/");
-		if(preg_match("/data\/result\/(\d+)\/place/", \lib\url::directory()))
+		if(preg_match("/data\/result\/(\d+)\/place/", \dash\url::directory()))
 		{
 			$this->display_name = 'content\data\result\city_result.html';
 		}
