@@ -121,9 +121,9 @@ class model extends \mvc\model
 		if(\dash\request::files($_name))
 		{
 			$target_dir = root. "public_html/static/images/election/";
-			if(!\lib\file::exists($target_dir))
+			if(!\dash\file::exists($target_dir))
 			{
-				\lib\file::makeDir($target_dir);
+				\dash\file::makeDir($target_dir);
 			}
 
 			$basename = basename(\dash\request::files($_name)["name"]);
