@@ -1,6 +1,6 @@
 <?php
 namespace content_cp\data\result;
-use \lib\utility\location;
+use \dash\utility\location;
 
 class view extends \mvc\view
 {

@@ -279,7 +279,7 @@ class model
 		}
 
 		$user_id = 'NULL';
-		$mobile  = \lib\utility\filter::mobile($mobile);
+		$mobile  = \dash\utility\filter::mobile($mobile);
 
 		if($mobile)
 		{

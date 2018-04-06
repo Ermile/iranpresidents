@@ -249,7 +249,7 @@ class reports
 		if(!$only_one_value)
 		{
 			$result = \lib\db::get($query, null, false, 'election');
-			$result = \lib\utility\filter::meta_decode($result);
+			$result = \dash\utility\filter::meta_decode($result);
 		}
 		else
 		{
