@@ -388,13 +388,15 @@ kbd:hover {
 
 audio,
 video {
-  display: inline-block; }
+  display: inline-block;
+  max-width: 100%; }
 
 audio:not([controls]) {
   display: none;
   height: 0; }
 
 svg:not(:root) {
+  max-width: 100%;
   overflow: hidden; }
 
 /* Forms
@@ -2344,6 +2346,15 @@ progress.xl, meter.xl {
   margin-top: 0.5em;
   display: block;
   line-height: 1.5; }
+
+.vcard .content.title {
+  background-color: #eee;
+  color: #333;
+  padding: 7em 0;
+  text-align: center; }
+
+.vcard .content.title .header {
+  font-size: 2em; }
 
 .vcard .meta {
   clear: both;
@@ -12874,6 +12885,50 @@ body.siftal.ltr[data-sidebar] #sidebar {
 body.siftal.rtl[data-sidebar] #sidebar {
   right: 0; }
 
+.siftal[data-clean] #sidebar {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 3;
+  left: -250px; }
+
+.siftal[data-clean].rtl #sidebar {
+  right: -250px;
+  left: initial; }
+
+.siftal[data-clean] #sidebar figure {
+  margin: 2em 0; }
+
+.siftal[data-clean] #sidebar h2 {
+  display: none; }
+
+.siftal[data-clean] header #sidenavHandler {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  -moz-box-flex: 0;
+  flex: 0 0 auto;
+  max-width: initial;
+  display: flex !important; }
+
+#sidebar .toggleClean {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  padding: 5px;
+  margin: 5px;
+  font-size: 2em;
+  z-index: -1;
+  opacity: 0;
+  transition: 0.3s; }
+
+#sidebar:hover .toggleClean {
+  z-index: 1;
+  opacity: 1; }
+
 /* change avatar placeholder on page loading */
 body.siftal.loading-page #sidebar .avatar:before {
   animation-duration: 1s;
@@ -12942,6 +12997,15 @@ body.siftal.loading-page #sidebar .avatar:before {
   padding-right: 0; }
 
 .rtl.siftal #sidebar ul > li > ul > li > a {
+  padding-left: 0; }
+
+.siftal #sidebar ul > li > ul > li > ul > li > a {
+  padding: 0.7em 4em; }
+
+.ltr.siftal #sidebar ul > li > ul > li > ul > li > a {
+  padding-right: 0; }
+
+.rtl.siftal #sidebar ul > li > ul > li > ul > li > a {
   padding-left: 0; }
 
 .siftal #sidebar ul > li > a.weAreHere {
@@ -14183,7 +14247,14 @@ body .w200 {
     padding: 0; }
 
   .siftal #sidebar {
-    width: 300px; } }
+    width: 300px; }
+
+  .siftal[data-clean] #sidebar {
+    left: -300px; }
+
+  .siftal[data-clean].rtl #sidebar {
+    right: -300px;
+    left: initial; } }
 @media all and (min-width: 768px) and (max-width: 959px) {
   html {
     font-size: 60%; }
@@ -14523,9 +14594,6 @@ body .w200 {
 
   .siftal #sidebar figure {
     margin: 2em 0; }
-
-  .siftal #sidebar ul > li > a {
-    padding: 1.2em 2em; }
 
   .siftal #sidebar h2 {
     display: none; }
