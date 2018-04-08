@@ -250,7 +250,7 @@ class model extends \mvc\model
 			}
 		}
 
-		if(\lib\engine\process::status())
+		if(\dash\engine\process::status())
 		{
 			\dash\notif::ok(T_("Updated"));
 		}
