@@ -24,7 +24,7 @@ class view extends \mvc\view
 	 */
 	public function view_list($_args)
 	{
-		$this->data->election_list = $_args->api_callback;
+		$this->data->electionList = $_args->api_callback;
 		$this->data->candidas = \lib\candidas::search();
 	}
 }

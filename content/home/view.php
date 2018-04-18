@@ -4,19 +4,29 @@ namespace content\home;
 class view
 {
 
-	/**
-	 * { function_description }
-	 */
+
 	public static function config()
 	{
-		return;
+		$url = \dash\url::directory();
+
+		if($id = \lib\elections::check_url($url))
+		{
+			self::load_election();
+			\dash\data::display_iran('content\\home\\all.html');
+		}
+		else
+		{
+			self::view_home();
+			\dash\data::display_iran('content\\home\\home.html');
+		}
+
 		$running  = [];
 		$election = \lib\elections::search();
 
-		$this->data->page['title']   = T_('Presidents of Islamic Republic of Iran');
-		$this->data->page['desc']    = T_('Live and complete result of iran elections after revolution until now.');
+		\dash\data::page_title(T_('Presidents of Islamic Republic of Iran'));
+		\dash\data::page_desc(T_('Live and complete result of iran elections after revolution until now.'));
 
-		$this->data->election_list = $election;
+		\dash\data::electionList($election);
 
 		foreach ($election as $key => $value)
 		{
@@ -26,57 +36,58 @@ class view
 			}
 		}
 
-		$this->data->running = $running;
+		\dash\data::running($running);
 
 		if(\dash\permission::access('election:admin:admin'))
 		{
-			$this->data->perm_admin = true;
+			\dash\data::permAdmin(true);
 		}
 
 		if(\dash\permission::access('election:data:admin'))
 		{
-			$this->data->perm_data = true;
+			\dash\data::permData(true);
 		}
 	}
 
 
-	/**
-	 * { function_description }
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function view_load($_args)
-	{
-		$result = $_args->api_callback;
-		$this->data->result = $result;
 
-		if($this->data->lang['current'] == 'fa')
+	public static function load_election()
+	{
+		$result = \content\home\model::get_load();
+
+		\dash\data::result($result);
+
+		if(\dash\data::lang_current() === 'fa')
 		{
-			if(isset($this->data->result['election']['title']))
+			if(\dash\data::result_election())
 			{
-				$title_of_el = $this->data->result['election']['title'];
-				$this->data->page['title'] = $title_of_el;
-				$this->data->page['desc'] = 'نتایج لحظه‌ای '. $title_of_el. '. آخرین نتایج انتخابات ریاست جمهوری را بررسی کنید';
+				$el = \dash\data::result_election();
+				$title_of_el = isset($el['title'])? $el['title']: null;
+				\dash\data::page_title($title_of_el);
+				\dash\data::page_desc('نتایج لحظه‌ای '. $title_of_el. '. آخرین نتایج انتخابات ریاست جمهوری را بررسی کنید');
 			}
 		}
 		else
 		{
-			if(isset($this->data->result['election']['en_title']))
+			if(\dash\data::result_election())
 			{
-				$title_of_el = $this->data->result['election']['en_title'];
-				$this->data->page['title'] = T_('Results of'). ' '. $title_of_el;
-				$this->data->page['desc'] = T_('Live result of '). $title_of_el;
+				$el = \dash\data::result_election();
+				$title_of_el = isset($el['en_title'])? $el['en_title']: null;
+				\dash\data::page_title(T_('Results of'). ' '. $title_of_el);
+				\dash\data::page_desc(T_('Live result of '). $title_of_el);
 			}
 		}
 
-		if(isset($this->data->result['candida'][0]['file_url']))
+		$el = \dash\data::result_candida();
+
+		if(isset($el['candida'][0]['file_url']))
 		{
-			$image_of_winner = \dash\url::base(). $this->data->result['candida'][0]['file_url'];
+			$image_of_winner = \dash\url::base(). $el['candida'][0]['file_url'];
 
-			$this->data->share['twitterCard'] = 'summary_large_image';
-			$this->data->share['image']       = $image_of_winner;
+			\dash\data::share_twitterCard('summary_large_image');
+			\dash\data::share_image($image_of_winner);
 		}
-		// var_dump($this->data->result);
+
 	}
 
 
@@ -85,26 +96,25 @@ class view
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function view_home($_args)
+	public static function view_home()
 	{
-		$this->data->result = $_args->api_callback;
+		$sort  = null;
+		$order = null;
+
+
+		if(\dash\request::get('sort'))
+		{
+			$sort = \dash\request::get('sort');
+		}
+
+		if(\dash\request::get('order') && in_array(\dash\request::get('order'), ['asc', 'desc']))
+		{
+			$order = \dash\request::get('order');
+		}
+
+		$time_line = \lib\results::home_page('president', $sort, $order);
+		\dash\data::result($time_line);
 	}
 
-
-	/**
-	 * view candida
-	 *
-	 * @param      <type>  $_args  The arguments
-	 */
-	public function view_candida($_args)
-	{
-		$this->data->result = $_args->api_callback;
-	}
-
-
-	public function view_comment($_args)
-	{
-		$this->data->result = $_args->api_callback;
-	}
 }
 ?>

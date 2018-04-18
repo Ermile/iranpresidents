@@ -55,7 +55,7 @@
 		<label class="c1" for="election_id">{%trans "election_id"%}</label>
 		<select name="election_id" id="election_id" class="c5">
 			<option  selected>{%trans "Please select one item"%}</option>
-			{%for key, value in election_list%}
+			{%for key, value in electionList%}
 			<option value="{{value.id}}" {%if candida.election_id == value.id %}selected{%endif%}>{{value.title}}</option>
 			{%endfor%}
 		</select>

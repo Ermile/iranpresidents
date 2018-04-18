@@ -1,7 +1,7 @@
 {% extends display.dash %}
 {%block content%}
 
-{%if election_list%}
+{%if electionList%}
 	<h1>{% trans "Election list"%}</h1>
 <div class="dt">
 	<div class="f th">
@@ -27,7 +27,7 @@
 		<div class="c">{%trans "Cat"%}</div>
 		<div class="c">{%trans "Win"%}</div>
 	</div>
-	{%for key, value in election_list%}
+	{%for key, value in electionList%}
 	<div class="f">
 		<div class="c2" title="{{value.en_title}}"><a href="{{url.here}}/admin/election/edit={{value.id}}"><b>{{value.title}}</b></a></div>
 		<div class="c" title='{{value.desc}}'>{%set myStatus = value.status%}{%trans myStatus %}</div>

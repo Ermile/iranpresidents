@@ -11,7 +11,7 @@ class model
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public function check_url($_url)
+	public static function check_url($_url)
 	{
 		return \lib\elections::check_url($_url);
 	}
@@ -22,9 +22,9 @@ class model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function get_load($_args)
+	public static function get_load()
 	{
-		$election_id = $this->check_url(\dash\url::directory());
+		$election_id = self::check_url(\dash\url::directory());
 		if($election_id)
 		{
 			$result               = [];
@@ -34,7 +34,8 @@ class model
 			$candida_id           = \lib\candidas::list($election_id);
 
 			$result['candida']    = $candida_id;
-			$result['candida_id'] = array_column($candida_id, 'name_family', 'candida_id');
+
+			$result['candida_id'] = array_column($candida_id, 'name_family', 'id');
 
 			$total = array_column($vote, 'total');
 			$total = array_sum($total);
@@ -174,7 +175,7 @@ class model
 				}
 			}
 
-			$result['comment'] = $this->get_comment($_args);
+			$result['comment'] = self::get_comment();
 			// var_dump($result);exit();
 			return $result;
 		}
@@ -189,7 +190,7 @@ class model
 	 *
 	 * @return     <type>  The home.
 	 */
-	public function get_home($_args)
+	public static function get_home()
 	{
 		$sort  = null;
 		$order = null;
@@ -215,7 +216,7 @@ class model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function get_candida($_args)
+	public static function get_candida()
 	{
 		$cat = 'president';
 		$result = \lib\candidas::get_list_all($cat);
@@ -228,7 +229,7 @@ class model
 	 *
 	 * @param      <type>  $_args  The arguments
 	 */
-	public function get_comment($_args)
+	public static function get_comment()
 	{
 		$url         = (isset($_args->match->url[0][0])) ? $_args->match->url[0][0] : false;
 		$election_id = false;
@@ -236,7 +237,7 @@ class model
 		if($url)
 		{
 			$url = str_replace('/comment', '', $url);
-			$election_id = $this->check_url($url);
+			$election_id = self::check_url($url);
 		}
 		$query = "SELECT * FROM comments WHERE status = 'approved' ";
 		$result = \dash\db::get($query, null, false, 'election');
@@ -248,7 +249,7 @@ class model
 	/**
 	 * Posts a comment.
 	 */
-	public function post_comment($_args)
+	public static function post_comment()
 	{
 		$name    = \dash\request::post('name');
 		$mobile  = \dash\request::post('mobile');
@@ -270,7 +271,7 @@ class model
 		if($url)
 		{
 			$url = str_replace('/comment', '', $url);
-			$election_id = $this->check_url($url);
+			$election_id = self::check_url($url);
 		}
 
 		if(!$election_id)

@@ -9,7 +9,7 @@ class view extends \mvc\view
 	 */
 	public function config()
 	{
-		$this->data->election_list = \lib\elections::search();
+		$this->data->electionList = \lib\elections::search();
 	}
 
 

@@ -10,7 +10,7 @@ class view extends \mvc\view
 	{
 		$election = \lib\elections::search(null, ['limit' => 50]);
 
-		$this->data->election_list = $election;
+		$this->data->electionList = $election;
 		$running = [];
 		foreach ($election as $key => $value)
 		{

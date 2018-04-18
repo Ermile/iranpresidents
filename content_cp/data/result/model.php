@@ -199,7 +199,7 @@ class model extends \mvc\model
 	/**
 	 * Gets the election list.
 	 */
-	public function get_election_list()
+	public function get_electionList()
 	{
 		return \lib\elections::search(null,['pagenation' => false, 'limit' => false]);
 	}

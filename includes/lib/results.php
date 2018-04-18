@@ -394,9 +394,11 @@ class results
 				candidas.status = 'active' AND
 				elections.id    = $_election_id AND
 				results.status  = 'enable'
-			ORDER BY total DESC
+			ORDER BY results.total DESC
 		";
+		// var_dump($query);
 		$result = \dash\db::get($query, null, false, 'election');
+		// var_dump($result);exit();
 		return $result;
 	}
 

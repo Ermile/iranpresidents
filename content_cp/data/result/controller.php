@@ -18,7 +18,7 @@ class controller extends \mvc\controller
 		}
 		$this->post("save_city")->ALL("/data\/result\/(\d+)\/place/");
 
-		$this->get("election_list", "election_list")->ALL();
+		$this->get("electionList", "electionList")->ALL();
 
 	}
 }

@@ -3,7 +3,7 @@
 
 {{block('running')}}
 
-{%if election_list%}
+{%if electionList%}
  <h1>{%trans "Election List"%}</h1>
  <div class="dt">
   <div class="f th">
@@ -12,7 +12,7 @@
    <div class="c">{%trans "add result"%}</div>
    <div class="c">{%trans "add city result"%}</div>
   </div>
-  {%for key, value in election_list%}
+  {%for key, value in electionList%}
   <div class="f">
    <div class="c">{{value.title}} | <a href="{{url.here}}/{{value.en_url}}">{%trans "En"%}</a> | <a href="{{url.here}}/{{value.fa_url}}">{%trans "Fa"%}</a></div>
    <div class="c">{{value.status}}</div>
