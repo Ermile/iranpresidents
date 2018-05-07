@@ -9,7 +9,7 @@ class controller extends \mvc\controller
 	public function ready()
 	{
 
-		\dash\permission::access('election:admin:admin', 'block');
+		\dash\permission::access('election:admin:admin');
 
 		$this->get("election", "election")->ALL("/admin\/election\/edit=(\d+)/");
 		$this->get("list", "list")->ALL();

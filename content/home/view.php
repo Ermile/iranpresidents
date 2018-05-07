@@ -38,12 +38,12 @@ class view
 
 		\dash\data::running($running);
 
-		if(\dash\permission::access('election:admin:admin'))
+		if(\dash\permission::check('election:admin:admin'))
 		{
 			\dash\data::permAdmin(true);
 		}
 
-		if(\dash\permission::access('election:data:admin'))
+		if(\dash\permission::check('election:data:admin'))
 		{
 			\dash\data::permData(true);
 		}

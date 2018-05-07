@@ -7,7 +7,7 @@ class controller extends \mvc\controller
 	{
 		parent::ready();
 
-		\dash\permission::access('election:data:admin', 'block');
+		\dash\permission::access('election:data:admin');
 
 		$this->get("result", "result")->ALL("/^data\/result\/(\d+)$/");
 
