@@ -25,9 +25,9 @@
       <td class="eligiblePr" style="width:{{value.work_present}}%"></td>
       <td class="year">
 {%if lang.current == 'en'%}
-        <a href="{{value.election_en_url}}" title="{{value.en_title}}">{{value.year|fitNumber}}</a>
+        <a href="{{value.election_en_url}}" title="{{value.en_title}}">{{value.year|fitNumber(false)}}</a>
 {%else%}
-        <a href="{{value.fa_url}}" title="{{value.title}}">{{value.jalali_year|fitNumber}}</a>
+        <a href="{{value.fa_url}}" title="{{value.title}}">{{value.jalali_year|fitNumber(false)}}</a>
 {%endif%}
       </td>
       <td class="elected">
