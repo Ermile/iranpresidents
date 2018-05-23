@@ -842,11 +842,7 @@ function homepageHighlight(_el)
 
 
 // ================================================================== run on all part of each page
-route('*', function ()
-{
-	// run func to fixSlideJumping
-	// fixSlideJumping.call(this);
-}).once(function()
+function pushStateFinal()
 {
 	setLanguageURL();
 	isActiveChecker();
@@ -905,7 +901,8 @@ route('*', function ()
 	setCustomValidityMsg();
 	// search in polls
 	searchInPolls();
-});
+
+}
 
 
 // ************************************************************************************************************ Add
@@ -2841,263 +2838,263 @@ function handleSyncProcess()
 
 // ================================================================== @/add
 // route(/\@\/add/, function()
-route(/\@\/add(|\/[^\/]*)$/, function()
-{
-	// run on input change and add new opt for this question
-	$(this).on('input', '.input-group.sortable > li .input[type="text"]', function(event)
-	{
-		checkAddOpt();
-	});
+// route(/\@\/add(|\/[^\/]*)$/, function()
+// {
+// 	// run on input change and add new opt for this question
+// 	$(this).on('input', '.input-group.sortable > li .input[type="text"]', function(event)
+// 	{
+// 		checkAddOpt();
+// 	});
 
-	// --------------------------------------------------------------------------------- Delete Elements
-	// show and hide delete btn on special condition
-	$(this).on('mouseenter', '.input-group.sortable > li', function()
-	{
-		showQuestionOptsDel($(this).find('.delete'));
-	}).on('focus', '.input-group.sortable > li input[type="text"]', function()
-	{
-		showQuestionOptsDel($(this).closest('li').find('.delete'));
-	});
+// 	// --------------------------------------------------------------------------------- Delete Elements
+// 	// show and hide delete btn on special condition
+// 	$(this).on('mouseenter', '.input-group.sortable > li', function()
+// 	{
+// 		showQuestionOptsDel($(this).find('.delete'));
+// 	}).on('focus', '.input-group.sortable > li input[type="text"]', function()
+// 	{
+// 		showQuestionOptsDel($(this).closest('li').find('.delete'));
+// 	});
 
-	// on input and press shift+del remove current record
-	// $(this).on('keyup', '.input-group.sortable > li input', function(e)
-	// {
-	// 	if(countQuestionOpts() > 2)
-	// 	{
-	// 		if(e.shiftKey && e.keyCode === 46)
-	// 		{
-	// 			$(this).closest('li').find('.delete').click();
-	// 		}
-	// 	}
-	// });
+// 	// on input and press shift+del remove current record
+// 	// $(this).on('keyup', '.input-group.sortable > li input', function(e)
+// 	// {
+// 	// 	if(countQuestionOpts() > 2)
+// 	// 	{
+// 	// 		if(e.shiftKey && e.keyCode === 46)
+// 	// 		{
+// 	// 			$(this).closest('li').find('.delete').click();
+// 	// 		}
+// 	// 	}
+// 	// });
 
-	$(this).on('input', '#title', function()
-	{
-		detectPercentage();
-	});
+// 	$(this).on('input', '#title', function()
+// 	{
+// 		detectPercentage();
+// 	});
 
-	$(this).on('change', '#descriptive', function()
-	{
-		if(this.checked)
-		{
-			addNewOpt('other', $(this).attr('data-title'), $(this).attr('data-pl'), $(this).attr('data-defaultVal'));
-		}
-		else
-		{
-			deleteOpt('other');
-		}
-	});
+// 	$(this).on('change', '#descriptive', function()
+// 	{
+// 		if(this.checked)
+// 		{
+// 			addNewOpt('other', $(this).attr('data-title'), $(this).attr('data-pl'), $(this).attr('data-defaultVal'));
+// 		}
+// 		else
+// 		{
+// 			deleteOpt('other');
+// 		}
+// 	});
 
-	// on press delete on each opt
-	$(this).on('click', '.input-group.sortable > li .delete', function()
-	{
-		showQuestionOptsDel(this, true);
-	}).on('input', '.input-group.sortable > li .delete', function(e)
-	{
-		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)
-		{
-			$(this).closest('li').find('.delete').click();
-		}
-	});
+// 	// on press delete on each opt
+// 	$(this).on('click', '.input-group.sortable > li .delete', function()
+// 	{
+// 		showQuestionOptsDel(this, true);
+// 	}).on('input', '.input-group.sortable > li .delete', function(e)
+// 	{
+// 		if((e.shiftKey && e.keyCode === 46) || e.keyCode === 13)
+// 		{
+// 			$(this).closest('li').find('.delete').click();
+// 		}
+// 	});
 
-	// --------------------------------------------------------------------------------- Tree
-	// $(this).on('input', '#tree-search', function(event)
-	// {
-	// 	var tree_search_timeout = $(this).data('tree-search-timeout');
-	// 	if(tree_search_timeout)
-	// 	{
-	// 		clearTimeout(tree_search_timeout);
-	// 	}
-	// 	var timeout = setTimeout(treeSearch.bind(this), 200);
-	// 	$(this).data('tree-search-timeout', timeout);
-	// });
+// 	// --------------------------------------------------------------------------------- Tree
+// 	// $(this).on('input', '#tree-search', function(event)
+// 	// {
+// 	// 	var tree_search_timeout = $(this).data('tree-search-timeout');
+// 	// 	if(tree_search_timeout)
+// 	// 	{
+// 	// 		clearTimeout(tree_search_timeout);
+// 	// 	}
+// 	// 	var timeout = setTimeout(treeSearch.bind(this), 200);
+// 	// 	$(this).data('tree-search-timeout', timeout);
+// 	// });
 
-	// // if user change selection of each item
-	// $(this).on('change', '.tree-result-list > li > .options .checkbox', function(event)
-	// {
-	// 	// get list of checked item and create text from them
-	// 	var selectedOpts = $(this).parents('.options').find('input:checkbox:checked').map(function(){ return $(this).val();});
-	// 	$('[name="parent_tree_opt"]').val(selectedOpts.get());
-	// });
+// 	// // if user change selection of each item
+// 	// $(this).on('change', '.tree-result-list > li > .options .checkbox', function(event)
+// 	// {
+// 	// 	// get list of checked item and create text from them
+// 	// 	var selectedOpts = $(this).parents('.options').find('input:checkbox:checked').map(function(){ return $(this).val();});
+// 	// 	$('[name="parent_tree_opt"]').val(selectedOpts.get());
+// 	// });
 
-	// if($('#tree').is(':checked'))
-	// {
-	// 	// console.log('checkd default...');
-	// 	// $('#tree-search').val($('[name="parent_tree_id"]').val());
-	// 	// treeSearch();
-	// }
+// 	// if($('#tree').is(':checked'))
+// 	// {
+// 	// 	// console.log('checkd default...');
+// 	// 	// $('#tree-search').val($('[name="parent_tree_id"]').val());
+// 	// 	// treeSearch();
+// 	// }
 
-	$(this).on('click','button', function()
-	{
-		detectPercentage(true);
-		$('#submit-form').attr("value", $(this).attr("send-name"));
-		$('#submit-form').attr("name", $(this).attr("send-name"));
-	});
+// 	$(this).on('click','button', function()
+// 	{
+// 		detectPercentage(true);
+// 		$('#submit-form').attr("value", $(this).attr("send-name"));
+// 		$('#submit-form').attr("name", $(this).attr("send-name"));
+// 	});
 
-}).once(function()
-{
-	// import needed js
-	$import('lib/ionrangeSlider/ion.rangeSlider.min.js', 'runRangeSliderNew', null, 0);
-	$import('lib/sortable/Sortable.min.js', 'setSortable', null, 200);
-	$import('lib/awesomplete/awesomplete.min.js', 'fillAuto', null, 300);
-	$import('lib/tagDetector/tagDetector.js', 'runTagDetector', null, 400);
+// }).once(function()
+// {
+// 	// import needed js
+// 	$import('lib/ionrangeSlider/ion.rangeSlider.min.js', 'runRangeSliderNew', null, 0);
+// 	$import('lib/sortable/Sortable.min.js', 'setSortable', null, 200);
+// 	$import('lib/awesomplete/awesomplete.min.js', 'fillAuto', null, 300);
+// 	$import('lib/tagDetector/tagDetector.js', 'runTagDetector', null, 400);
 
-	// simulateTreeNavigation();
-	checkNextStep();
-	// // draw factor and fill total price on start
-	// calcTotalPrice(200);
-	// draw media for each item contain media
-	drawMedia();
-	// check status of question and if needed lock it
-	setStatusText();
-	$('.page-progress input').on('click', function(e)
-	{
-		return detectStep($(this).attr('name'));
-		// e.stopPropagation();
-		// return false;
-	});
-	// on click on price goto step3
-	$('#financial-box .cost').on('click', function(e)
-	{
-		detectStep('factor');
-	});
-	// handle sync
-	handleSyncProcess();
-	// on init
-	detectStep();
+// 	// simulateTreeNavigation();
+// 	checkNextStep();
+// 	// // draw factor and fill total price on start
+// 	// calcTotalPrice(200);
+// 	// draw media for each item contain media
+// 	drawMedia();
+// 	// check status of question and if needed lock it
+// 	setStatusText();
+// 	$('.page-progress input').on('click', function(e)
+// 	{
+// 		return detectStep($(this).attr('name'));
+// 		// e.stopPropagation();
+// 		// return false;
+// 	});
+// 	// on click on price goto step3
+// 	$('#financial-box .cost').on('click', function(e)
+// 	{
+// 		detectStep('factor');
+// 	});
+// 	// handle sync
+// 	handleSyncProcess();
+// 	// on init
+// 	detectStep();
 
 
-	var myPersonCounter = $('#rangepersons');
-	// on init calc price
-	myPersonCounter.bind('range:start', function(_e, _min, _max)
-	{
-		// ready to send data
-		calcTotalPrice();
-	});
+// 	var myPersonCounter = $('#rangepersons');
+// 	// on init calc price
+// 	myPersonCounter.bind('range:start', function(_e, _min, _max)
+// 	{
+// 		// ready to send data
+// 		calcTotalPrice();
+// 	});
 
-	myPersonCounter.bind('change', function(_e, _min, _max)
-	{
-		calcTotalPrice();
+// 	myPersonCounter.bind('change', function(_e, _min, _max)
+// 	{
+// 		calcTotalPrice();
 
-	});
+// 	});
 
-	myPersonCounter.on('range:finish', function(_e, _values, _max)
-	{
-		// ready to send data
-		requestSavingData();
+// 	myPersonCounter.on('range:finish', function(_e, _values, _max)
+// 	{
+// 		// ready to send data
+// 		requestSavingData();
 
-		// if value isset to zero hide filters
-		if(_values.from == 0 && $('.badge.active').length < 1)
-		{
-			$('.stepFilter #filter-conditions').fadeOut();
-		}
-		else
-		{
-			$('.stepFilter #filter-conditions').fadeIn();
-		}
-	});
+// 		// if value isset to zero hide filters
+// 		if(_values.from == 0 && $('.badge.active').length < 1)
+// 		{
+// 			$('.stepFilter #filter-conditions').fadeOut();
+// 		}
+// 		else
+// 		{
+// 			$('.stepFilter #filter-conditions').fadeIn();
+// 		}
+// 	});
 
-	// // on open tree load content to it
-	// $(window).off("response:open");
-	// $(window).on("response:open", function(_obj, _name, _value)
-	// {
-	// 	// if open tree then fill with last qustions
-	// 	if(_name == 'tree' && _value == 'open')
-	// 	{
-	// 		treeSearch.call(null, null, true);
-	// 	}
-	// });
+// 	// // on open tree load content to it
+// 	// $(window).off("response:open");
+// 	// $(window).on("response:open", function(_obj, _name, _value)
+// 	// {
+// 	// 	// if open tree then fill with last qustions
+// 	// 	if(_name == 'tree' && _value == 'open')
+// 	// 	{
+// 	// 		treeSearch.call(null, null, true);
+// 	// 	}
+// 	// });
 
-	// ------------------------------------------------------------------ Tree
-	// if user click on title of each question
-	$(document).off('change', '.tree-result-list > li > [name="parent_tree_id"]');
-	$(document).on('change', '.tree-result-list > li > [name="parent_tree_id"]', function(event)
-	{
-		var selectedItem = $(this).parents('li').children('.options');
-		if(selectedItem.is(':visible'))
-		{
-			// if want to close, close all tags
-			$('.tree-result-list > li .options').slideUp();
-		}
-		else
-		{
-			$('.tree-result-list > li .options').slideUp();
-			selectedItem.slideDown();
-			// $('[name="parent_tree_id"]').val($(this).parent('li').attr('data-id'));
-			$('.tree-result-list > li.active').removeClass('active');
-			$(this).parents('li').addClass('active');
-		}
-	});
+// 	// ------------------------------------------------------------------ Tree
+// 	// if user click on title of each question
+// 	$(document).off('change', '.tree-result-list > li > [name="parent_tree_id"]');
+// 	$(document).on('change', '.tree-result-list > li > [name="parent_tree_id"]', function(event)
+// 	{
+// 		var selectedItem = $(this).parents('li').children('.options');
+// 		if(selectedItem.is(':visible'))
+// 		{
+// 			// if want to close, close all tags
+// 			$('.tree-result-list > li .options').slideUp();
+// 		}
+// 		else
+// 		{
+// 			$('.tree-result-list > li .options').slideUp();
+// 			selectedItem.slideDown();
+// 			// $('[name="parent_tree_id"]').val($(this).parent('li').attr('data-id'));
+// 			$('.tree-result-list > li.active').removeClass('active');
+// 			$(this).parents('li').addClass('active');
+// 		}
+// 	});
 
-	// ------------------------------------------------------------------ File Preview
-	//
-	$(this).on('change', 'input[type="file"]', function(event)
-	{
-		// var output = $(this).parents('.ultra').find('.preview');
-		// var imagePreview = showPreview(this, output);
-		giveFile(this);
-	});
-	// after complete loading, open cropbox
-	$(window).off("cropBox:open");
-	$(window).on("cropBox:open", function(_e, _el)
-	{
-		if(!_el)
-		{
-			return false;
-		}
-		$(_el).attr('data-modal', '');
-		// start crop with this image
-		startCrop(_el);
-	});
-	// on click on preview of imagee
-	$('body').on("click", ".preview", function(_e, _el)
-	{
-		startCrop(this);
-	});
-	// on click on preview of imagee
-	// $('body').on("click", "#modal-preview .btn", function(_e, _el)
-	// {
-	// 	// complete croping
-	// 	$('#modal-preview').trigger('close');
-	// });
+// 	// ------------------------------------------------------------------ File Preview
+// 	//
+// 	$(this).on('change', 'input[type="file"]', function(event)
+// 	{
+// 		// var output = $(this).parents('.ultra').find('.preview');
+// 		// var imagePreview = showPreview(this, output);
+// 		giveFile(this);
+// 	});
+// 	// after complete loading, open cropbox
+// 	$(window).off("cropBox:open");
+// 	$(window).on("cropBox:open", function(_e, _el)
+// 	{
+// 		if(!_el)
+// 		{
+// 			return false;
+// 		}
+// 		$(_el).attr('data-modal', '');
+// 		// start crop with this image
+// 		startCrop(_el);
+// 	});
+// 	// on click on preview of imagee
+// 	$('body').on("click", ".preview", function(_e, _el)
+// 	{
+// 		startCrop(this);
+// 	});
+// 	// on click on preview of imagee
+// 	// $('body').on("click", "#modal-preview .btn", function(_e, _el)
+// 	// {
+// 	// 	// complete croping
+// 	// 	$('#modal-preview').trigger('close');
+// 	// });
 
-	// ================================================================== filter
-	$(this).on('click','button', function()
-	{
-		detectPercentage(true);
-	});
-	detectPercentage();
+// 	// ================================================================== filter
+// 	$(this).on('click','button', function()
+// 	{
+// 		detectPercentage(true);
+// 	});
+// 	detectPercentage();
 
-	// on open tree load content to it
-	// $(window).off( "response:open");
-	// $(window).on( "response:open", function(_obj, _name, _value)
-	// {
-	//	calcTotalPrice();
-	// });
+// 	// on open tree load content to it
+// 	// $(window).off( "response:open");
+// 	// $(window).on( "response:open", function(_obj, _name, _value)
+// 	// {
+// 	//	calcTotalPrice();
+// 	// });
 
-	// ================================================================== publish
-	// runAutoComplete();
+// 	// ================================================================== publish
+// 	// runAutoComplete();
 
-	$('#question-add').on('change', 'input, textarea', function()
-	{
-		if($(this).hasClass('rangeSlider'))
-		{
-			return false;
-		}
-		requestSavingData();
-	});
-	// before close page save request on the air!
-	// for chrome
-	$(window).on('beforeunload', function()
-	{
-		// sendQuestionData(null, false);
-	});
-	//this will work for other browsers
-	// $(window).on("unload", function ()
-	// {
-	// 	sendQuestionData(null, false);
-	// });
-});
+// 	$('#question-add').on('change', 'input, textarea', function()
+// 	{
+// 		if($(this).hasClass('rangeSlider'))
+// 		{
+// 			return false;
+// 		}
+// 		requestSavingData();
+// 	});
+// 	// before close page save request on the air!
+// 	// for chrome
+// 	$(window).on('beforeunload', function()
+// 	{
+// 		// sendQuestionData(null, false);
+// 	});
+// 	//this will work for other browsers
+// 	// $(window).on("unload", function ()
+// 	// {
+// 	// 	sendQuestionData(null, false);
+// 	// });
+// });
 
 
 /**
