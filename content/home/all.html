@@ -40,7 +40,7 @@
   <div class="live"><i></i><span class="title">{%trans "Live"%}</span></div>
 {%if false%}
   <div class="election-update-time">
-   <span title='{%trans "Last Update"%} {{result.result[0]["report_date"]|tdate()}}'>{{result.result[0]['report_date']|tdate()}}</span>
+   <span title='{%trans "Last Update"%} {{result.result[0]["report_date"]| dt}}'>{{result.result[0]['report_date']| dt}}</span>
   </div>
 {%endif%}
 
