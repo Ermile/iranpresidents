@@ -25,13 +25,13 @@
       <td class="eligiblePr" style="width:{{value.work_present}}%"></td>
       <td class="year">
 {%if lang.current == 'en'%}
-        <a href="{{value.election_en_url}}" title="{{value.en_title}}">{{value.year|fitNumber(false)}}</a>
+        <a href="{{url.kingdom}}/{{value.election_en_url}}" title="{{value.en_title}}">{{value.year|fitNumber(false)}}</a>
 {%else%}
-        <a href="{{value.fa_url}}" title="{{value.title}}">{{value.jalali_year|fitNumber(false)}}</a>
+        <a href="{{url.kingdom}}/{{value.fa_url}}" title="{{value.title}}">{{value.jalali_year|fitNumber(false)}}</a>
 {%endif%}
       </td>
       <td class="elected">
-        <a href="{%if lang.current == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
+        <a href="{{url.kingdom}}/{%if lang.current == 'en'%}{{value.election_en_url}}{%else%}{{value.fa_url}}{%endif%}">
           <div class="image low">
 {%if value.win_url%}
             <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.en_name}} {{value.en_fame}}'>
