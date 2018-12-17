@@ -9511,7 +9511,7 @@ msgid ""
 " whit max connetcion :max_connections"
 msgstr ""
 ":url \n"
-" به همراه حد اکثر کانکشن :max_connections"
+" به همراه حداکثر کانکشن :max_connections"
 
 #: dash/addons/includes/languages/trans_static.php:1083
 msgid "Add transaction :title whit :plus plus and :minus minus to :user_id"
