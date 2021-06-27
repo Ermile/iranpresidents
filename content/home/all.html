@@ -112,7 +112,7 @@
       {% endif %}
 
       {% if result.rival[0]['percent'] %}
-       <div class="vote-count">{{result.rival[0]['percent']|fitNumber}}%</div>
+       <div class="vote-count">{{result.rival[0]['percent']|number_format(1)|fitNumber(false)}}%</div>
       {% endif %}
      </div>
     </div>
@@ -136,7 +136,7 @@
       {% endif %}
 
       {% if result.rival[1]['percent'] %}
-       <div class="vote-count">{{result.rival[1]['percent']|fitNumber}}%</div>
+       <div class="vote-count">{{result.rival[1]['percent']|number_format(1)|fitNumber(false)}}%</div>
       {%else%}
        <div class="vote-count">-</div>
       {% endif %}
@@ -204,7 +204,7 @@
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
-        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|number_format(1)|fitNumber(false)}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:0%"></div>
         </div>
@@ -232,7 +232,7 @@
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
-        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|number_format(1)|fitNumber(false)}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:0%"></div>
         </div>
@@ -274,7 +274,7 @@
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
-        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|number_format(1)|fitNumber(false)}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:{{value.percent}}%"></div>
         </div>
@@ -302,7 +302,7 @@
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
-        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|number_format(1)|fitNumber(false)}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:{{value.percent}}%"></div>
         </div>

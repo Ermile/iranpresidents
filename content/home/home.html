@@ -51,7 +51,7 @@
         </a>
       </td>
       <td class="percent">
-        <span>{%if value.win_present is defined and value.win_present%}{{value.win_present|fitNumber}}%{%else%}{%endif%}</span>
+        <span>{%if value.win_present is defined and value.win_present%}{{value.win_present|number_format(1)|fitNumber(false)}}%{%else%}{%endif%}</span>
       </td>
       <td class="vote">
         <div>
@@ -63,12 +63,12 @@
       </td>
       <td class="turnout">
         <span title='{{value.voted|number_format|fitNumber}} {%trans "of"%} {{value.eligible|number_format|fitNumber}} {%trans "person"%}'>
-          {{value.work_present|number_format|fitNumber}}%
+          {{value.work_present|number_format(1)|fitNumber(false)}}%
         </span>
       </td>
       <td class="acceptance">
         <span title='{{(value.voted*value.win_present/100)|number_format|fitNumber}} (!) {%trans "of"%} {{value.eligible|number_format|fitNumber}} {%trans "eligible person"%} <br>{%trans "Percent from total eligible person in Iran to vote this candida"%}'>
-          {{value.win_present_all|number_format(2)|fitNumber}}%
+          {{value.win_present_all|number_format(1)|fitNumber(false)}}%
         </span>
       </td>
     </tr>
