@@ -9,7 +9,7 @@
 */
 self::$language =
 [
-	'default' => 'en',
+	'default' => 'fa',
 	'list'    => ['fa','en',],
 ];
 /**
