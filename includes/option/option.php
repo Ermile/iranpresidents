@@ -16,7 +16,7 @@ self::$language =
  * system default lanuage
  */
 self::$config['default_language']             = 'en';
-self::$config['redirect_url']                 = 'https://iranpresidents.com';
+self::$config['redirect_url']                 = 'https://mrelected.ir';
 self::$config['multi_domain']                 = true;
 self::$config['redirect_to_main']             = true;
 self::$config['https']                        = true;
@@ -46,7 +46,7 @@ self::$config['use_main_account']             = false;
 
 self::$config['domain_same']                  = true;
 self::$config['domain_name']                  = 'iranpresidents';
-self::$config['main_site']                    = 'https://iranpresidents.com';
+self::$config['main_site']                    = 'https://mrelected.ir';
 
 
 
